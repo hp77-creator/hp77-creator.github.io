@@ -7,6 +7,7 @@ import {
   Navbar,
   Tech,
   Projects,
+  Achievements,
 } from './components';
 
 const App = () => {
@@ -27,6 +28,11 @@ const App = () => {
         </div>
 
         <Projects />
+
+        <div>
+
+            <Achievements />
+        </div>
 
         <div
           className="bg-experience bg-cover bg-center bg-no-repeat 
