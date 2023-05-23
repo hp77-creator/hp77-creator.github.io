@@ -149,6 +149,22 @@ import {
     //   date: 'Mar 2022 - May 2022',
     // },
     {
+        title: 'Member',
+        company_name: 'Drishti-A Revolutionary Concept',
+        icon: microverse,
+        iconBg: '#333',
+        date: 'June 2020 - March 2021'
+
+    },
+    {
+        title: 'ML Mentor',
+        company_name: 'Drishti-A Revolutionary Concept',
+        icon: microverse,
+        iconBg: '#333',
+        date: 'Sept 2021 - March 2022'
+
+    },
+    {
       title: 'Web Developer',
       company_name: 'Orbitz IT Solution',
       icon: kelhel,
@@ -189,9 +205,9 @@ import {
     },
     {
       id: 'project-2',
-      name: 'Leaderboard',
+      name: 'Tunex',
       description:
-        'A leaderboard list app that displays scores submitted by different players.',
+        'A Webapp which gives out recommendations based on your mood. Mood is determined with the help of facial expression',
       tags: [
         {
           name: 'react',
@@ -207,13 +223,13 @@ import {
         },
       ],
       image: leaderboard,
-      repo: 'https://github.com/shaqdeff/Leaderboard',
+      repo: 'https://github.com/hp77-creator/TUNEX',
       demo: 'https://shaqdeff.github.io/Leaderboard/',
     },
     {
       id: 'project-3',
-      name: 'Math Magicians',
-      description: 'This is a single-page calculator app built with React',
+      name: 'IPL Winner Predictor',
+      description: 'Trained an ML Model to predict IPL winner on the basis of past data',
       tags: [
         {
           name: 'nextjs',
@@ -232,51 +248,59 @@ import {
       repo: 'https://github.com/shaqdeff/Math-Magicians',
       demo: 'https://inspiring-medovik-37d3b3.netlify.app/',
     },
-    {
-      id: 'project-4',
-      name: 'Movie Metro',
-      description: `A single-page application that allows users to search for any movie or show's ratings and its details.`,
-      tags: [
-        {
-          name: 'nextjs',
-          color: 'blue-text-gradient',
-        },
-        {
-          name: 'supabase',
-          color: 'green-text-gradient',
-        },
-        {
-          name: 'css',
-          color: 'pink-text-gradient',
-        },
-      ],
-      image: movie,
-      repo: 'https://github.com/shaqdeff/Movie-Metro',
-      demo: 'https://movie-metro.netlify.app/',
-    },
-    {
-      id: 'project-5',
-      name: 'Nyeusi Fest Site',
-      description:
-        'This is a demo concert website for a music festival called Nyeusi.',
-      tags: [
-        {
-          name: 'nextjs',
-          color: 'blue-text-gradient',
-        },
-        {
-          name: 'supabase',
-          color: 'green-text-gradient',
-        },
-        {
-          name: 'css',
-          color: 'pink-text-gradient',
-        },
-      ],
-      image: nyeusi,
-      repo: 'https://github.com/shaqdeff/Nyeusi-Fest-Site',
-      demo: 'https://shaqdeff.github.io/Nyeusi-Fest-Site/',
-    },
+    // {
+    //   id: 'project-4',
+    //   name: 'Movie Metro',
+    //   description: `A single-page application that allows users to search for any movie or show's ratings and its details.`,
+    //   tags: [
+    //     {
+    //       name: 'nextjs',
+    //       color: 'blue-text-gradient',
+    //     },
+    //     {
+    //       name: 'supabase',
+    //       color: 'green-text-gradient',
+    //     },
+    //     {
+    //       name: 'css',
+    //       color: 'pink-text-gradient',
+    //     },
+    //   ],
+    //   image: movie,
+    //   repo: 'https://github.com/shaqdeff/Movie-Metro',
+    //   demo: 'https://movie-metro.netlify.app/',
+    // },
+    // {
+    //   id: 'project-5',
+    //   name: 'Nyeusi Fest Site',
+    //   description:
+    //     'This is a demo concert website for a music festival called Nyeusi.',
+    //   tags: [
+    //     {
+    //       name: 'nextjs',
+    //       color: 'blue-text-gradient',
+    //     },
+    //     {
+    //       name: 'supabase',
+    //       color: 'green-text-gradient',
+    //     },
+    //     {
+    //       name: 'css',
+    //       color: 'pink-text-gradient',
+    //     },
+    //   ],
+    //   image: nyeusi,
+    //   repo: 'https://github.com/shaqdeff/Nyeusi-Fest-Site',
+    //   demo: 'https://shaqdeff.github.io/Nyeusi-Fest-Site/',
+    // },
   ];
+
+const achievements = [
+    {
+        title: 'Winner at DotSlash 2k23',
+        description: 'Hackathon winner at National level hackathon hosted by ACM-SVNIT',
+        image: komikult,
+    }
+]
   
-  export { services, technologies, experiences, projects };
+  export { services, technologies, experiences, projects, achievements };
