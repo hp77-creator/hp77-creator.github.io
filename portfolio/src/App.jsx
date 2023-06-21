@@ -31,7 +31,7 @@ const App = () => {
 
         <div>
 
-            <Achievements />
+         <Achievements />
         </div>
 
         <div

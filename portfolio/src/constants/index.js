@@ -297,9 +297,16 @@ import {
 
 const achievements = [
     {
+        id: 'ach-1',
         title: 'Winner at DotSlash 2k23',
         description: 'Hackathon winner at National level hackathon hosted by ACM-SVNIT',
         image: komikult,
+    },
+    {
+      id: 'ach-2',
+      title: 'Pre-Seed Funded OSEM',
+      description: 'Took Final Year Project to Incubation center of College and got a grant',
+      image: nyeusi,
     }
 ]
   
