@@ -200,8 +200,8 @@ import {
         },
       ],
       image: komikult,
-      repo: 'https://github.com/shaqdeff/KomiKult',
-      demo: 'https://shaqdeff.github.io/KomiKult/',
+      repo: 'https://github.com/workhunters',
+      demo: 'https://github.com/workhunters',
     },
     {
       id: 'project-2',
@@ -224,7 +224,7 @@ import {
       ],
       image: leaderboard,
       repo: 'https://github.com/hp77-creator/TUNEX',
-      demo: 'https://shaqdeff.github.io/Leaderboard/',
+      demo: 'https://github.com/hp77-creator/TUNEX',
     },
     {
       id: 'project-3',
@@ -245,8 +245,8 @@ import {
         },
       ],
       image: math,
-      repo: 'https://github.com/shaqdeff/Math-Magicians',
-      demo: 'https://inspiring-medovik-37d3b3.netlify.app/',
+      repo: 'https://github.com/hp77-creator/IPL-2020',
+      demo: 'https://github.com/hp77-creator/IPL-2020',
     },
     // {
     //   id: 'project-4',
