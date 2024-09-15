@@ -7,7 +7,7 @@
   <div class="row">
     <span>GitHub</span>
     <hr />
-    <a class="link" href="https://github.com/hp77-creator">@hp77-creator</a>
+    <a class="link whitespace-nowrap" href="https://github.com/hp77-creator">@hp77-creator</a>
   </div>
   <div class="row">
     <span>Email</span>
