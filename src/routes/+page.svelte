@@ -1,7 +1,6 @@
 <script lang="ts">
   import { ArrowUpRight } from "lucide-svelte";
 
-  import Seo from "$lib/components/Seo.svelte";
 
   const featuredProjects = [
     {
@@ -17,10 +16,6 @@
   ];
 </script>
 
-<Seo
-  title="Himanshu Pandey"
-  description="Software engineer, Open Source Contributor"
-/>
 
 <p
   class="layout-md text-black text-xl leading-tight font-light mb-16"
