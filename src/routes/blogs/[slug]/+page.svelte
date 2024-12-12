@@ -4,6 +4,7 @@
   import { getPost } from '$lib/utils/blog';
   import type { BlogPost } from '$lib/utils/blog';
   import Markdown from "$lib/components/Markdown.svelte";
+  import Giscus from "$lib/components/Giscus.svelte";
 
   let post: BlogPost | null = null;
   let loading = true;
@@ -51,6 +52,8 @@
     <div class="prose prose-neutral max-w-none prose-headings:font-semibold prose-a:text-blue-600">
       <Markdown source={post.content} />
     </div>
+
+    <Giscus />
 
     <footer class="mt-12 pt-8 border-t border-neutral-200">
       <a href="/blogs" class="text-blue-600 hover:underline">← Back to all posts</a>
