@@ -1,13 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { getAllPosts } from '$lib/utils/blog';
+  import { getVisiblePosts } from '$lib/utils/blog';
   import type { BlogPost } from '$lib/utils/blog';
 
   let posts: BlogPost[] = [];
   let loading = true;
 
   onMount(async () => {
-    posts = await getAllPosts();
+    posts = await getVisiblePosts();
     loading = false;
   });
 </script>

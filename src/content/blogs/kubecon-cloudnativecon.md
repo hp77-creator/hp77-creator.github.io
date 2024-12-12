@@ -1,13 +1,13 @@
 ---
-title: Welcome to my blog
-date: 2024-01-20
-description: Introduction to my technical blog and what to expect
-visible: true
+title: KubeCon + CloudNativeCon 2024, New Delhi 
+date: 2024-12-10
+description: Learnings from the first KubeCon in India 
+visible: false
 ---
 
-# Welcome to my blog
+## Introduction
 
-Hello! Welcome to my technical blog where I'll be sharing my thoughts, experiences, and learnings in software development.
+Kubecon is a conference conducted by Cloud Nat
 
 ## What to expect
 

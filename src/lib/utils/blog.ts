@@ -4,6 +4,7 @@ export interface BlogPost {
   date: string;
   description: string;
   content: string;
+  visible: boolean;
 }
 
 export async function getAllPosts(): Promise<BlogPost[]> {
@@ -37,6 +38,11 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   
   // Sort posts by date, newest first
   return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+export async function getVisiblePosts(): Promise<BlogPost[]> {
+  const posts = await getAllPosts();
+  return posts.filter(post => post.visible !== false); // If visible is undefined, treat as true
 }
 
 export async function getPost(slug: string): Promise<BlogPost | null> {
@@ -84,12 +90,16 @@ function parseMarkdownPost(content: string, slug: string): BlogPost | null {
       return null;
     }
 
+    // Parse visible field as boolean, default to true if not specified
+    const visible = metadata.visible ? metadata.visible.toLowerCase() === 'true' : true;
+
     return {
       slug,
       title: metadata.title,
       date: metadata.date,
       description: metadata.description || '',
-      content: parts.slice(2).join('---\n') // Join the rest of the content
+      content: parts.slice(2).join('---\n'), // Join the rest of the content
+      visible
     };
   } catch (error) {
     console.error(`Error parsing blog post ${slug}:`, error);

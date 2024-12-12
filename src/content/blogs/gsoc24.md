@@ -2,6 +2,7 @@
 title: My GSoC'24 Journey with eunomia-bpf
 date: 2024-07-21
 description: Sharing my experience and learnings from Google Summer of Code 2024 with eunomia-bpf
+visible: true
 ---
 
 # My GSoC'24 Journey with eunomia-bpf
