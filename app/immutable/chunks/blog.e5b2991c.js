@@ -1,7 +1,8 @@
-const s=`---
+const a=`---
 title: My GSoC'24 Journey with eunomia-bpf
 date: 2024-07-21
 description: Sharing my experience and learnings from Google Summer of Code 2024 with eunomia-bpf
+visible: true
 ---
 
 # My GSoC'24 Journey with eunomia-bpf
@@ -50,9 +51,50 @@ GSoC has been an incredible learning experience. I'm grateful for the opportunit
 
 Feel free to check out my contributions on [GitHub](https://github.com/eunomia-bpf/bpftime) and reach out if you have any questions about my GSoC experience!
 `,c=`---
+title: KubeCon + CloudNativeCon 2024, New Delhi 
+date: 2024-12-10
+description: Learnings from the first KubeCon in India 
+visible: false
+---
+
+## Introduction
+
+Kubecon is a conference conducted by Cloud Nat
+
+## What to expect
+
+I'll be writing about:
+- Software Development
+- Web Technologies
+- System Design
+- Best Practices
+- Personal Projects
+- Technical Tutorials
+
+## Why I started this blog
+
+Writing is a great way to:
+1. Solidify understanding
+2. Share knowledge with others
+3. Document learnings for future reference
+4. Contribute to the developer community
+
+Stay tuned for more posts!
+
+## Technical Details
+
+This blog is built with:
+- SvelteKit for the framework
+- Markdown for content
+- TailwindCSS for styling
+- Hosted on GitHub Pages
+
+Feel free to check out the source code on my GitHub!
+`,l=`---
 title: Welcome to my blog
 date: 2024-01-20
 description: Introduction to my technical blog and what to expect
+visible: true
 ---
 
 # Welcome to my blog
@@ -88,7 +130,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`;async function u(){var n;const r=[],e=Object.assign({"/src/content/blogs/gsoc24.md":s,"/src/content/blogs/welcome.md":c});for(const t in e)try{const o=e[t];if(!o||o.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const i=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(i){const a=l(o,i);a&&r.push(a)}}catch(o){console.error(`Error processing blog post ${t}:`,o);continue}return r.sort((t,o)=>new Date(o.date).getTime()-new Date(t.date).getTime())}async function m(r){try{const e=Object.assign({"/src/content/blogs/gsoc24.md":s,"/src/content/blogs/welcome.md":c}),n=`/src/content/blogs/${r}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):l(t,r)}return null}catch(e){return console.error(`Error loading blog post ${r}:`,e),null}}function l(r,e){try{const n=r.split(`---
-`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const o=h(t);return!o.title||!o.date?(console.warn(`Missing required frontmatter fields in post: ${e}`),null):{slug:e,title:o.title,date:o.date,description:o.description||"",content:n.slice(2).join(`---
-`)}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function h(r){const e={};try{r.split(`
-`).forEach(n=>{const[t,...o]=n.split(":");if(t&&o.length){const i=t.trim(),a=o.join(":").trim();i&&a&&(e[i]=a)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{m as a,u as g};
+`;async function h(){var t;const i=[],e=Object.assign({"/src/content/blogs/gsoc24.md":a,"/src/content/blogs/kubecon-cloudnativecon.md":c,"/src/content/blogs/welcome.md":l});for(const o in e)try{const n=e[o];if(!n||n.trim()===""){console.warn(`Empty blog post file found: ${o}`);continue}const r=(t=o.split("/").pop())==null?void 0:t.replace(".md","");if(r){const s=u(n,r);s&&i.push(s)}}catch(n){console.error(`Error processing blog post ${o}:`,n);continue}return i.sort((o,n)=>new Date(n.date).getTime()-new Date(o.date).getTime())}async function d(){return(await h()).filter(e=>e.visible!==!1)}async function g(i){try{const e=Object.assign({"/src/content/blogs/gsoc24.md":a,"/src/content/blogs/kubecon-cloudnativecon.md":c,"/src/content/blogs/welcome.md":l}),t=`/src/content/blogs/${i}.md`;if(t in e){const o=e[t];return!o||o.trim()===""?(console.warn(`Empty blog post file found: ${t}`),null):u(o,i)}return null}catch(e){return console.error(`Error loading blog post ${i}:`,e),null}}function u(i,e){try{const t=i.split(`---
+`);if(t.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const o=t[1];if(!o)return console.warn(`Missing frontmatter in post: ${e}`),null;const n=m(o);if(!n.title||!n.date)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const r=n.visible?n.visible.toLowerCase()==="true":!0;return{slug:e,title:n.title,date:n.date,description:n.description||"",content:t.slice(2).join(`---
+`),visible:r}}catch(t){return console.error(`Error parsing blog post ${e}:`,t),null}}function m(i){const e={};try{i.split(`
+`).forEach(t=>{const[o,...n]=t.split(":");if(o&&n.length){const r=o.trim(),s=n.join(":").trim();r&&s&&(e[r]=s)}})}catch(t){console.error("Error parsing frontmatter:",t)}return e}export{g as a,d as g};
