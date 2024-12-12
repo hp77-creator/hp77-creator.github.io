@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://hp77-creator.github.io/sitemap.xml
+
+# Prevent access to admin or private areas if they exist
+Disallow: /admin/
+Disallow: /private/
