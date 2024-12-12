@@ -1,8 +1,13 @@
-import { getAllPosts } from '../src/lib/utils/blog.js';
+import { getAllPosts } from './blog-utils.js';
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const website = 'https://hp77-creator.github.io'; // Updated to correct domain
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const website = 'https://hp77-creator.github.io';
 
 async function generateSitemap() {
   const posts = await getAllPosts();
