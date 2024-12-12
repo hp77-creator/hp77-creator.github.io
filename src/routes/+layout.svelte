@@ -3,6 +3,7 @@
   import "../app.css";
 
   import { browser, dev } from "$app/environment";
+  import { page } from '$app/stores';
 
   import { fly } from "svelte/transition";
 
@@ -15,7 +16,35 @@
   const isMobile = browser && /Android|iPhone/i.test(navigator.userAgent);
   const reducedMotion =
     browser && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Default metadata
+  let title = "hp77";
+  let description = "Software Engineer | Open Source Enthusiast";
+  
+  // Update metadata based on route
+  $: {
+    const path = $page.url.pathname;
+    if (path === '/') {
+      title = "hp77 | Portfolio";
+      description = "Software Engineer | Open Source Enthusiast";
+    } else if (path === '/blogs') {
+      title = "hp77 | Blog";
+      description = "Thoughts on software development, open source, and technology";
+    } else if (path === '/resume') {
+      title = "hp77 | Resume";
+      description = "My professional experience and skills";
+    }
+  }
 </script>
+
+<svelte:head>
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+</svelte:head>
 
 <Header />
 
