@@ -1,56 +1,78 @@
 <script lang="ts">
-  // Set the PDF URL here
-  const pdfUrl = "/resume.pdf"; // Ensure this path is correct
+  import { onMount } from "svelte";
+  const pdfUrl = "/resume.pdf";
+  let mounted = false;
+  
+  onMount(() => {
+    mounted = true;
+  });
 </script>
 
-<main class="resume-container">
-  <h1 class="resume-title">My Resume</h1>
-  <p class="resume-description">Here is my resume. You can view it below or </p>
-  <a href={pdfUrl} download="resume.pdf" class="download-link">Download it</a>
+<main class="layout-md resume-container" class:mounted>
+  <div class="resume-header">
+    <p class="description">You can view my resume below or</p>
+    <a href={pdfUrl} download="resume.pdf" class="download-link">
+      download it
+      <span class="download-icon">↓</span>
+    </a>
+  </div>
 
   <iframe
     src={pdfUrl}
     width="100%"
-    height="600"
+    height="800"
     class="resume-iframe"
     title="Resume"
   ></iframe>
 </main>
 
-<style>
+<style lang="postcss">
   .resume-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align items to the left */
-    padding: 20px;
-    max-width: 800px; /* Adjust as needed */
-    margin: auto; /* Center the container */
-    font-family: Arial, sans-serif; /* Match font family */
-    color: #333; /* Match text color */
+    @apply opacity-0 transform translate-y-4;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   }
 
-  .resume-title {
-    margin-bottom: 10px;
-    font-size: 2rem; /* Adjust font size to match header */
-    font-weight: bold; /* Match header font weight */
-    text-align: left; /* Align heading to the left */
+  .resume-container.mounted {
+    @apply opacity-100 translate-y-0;
   }
 
-  .resume-description {
-    margin-bottom: 20px;
-    font-size: 1rem; /* Adjust font size to match header */
-    text-align: left; /* Align paragraph to the left */
+  .resume-header {
+    @apply flex items-center gap-2 mb-6 text-lg;
+  }
+
+  .description {
+    @apply text-neutral-600;
   }
 
   .download-link {
-    margin-bottom: 20px; /* Space below the link */
-    color: #007bff; /* Change color to match header link color */
-    text-decoration: underline; /* Underline for clarity */
-    font-size: 1rem; /* Match font size */
+    @apply relative text-blue-600 hover:text-blue-700 transition-colors inline-flex items-center gap-1;
+  }
+
+  .download-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 transform scale-x-0 transition-transform;
+  }
+
+  .download-link:hover::after {
+    @apply scale-x-100;
+  }
+
+  .download-icon {
+    @apply text-sm transition-transform;
+  }
+
+  .download-link:hover .download-icon {
+    @apply translate-y-0.5;
   }
 
   .resume-iframe {
-    border: none; /* Remove default border */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    @apply border-none rounded-lg shadow-lg bg-white;
+    min-height: calc(100vh - 200px);
+  }
+
+  @media (max-width: 640px) {
+    .resume-header {
+      @apply flex-col items-start gap-1;
+    }
   }
 </style>
