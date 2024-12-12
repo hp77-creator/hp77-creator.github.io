@@ -1,0 +1,59 @@
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import { page } from '$app/stores';
+  import { getPost } from '$lib/utils/blog';
+  import type { BlogPost } from '$lib/utils/blog';
+  import Markdown from "$lib/components/Markdown.svelte";
+
+  let post: BlogPost | null = null;
+  let loading = true;
+  let error = false;
+
+  onMount(async () => {
+    const slug = $page.params.slug;
+    try {
+      post = await getPost(slug);
+      if (!post) {
+        error = true;
+      }
+    } catch (e) {
+      error = true;
+      console.error('Error loading post:', e);
+    } finally {
+      loading = false;
+    }
+  });
+</script>
+
+{#if loading}
+  <div class="layout-md py-8">
+    <p class="text-neutral-600">Loading post...</p>
+  </div>
+{:else if error || !post}
+  <div class="layout-md py-8">
+    <h1 class="text-2xl font-bold text-red-600 mb-4">Post Not Found</h1>
+    <p class="text-neutral-600 mb-4">Sorry, the blog post you're looking for doesn't exist.</p>
+    <a href="/blogs" class="text-blue-600 hover:underline">← Back to all posts</a>
+  </div>
+{:else}
+  <article class="layout-md py-8">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold mb-4">{post.title}</h1>
+      <time class="text-neutral-500">
+        {new Date(post.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })}
+      </time>
+    </header>
+
+    <div class="prose prose-neutral max-w-none">
+      <Markdown source={post.content} />
+    </div>
+
+    <footer class="mt-12 pt-8 border-t border-neutral-200">
+      <a href="/blogs" class="text-blue-600 hover:underline">← Back to all posts</a>
+    </footer>
+  </article>
+{/if}
