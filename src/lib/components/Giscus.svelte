@@ -30,5 +30,10 @@
 
 <div class="mt-8 pt-8 border-t border-neutral-200">
   <h2 class="text-xl font-semibold mb-4">Comments & Reactions</h2>
+  
+  <div class="mb-6 p-4 bg-blue-50 rounded-lg text-sm text-blue-800">
+    <p>💡 Comments are powered by GitHub Discussions. When you sign in to comment, no personal data is collected or stored by this website. All interactions are handled directly through GitHub's secure authentication system.</p>
+  </div>
+
   <div id="giscus-container"></div>
 </div>
