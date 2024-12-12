@@ -7,20 +7,16 @@ const config = {
 
   kit: {
     adapter: adapter({
-      pages: 'build',
-      assets: 'build',
+      // Enable SPA mode with index.html fallback
       fallback: 'index.html',
-      precompress: false,
-      strict: true
+      // Ensure all pages are prerendered
+      prerender: {
+        entries: []
+      }
     }),
+    // No base path needed since serving from root domain
     paths: {
-      base: '',
-      assets: ''
-    },
-    appDir: 'app',
-    prerender: {
-      entries: ['*'],
-      handleHttpError: 'warn'
+      base: ''
     }
   },
 };
