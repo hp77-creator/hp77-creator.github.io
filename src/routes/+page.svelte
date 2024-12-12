@@ -4,6 +4,11 @@
 
   const featuredProjects = [
     {
+      name: "Modern Jenkins Notifier",
+      href: "https://chromewebstore.google.com/detail/modern-jenkins-notifier/kdhhfphgmjdgkpbammmlnlbfalmpphcd?pli=1",
+      desc: "manifest v3 notifier for Jenkins",
+    },
+    {
       name: "bpftime",
       href: "https://github.com/eunomia-bpf/bpftime",
       desc: "a userspace runtime for ebpf",
