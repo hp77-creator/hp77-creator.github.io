@@ -5,6 +5,7 @@ export interface BlogPost {
   description: string;
   content: string;
   visible: boolean;
+  tags?: string[]; // Optional array of tags
 }
 
 export async function getAllPosts(): Promise<BlogPost[]> {
@@ -85,21 +86,28 @@ function parseMarkdownPost(content: string, slug: string): BlogPost | null {
     const metadata = parseFrontmatter(frontmatter);
     
     // Validate required fields
-    if (!metadata.title || !metadata.date) {
+    const title = metadata.title as string;
+    const date = metadata.date as string;
+    if (!title || !date) {
       console.warn(`Missing required frontmatter fields in post: ${slug}`);
       return null;
     }
 
     // Parse visible field as boolean, default to true if not specified
-    const visible = metadata.visible ? metadata.visible.toLowerCase() === 'true' : true;
+    const visibleStr = metadata.visible as string;
+    const visible = visibleStr ? visibleStr.toLowerCase() === 'true' : true;
+
+    // Get tags if present
+    const tags = metadata.tags as string[] | undefined;
 
     return {
       slug,
-      title: metadata.title,
-      date: metadata.date,
-      description: metadata.description || '',
+      title,
+      date,
+      description: (metadata.description as string) || '',
       content: parts.slice(2).join('---\n'), // Join the rest of the content
-      visible
+      visible,
+      tags
     };
   } catch (error) {
     console.error(`Error parsing blog post ${slug}:`, error);
@@ -107,8 +115,8 @@ function parseMarkdownPost(content: string, slug: string): BlogPost | null {
   }
 }
 
-function parseFrontmatter(frontmatter: string): Record<string, string> {
-  const metadata: Record<string, string> = {};
+function parseFrontmatter(frontmatter: string): Record<string, string | string[]> {
+  const metadata: Record<string, string | string[]> = {};
   
   try {
     frontmatter.split('\n').forEach(line => {
@@ -117,7 +125,12 @@ function parseFrontmatter(frontmatter: string): Record<string, string> {
         const trimmedKey = key.trim();
         const trimmedValue = valueParts.join(':').trim();
         if (trimmedKey && trimmedValue) {
-          metadata[trimmedKey] = trimmedValue;
+          // Handle tags specially
+          if (trimmedKey === 'tags') {
+            metadata[trimmedKey] = trimmedValue.split(',').map(tag => tag.trim());
+          } else {
+            metadata[trimmedKey] = trimmedValue;
+          }
         }
       }
     });
