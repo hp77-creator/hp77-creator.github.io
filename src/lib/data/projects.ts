@@ -65,6 +65,21 @@ export const projects: Project[] = [
     },
     technologies: ["SvelteKit", "TypeScript", "TailwindCSS", "GitHub Pages"],
   },
- 
-  // Add your actual projects here following this structure
+  {
+    title: "bpftime",
+    description: "A userspace runtime for eBPF, enabling eBPF programs to run in userspace with high performance.",
+    links: {
+      github: "https://github.com/eunomia-bpf/bpftime",
+      demo: "https://eunomia.dev/bpftime/"
+    },
+    technologies: ["eBPF", "C++", "LLVM", "Linux"],
+  },
+  {
+    title: "dylogor",
+    description: "A CLI tool for ingesting and viewing logs efficiently, making log analysis more streamlined.",
+    links: {
+      github: "https://github.com/hp77-creator/dylogor"
+    },
+    technologies: ["Go", "CLI", "Log Analysis"],
+  }
 ];

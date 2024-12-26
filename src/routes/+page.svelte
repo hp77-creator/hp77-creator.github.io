@@ -1,24 +1,16 @@
 <script lang="ts">
   import { ArrowUpRight } from "lucide-svelte";
   import { onMount } from "svelte";
+  import { projects } from "$lib/data/projects";
 
-  const featuredProjects = [
-    {
-      name: "Modern Jenkins Notifier",
-      href: "https://chromewebstore.google.com/detail/modern-jenkins-notifier/kdhhfphgmjdgkpbammmlnlbfalmpphcd?pli=1",
-      desc: "manifest v3 notifier for Jenkins",
-    },
-    {
-      name: "bpftime",
-      href: "https://github.com/eunomia-bpf/bpftime",
-      desc: "a userspace runtime for ebpf",
-    },
-    {
-      name: "dylogor",
-      href: "https://github.com/hp77-creator/dylogor",
-      desc: "a CLI tool to ingest logs and view them" 
-    }
-  ];
+  // Get top 3 projects for featured section
+  const featuredProjects = projects
+    .slice(0, 3)
+    .map(project => ({
+      name: project.title,
+      href: project.links.github || project.links.demo || project.links.playstore || '#',
+      desc: project.description
+    }));
 
   let typedText = "";
   let phrases = ["Software Engineer", "Open Source Contributor", "Systems Enthusiast"];
