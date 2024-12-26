@@ -3,6 +3,7 @@ title: Welcome to my blog
 date: 2024-01-20
 description: Introduction to my technical blog and what to expect
 visible: true
+tags: blog, technical-writing
 ---
 
 # Welcome to my blog
