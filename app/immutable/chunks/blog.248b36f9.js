@@ -1,4 +1,38 @@
 const c=`---
+title: Mudlet through an open source contributor's eyes 
+date: 2025-01-23
+description: how to navigate a large C++ project and how to start with Mudlet 
+visible: false
+tags: C++
+----
+
+Mudlet, it is an open source application which can be used to play multiplayer text games. It is written in C++ and uses Qt framework for its UI content. It uses raw pointers and is devoid of RAII(I am trying to fix some with this PR: https://github.com/Mudlet/Mudlet/pull/7642)
+
+When you first visit Mudlet, you might feel excited to try it instantly, you can download it from here(insert link here) and if you want to contribute
+to it then you will have to learn how to setup your environment, you can refere following guide to get started.
+
+The project is very huge so there are multiple commands that you have to execute to get the application started. You can refer following script for that
+\`\`\`shell
+mkdir -p build && cd build && rm -rf *
+cmake ../../Mudlet-go -DCMAKE_PREFIX_PATH=\`brew --prefix qt@5\` -DUSE_UPDATER=OFF
+make -j \`sysctl -n hw.ncpu\`
+src/mudlet.app/Contents/MacOS/mudlet
+\`\`\`
+Note: Make sure to run this script from inside the repo main directory or you might loose all of your changes.
+I am currently looking to add feature to add support for voice-readers to read the found result, for more info: . The issue was that result was found
+it was highlighted as well but the caret which is used by the voice-readers to get the context for their dictation was not setting up properly.
+I fixed that and added a key shortcut to enable this setting. To integrate shortcut, I used the existing \`lua\` scripts and added option for the same.
+
+In the process, I learned that there are some games that might have their own implementation for \`F3\` (key that I have configured to access the results) and that could mess up the search navigation.
+
+
+
+---- 
+
+## References
+
+- [Git remote branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
+`,l=`---
 title: mishap with git rebase, reflog to rescue
 date: 2024-12-10
 description: lesson on Git and what not to do 
@@ -45,7 +79,7 @@ It will show you history of the branches and places it had originated from and h
 ## References
 
 - [Git remote branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
-`,l=`---
+`,h=`---
 title: My GSoC'24 Journey with eunomia-bpf
 date: 2024-07-21
 description: Sharing my experience and learnings from Google Summer of Code 2024 with eunomia-bpf
@@ -98,7 +132,7 @@ Moving forward, I plan to:
 GSoC has been an incredible learning experience. I'm grateful for the opportunity to work with the eunomia-bpf team and contribute to such an innovative project.
 
 Feel free to check out my contributions on [GitHub](https://github.com/eunomia-bpf/bpftime) and reach out if you have any questions about my GSoC experience!
-`,h=`---
+`,u=`---
 title: KubeCon + CloudNativeCon 2024, New Delhi 
 date: 2024-12-10
 description: Learnings from the first KubeCon in India 
@@ -138,7 +172,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`,g=`---
+`,d=`---
 title: Welcome to my blog
 date: 2024-01-20
 description: Introduction to my technical blog and what to expect
@@ -179,7 +213,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`;async function b(){var n;const i=[],e=Object.assign({"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/gsoc24.md":l,"/src/content/blogs/kubecon-cloudnativecon.md":h,"/src/content/blogs/welcome.md":g});for(const t in e)try{const o=e[t];if(!o||o.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const r=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(r){const s=u(o,r);s&&i.push(s)}}catch(o){console.error(`Error processing blog post ${t}:`,o);continue}return i.sort((t,o)=>new Date(o.date).getTime()-new Date(t.date).getTime())}async function p(){return(await b()).filter(e=>e.visible!==!1)}async function w(i){try{const e=Object.assign({"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/gsoc24.md":l,"/src/content/blogs/kubecon-cloudnativecon.md":h,"/src/content/blogs/welcome.md":g}),n=`/src/content/blogs/${i}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):u(t,i)}return null}catch(e){return console.error(`Error loading blog post ${i}:`,e),null}}function u(i,e){try{const n=i.split(`---
-`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const o=f(t),r=o.title,s=o.date;if(!r||!s)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const a=o.visible,d=a?a.toLowerCase()==="true":!0,m=o.tags;return{slug:e,title:r,date:s,description:o.description||"",content:n.slice(2).join(`---
-`),visible:d,tags:m}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function f(i){const e={};try{i.split(`
-`).forEach(n=>{const[t,...o]=n.split(":");if(t&&o.length){const r=t.trim(),s=o.join(":").trim();r&&s&&(r==="tags"?e[r]=s.split(",").map(a=>a.trim()):e[r]=s)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{w as a,p as g};
+`;async function f(){var n;const i=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":c,"/src/content/blogs/git-rebase.md":l,"/src/content/blogs/gsoc24.md":h,"/src/content/blogs/kubecon-cloudnativecon.md":u,"/src/content/blogs/welcome.md":d});for(const t in e)try{const o=e[t];if(!o||o.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const r=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(r){const s=g(o,r);s&&i.push(s)}}catch(o){console.error(`Error processing blog post ${t}:`,o);continue}return i.sort((t,o)=>new Date(o.date).getTime()-new Date(t.date).getTime())}async function w(){return(await f()).filter(e=>e.visible!==!1)}async function y(i){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":c,"/src/content/blogs/git-rebase.md":l,"/src/content/blogs/gsoc24.md":h,"/src/content/blogs/kubecon-cloudnativecon.md":u,"/src/content/blogs/welcome.md":d}),n=`/src/content/blogs/${i}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):g(t,i)}return null}catch(e){return console.error(`Error loading blog post ${i}:`,e),null}}function g(i,e){try{const n=i.split(`---
+`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const o=p(t),r=o.title,s=o.date;if(!r||!s)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const a=o.visible,m=a?a.toLowerCase()==="true":!0,b=o.tags;return{slug:e,title:r,date:s,description:o.description||"",content:n.slice(2).join(`---
+`),visible:m,tags:b}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function p(i){const e={};try{i.split(`
+`).forEach(n=>{const[t,...o]=n.split(":");if(t&&o.length){const r=t.trim(),s=o.join(":").trim();r&&s&&(r==="tags"?e[r]=s.split(",").map(a=>a.trim()):e[r]=s)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{y as a,w as g};
