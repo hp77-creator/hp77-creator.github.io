@@ -31,6 +31,13 @@
       <!-- Blog Posts -->
       
         <url>
+          <loc>https://hp77-creator.github.io/blogs/git-worktree-debug</loc>
+          <lastmod>2025-03-28T00:00:00.000Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.7</priority>
+        </url>
+      
+        <url>
           <loc>https://hp77-creator.github.io/blogs/building-understanding-mariaDB</loc>
           <lastmod>2025-02-02T00:00:00.000Z</lastmod>
           <changefreq>weekly</changefreq>
