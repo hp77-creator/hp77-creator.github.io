@@ -54,6 +54,20 @@ my read, I learnt that it has been there for long time and It was shock for me t
 mentioned much. 
 I am modifying my git workflow to include this command and have better separation for concern for different features. Features like this make you realize how much you don't know about some of the tools that you think you might be knowing a lot. Answer is to always `Stay curious`.
 
+Workflow that I am switching to, if there's any feature that I need to work on, what I do is
+```shell
+git worktree add -b account_api_fix ../api-fix main 
+```
+`-b` creates a new branch, `../api-fix` creates a new worktree in the parent directory of current location, `main` is for from where it 
+should branch the new branch and create the worktree.
+
+After work is done, I simply do
+```shell
+git worktree remove <worktree-name>
+```
+above command removes the worktree from the `git` object and also removes the extra created directory.
+
+
 Also, Would like to mention that when you change your directory, you might have to reinstall your dependencies which you normally ignore, example `venv` dir in `python` and `node_modules` in `Javascript`
 
 ---- 
