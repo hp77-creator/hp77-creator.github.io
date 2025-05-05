@@ -66,13 +66,6 @@
         </url>
       
         <url>
-          <loc>https://hp77-creator.github.io/blogs/support-jetstream-proton</loc>
-          <lastmod>2024-12-10T00:00:00.000Z</lastmod>
-          <changefreq>weekly</changefreq>
-          <priority>0.7</priority>
-        </url>
-      
-        <url>
           <loc>https://hp77-creator.github.io/blogs/gsoc24</loc>
           <lastmod>2024-07-21T00:00:00.000Z</lastmod>
           <changefreq>weekly</changefreq>
