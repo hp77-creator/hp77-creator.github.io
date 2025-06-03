@@ -146,7 +146,10 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug \
 
 This script gave a lot of errors on `OPENSSL` casting. I added the flags to disable these warnings and disabled a lot of plugins that are by default enabled while building the server.
 
+> Update: 3rd June, 2025 -- Add a new flag CMakeList version flag because of wsrep-lib CMake Version
+
 At the end, I created a script with the commands that I had to type again and again and it came out to look like following:
+
 
 ```
 #!/bin/sh
@@ -190,6 +193,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug \
 -DCONNECT_WITH_MONGO=OFF \
 -DCONNECT_WITH_BSON=OFF \
 -DMYSQL_MAINTAINER_MODE=OFF \  
+-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 -G Ninja
 
 # Build using ninja with parallel jobs and logging
