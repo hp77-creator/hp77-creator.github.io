@@ -206,7 +206,10 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug \\
 
 This script gave a lot of errors on \`OPENSSL\` casting. I added the flags to disable these warnings and disabled a lot of plugins that are by default enabled while building the server.
 
+> Update: 3rd June, 2025 -- Add a new flag CMakeList version flag because of wsrep-lib CMake Version
+
 At the end, I created a script with the commands that I had to type again and again and it came out to look like following:
+
 
 \`\`\`
 #!/bin/sh
@@ -250,6 +253,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug \\
 -DCONNECT_WITH_MONGO=OFF \\
 -DCONNECT_WITH_BSON=OFF \\
 -DMYSQL_MAINTAINER_MODE=OFF \\  
+-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \\
 -G Ninja
 
 # Build using ninja with parallel jobs and logging
@@ -420,6 +424,20 @@ my read, I learnt that it has been there for long time and It was shock for me t
 mentioned much. 
 I am modifying my git workflow to include this command and have better separation for concern for different features. Features like this make you realize how much you don't know about some of the tools that you think you might be knowing a lot. Answer is to always \`Stay curious\`.
 
+Workflow that I am switching to, if there's any feature that I need to work on, what I do is
+\`\`\`shell
+git worktree add -b account_api_fix ../api-fix main 
+\`\`\`
+\`-b\` creates a new branch, \`../api-fix\` creates a new worktree in the parent directory of current location, \`main\` is for from where it 
+should branch the new branch and create the worktree.
+
+After work is done, I simply do
+\`\`\`shell
+git worktree remove <worktree-name>
+\`\`\`
+above command removes the worktree from the \`git\` object and also removes the extra created directory.
+
+
 Also, Would like to mention that when you change your directory, you might have to reinstall your dependencies which you normally ignore, example \`venv\` dir in \`python\` and \`node_modules\` in \`Javascript\`
 
 ---- 
@@ -482,6 +500,45 @@ GSoC has been an incredible learning experience. I'm grateful for the opportunit
 
 Feel free to check out my contributions on [GitHub](https://github.com/eunomia-bpf/bpftime) and reach out if you have any questions about my GSoC experience!
 `,m=`---
+title: Fixing a MacOS while installing Clickhouse 
+date: 2025-05-13
+description: how a OS library update can break your DB 
+visible: false
+tags: Database, blog
+---
+
+So, Yesterday I was installing clickhouse from source on my system(macbook air M2), I am glad that \`Clickhouse\` has a very good
+documentation on their site for this purpose.
+I referred to it but I was facing an issue whenever I was doing
+\`\`\`
+cmake --build build
+\`\`\`
+Error was something that \`strchrnul\` is redefined, previously it was defined in \`MacOSX15.4\` system libraries and then it was again 
+defined in some postgres header file, I checked github to find out if there is any open issue on this. I found one issue but it was closed:
+https://github.com/ClickHouse/ClickHouse/issues/78804
+
+In the issue comments it was mentioned that clang version is not supported, maybe because the author had specifically mentioned 
+\`clang 17.0.0\` and \`Clickhouse\` only works on \`clang 19\` and that too non-apple one.
+Our errors were similar though, so that prompted me to look up more on this issue and I got to know from a LLM that there is
+a issue discovered in Postgres on this: 
+https://www.postgresql.org/message-id/flat/407464.1743535559%40sss.pgh.pa.us#277a94029172f7d3de0048d46474ebf0
+
+I checked the \`cmake\` file for \`Postgres\` and there was already a check regarding this. I wondered why then my build was failing.
+
+I ran the command which was checking the version for my system, it was \`xcrun --sdk macosx --show-sdk-version\`. This command was returning me \`15.2\` but I checked in my error logs, library version which was being used was \`15.4\`. 
+
+Because \`xcrun\` was returning a lower version, the cmake check was failing and \`strchrnul\` was also included, it wouldn't have failed
+if we were getting \`15.4\`. 
+
+I changed the way version was checked and re-ran the build commands, voila it worked.
+
+I submitted my PR: https://github.com/ClickHouse/ClickHouse/pull/80228/files
+
+It was interesting to know that how much an OS can change the stability of a system. MacOSX didn't come with their own \`strchrnul\` but in latest versions they are defining a constant for that.
+
+Postgres had it declared when they were creating their software and now their changes were breaking. It was a nice reminder that unless you own everything in the stack, you can't be sure when and where your software can break.
+
+`,g=`---
 title: KubeCon + CloudNativeCon 2024, New Delhi 
 date: 2024-12-10
 description: Learnings from the first KubeCon in India 
@@ -521,7 +578,104 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`,g=`---
+`,b=`---
+title: Outing near a lakehouse 
+date: 2025-05-13
+description: what I learned about Datawarehouses, Delta-lakes and Lakehouses 
+visible: false
+tags: Database, blog
+---
+This sunday there was an interesting meetup organized by \`e6data(https://www.e6data.com/)\`, called Lakehouse days(https://lu.ma/m593968s?tk=5dBS7S).
+Theme for this week was around \`Apache Iceberg\` before coming to this meetup, I had only heard of \`Datawarehouses\`, \`Delta lakes\` and \`Lakehouses\` courtesy reading some parts of \`Apache Iceberg: The definitive Guide\`(https://www.amazon.in/Apache-Iceberg-Functionality-Performance-Scalability/dp/1098148622).
+I went in with an open mind, to learn more about this ecosystem, to really understand how those terms are defined and used in Industry.
+First talk was titled \`Design a lakehouse brick by brick using pyarrow, pyberg & DuckDB\`
+
+It was pretty interesting, really cleared up a lot of things for me before jumping into details of DWH, Delta Lake & Lakehouse, I would like to talk about Data platforms.
+
+Data platforms consist of following:
+- Storage (Cloud/Disk)
+- File formats (Parquet, Avro, ORC)
+- Table format (Apache Iceberg)
+- Storage engine
+- Compute engine (e6data is one example) 
+- Catalog 
+
+### **Storage**
+It is basically where your data resides, it can be in a disk or in object storage.
+
+### **File formats**
+These are formats in which data are stored, storing data the way it is received will be very space inefficient and will be difficult
+in certain operations.
+
+### **Table formats**
+These are formats to make your data files queryable with some language, it can be SQL or something else, Apache Hive was the first
+to provide one interface on top of HDFS(Hadoop File System).
+
+### **Storage engine**
+These are what controls the flow of data, like which page to put data into and how to store, everything is handled by these, they are an abstraction over filesystem.
+
+### **Compute engine**
+Processing data files & table formats is done with the help of compute engine, some famous ones are like \`Apache Spark\`, \`DuckDB\`, \`Apache Flink\` and many more.
+
+### **Catalog**
+Storing metadata about different components of your data and 
+
+Datawarehouses, Delta Lakes & Lakehouses all have these components, difference lies in how these components are assembled.
+
+In a Datawarehouse, data is pretty structured and all the components are well packaged into one software component. As a user you
+are stuck with one solution and if you want to try some new File format or add a new table format to your data, you will have to
+switch your DB, Another issue with DWH is that they are not good in storing unstructured data, in production systems, there is 
+always an ETL(Extract-Transform-Load) step before data is added into these DBs.
+
+Delta Lakes provide one step better clarity and support unstructured or semi-structured data but they also lack the modularity 
+`,p=`---
+title: mishap with git rebase, reflog to rescue
+date: 2024-12-10
+description: lesson on Git and what not to do 
+visible: false
+tags: git, debugging, tips
+---
+
+I was working on one Spring boot repo. The code was mix of spaghetti from around the world and I wanted to iron out some things.
+Apply SOLID principles and make it more readable for myself. I did those changes but then I realized that on this same repo there has 
+been work done by my colleague as well.
+
+so like my habit, I simply did
+\`git rebase origin main\` when I was on a \`feature\` branch and then I saw some conflicts, I expected those since there were some changes that were in common files. I used \`IntelliJ\` merge editor to resolve the conflicts but then I see that my branch is changed to \`main\`
+
+![main-branch-pic](/blog-pic/main-branch.png)
+
+Before observing this change, I had also done \`git add\` and was about to \`commit\`.
+
+But now that my branch was switched to \`main\`, I was curious what did I do wrong and do I know rebase correctly. I searched for my mistake and observed that, when we do rebase
+we should use
+
+\`git rebase origin/main\` and not \`git rebase origin main\`
+
+when you do \`git rebase origin/main\`
+
+You are telling \`git\` to rebase your existing branch with \`main\` that is there in \`origin\`
+
+and when you do \`git rebase origin main\` 
+
+You are telling \`git\` to rebase your __main__ branch with \`origin\`'s \`main\` and it automatically switches your branch as well.
+
+To see the history of the \`HEAD\` pointer of \`git\` to track which branch it switched to or from, you can use \`git reflog\`.
+
+It will show you history of the branches and places it had originated from and had been, something like below:
+![git-reflog](/blog-pic/git-reflog.png)
+
+
+
+
+
+
+---- 
+
+## References
+
+- [Git remote branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
+`,f=`---
 title: Welcome to my blog
 date: 2024-01-20
 description: Introduction to my technical blog and what to expect
@@ -562,7 +716,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`;async function w(){var n;const i=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/building-understanding-mariaDB.md":c,"/src/content/blogs/git-rebase.md":d,"/src/content/blogs/git-worktree-debug.md":h,"/src/content/blogs/gsoc24.md":u,"/src/content/blogs/kubecon-cloudnativecon.md":m,"/src/content/blogs/welcome.md":g});for(const t in e)try{const o=e[t];if(!o||o.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const r=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(r){const a=b(o,r);a&&i.push(a)}}catch(o){console.error(`Error processing blog post ${t}:`,o);continue}return i.sort((t,o)=>new Date(o.date).getTime()-new Date(t.date).getTime())}async function _(){return(await w()).filter(e=>e.visible!==!1)}async function I(i){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/building-understanding-mariaDB.md":c,"/src/content/blogs/git-rebase.md":d,"/src/content/blogs/git-worktree-debug.md":h,"/src/content/blogs/gsoc24.md":u,"/src/content/blogs/kubecon-cloudnativecon.md":m,"/src/content/blogs/welcome.md":g}),n=`/src/content/blogs/${i}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):b(t,i)}return null}catch(e){return console.error(`Error loading blog post ${i}:`,e),null}}function b(i,e){try{const n=i.split(`---
-`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const o=y(t),r=o.title,a=o.date;if(!r||!a)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const s=o.visible,p=s?s.toLowerCase()==="true":!0,f=o.tags;return{slug:e,title:r,date:a,description:o.description||"",content:n.slice(2).join(`---
-`),visible:p,tags:f}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function y(i){const e={};try{i.split(`
-`).forEach(n=>{const[t,...o]=n.split(":");if(t&&o.length){const r=t.trim(),a=o.join(":").trim();r&&a&&(r==="tags"?e[r]=a.split(",").map(s=>s.trim()):e[r]=a)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{I as a,_ as g};
+`;async function k(){var n;const i=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/building-understanding-mariaDB.md":c,"/src/content/blogs/git-rebase.md":d,"/src/content/blogs/git-worktree-debug.md":h,"/src/content/blogs/gsoc24.md":u,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":m,"/src/content/blogs/kubecon-cloudnativecon.md":g,"/src/content/blogs/outing-near-a-lakehouse.md":b,"/src/content/blogs/support-jetstream-proton.md":p,"/src/content/blogs/welcome.md":f});for(const t in e)try{const o=e[t];if(!o||o.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const a=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(a){const r=w(o,a);r&&i.push(r)}}catch(o){console.error(`Error processing blog post ${t}:`,o);continue}return i.sort((t,o)=>new Date(o.date).getTime()-new Date(t.date).getTime())}async function v(){return(await k()).filter(e=>e.visible!==!1)}async function C(i){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/building-understanding-mariaDB.md":c,"/src/content/blogs/git-rebase.md":d,"/src/content/blogs/git-worktree-debug.md":h,"/src/content/blogs/gsoc24.md":u,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":m,"/src/content/blogs/kubecon-cloudnativecon.md":g,"/src/content/blogs/outing-near-a-lakehouse.md":b,"/src/content/blogs/support-jetstream-proton.md":p,"/src/content/blogs/welcome.md":f}),n=`/src/content/blogs/${i}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):w(t,i)}return null}catch(e){return console.error(`Error loading blog post ${i}:`,e),null}}function w(i,e){try{const n=i.split(`---
+`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const o=_(t),a=o.title,r=o.date;if(!a||!r)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const s=o.visible,y=s?s.toLowerCase()==="true":!0,I=o.tags;return{slug:e,title:a,date:r,description:o.description||"",content:n.slice(2).join(`---
+`),visible:y,tags:I}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function _(i){const e={};try{i.split(`
+`).forEach(n=>{const[t,...o]=n.split(":");if(t&&o.length){const a=t.trim(),r=o.join(":").trim();a&&r&&(a==="tags"?e[a]=r.split(",").map(s=>s.trim()):e[a]=r)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{C as a,v as g};
