@@ -31,6 +31,20 @@
       <!-- Blog Posts -->
       
         <url>
+          <loc>https://hp77-creator.github.io/blogs/gsoc25</loc>
+          <lastmod>2025-09-01T00:00:00.000Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.7</priority>
+        </url>
+      
+        <url>
+          <loc>https://hp77-creator.github.io/blogs/adding-frm-parser-part-1</loc>
+          <lastmod>2025-06-23T00:00:00.000Z</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.7</priority>
+        </url>
+      
+        <url>
           <loc>https://hp77-creator.github.io/blogs/installing-clickhouse-fixing-a-macos-issue</loc>
           <lastmod>2025-05-13T00:00:00.000Z</lastmod>
           <changefreq>weekly</changefreq>
