@@ -12,7 +12,7 @@ tags: GSoC, blog, database
 ## Prologue
 
 MariaDB, is a very popular Relational Database Management System(DBMS). It was forked from MySQL and is currently the 14th Most used database according
-to the [DB-Engines](https://db-engines.com/en/ranking). It also participates in Google Summer of Code(https://www.gsocorganizations.dev/organization/mariadb/) and has been doing so since 2016. 
+to the [DB-Engines](https://db-engines.com/en/ranking). It also participates in [Google Summer of Code](https://www.gsocorganizations.dev/organization/mariadb/) and has been doing so since 2016. 
 
 I have always wanted to contribute to a database and recently I have previously got a PR merged in [ClickHouse](https://github.com/ClickHouse/ClickHouse/pull/80228). I also have one open PR in [MariaDB](https://github.com/MariaDB/server/pull/3839).
 
@@ -45,7 +45,7 @@ So, It is really important to create a tool which is using similar methods that 
 ## Initial approach
 
 I reached out to the org with an approach that we can create one common library something like `libfrm` which will be then used by both `server` and the new utility tool.
-I had gone through jira comments mentioned on the raised issue(https://jira.mariadb.org/browse/MDEV-4637). In the comments, Sergei Golubchik describes how we can simply replace the data structures with `printf` and we can have a simple parser. I had thought of the similar approach. After my conversation with my mentors, Nikita Malyavin and Oleksandr Byelkin, we made this approach concrete, My first task was to create a separate utility which simply compiles the `init_from_binary_frm_image` and works. 
+I had gone through jira comments mentioned on the raised [issue](https://jira.mariadb.org/browse/MDEV-4637). In the comments, Sergei Golubchik describes how we can simply replace the data structures with `printf` and we can have a simple parser. I had thought of the similar approach. After my conversation with my mentors, Nikita Malyavin and Oleksandr Byelkin, we made this approach concrete, My first task was to create a separate utility which simply compiles the `init_from_binary_frm_image` and works. 
 
 ## Coding phase
 
