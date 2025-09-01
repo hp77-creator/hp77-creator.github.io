@@ -7,7 +7,7 @@ visible: false
 
 ## Introduction
 
-Kubecon is a conference conducted by Cloud Nat
+Kubecon is a conference conducted by Cloud Native Foundation
 
 ## What to expect
 

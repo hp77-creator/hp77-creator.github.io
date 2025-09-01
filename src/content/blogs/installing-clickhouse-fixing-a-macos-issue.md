@@ -1,5 +1,5 @@
 ---
-title: Fixing a MacOS while installing Clickhouse 
+title: Fixing a MacOS issue while installing Clickhouse 
 date: 2025-05-13
 description: how a OS library update can break your DB 
 visible: false
