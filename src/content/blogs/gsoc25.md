@@ -12,7 +12,7 @@ tags: GSoC, blog, database
 ## Prologue
 
 MariaDB, is a very popular Relational Database Management System(DBMS). It was forked from MySQL and is currently the 14th Most used database according
-to the [DB-Engines](https://db-engines.com/en/ranking). It also participates in [Google Summer of Code](https://www.gsocorganizations.dev/organization/mariadb/) and has been doing so since 2016. 
+to the [DB-Engines](https://db-engines.com/en/ranking). It also participates in Google Summer of Code and has been doing so since [2016](https://www.gsocorganizations.dev/organization/mariadb/). 
 
 I have always wanted to contribute to a database and recently I have previously got a PR merged in [ClickHouse](https://github.com/ClickHouse/ClickHouse/pull/80228). I also have one open PR in [MariaDB](https://github.com/MariaDB/server/pull/3839).
 
@@ -51,10 +51,94 @@ I had gone through jira comments mentioned on the raised [issue](https://jira.ma
 
 Adding the `init_from_binary_frm_image` was a very simple task, I had directly linked it with `libsql` and other libraries that are used to build the server.
 Trying to make it work was the real challenge, In initial days of my attempts, I used to compile the whole server and then run my tool, I had named it `frm-parser`. 
-Real challenge was resolving all the different errors that are now coming because linker is now getting duplicates from my linked libraries, headers that 
-I am using and the variables that I have defined to make my tool work.
+Real challenge was resolving all the different errors that were now coming because linker was now getting duplicates from linked libraries and headers that are used.
 
-`THD` (Thread Descriptor) is a class for every thread that is created
+### Learnings
+
+MariaDB uses threads for supporting concurrency and to implement that there are various structures, one such element is `THD` or Thread descriptor
+`THD` (Thread Descriptor) is a class for every thread that is created. 
+It has lot of fields which are helpful and required for every request that comes
+from a client into request. 
+
+First challenge that I faced was creating a proper `THD` for the tool. Directly declaring it in the tool was leading to `forward-declaration` errors. So I had a 
+discussion with my mentors on this and we decided we will use a small version of THD.
+Well it seemed like a good idea at the time but as time progressed, with every iteration and run, it was clear that simply creating a small version of `THD` class
+with minimal fields will not work, as the memory layout and variables that are 
+expected by `init_from_binary_frm_image` from `THD` are too many. Nikita suggested to use the constructor which is available in `sql_class.h` for `THD`.
+I went with that and it seemed to have worked. I have mentioned `init_from_binary_frm_image` too many times but have not really told what it does.
+
+`init_from_binary_frm_image`
+
+From the code
+> populates TABLE_SHARE from the table description in the binary frm image.
+> if 'write' is true, this frm image is also written into a corresponding frm file
+> that serves as a persistent metadata cache to avoid discovering the table over
+> and over again
+
+As I mentioned in the `Prologue`, It is called whenever user does something like
+following from client:
+`CREATE TABLE simple(id INT, name VARCHAR(255));`
+
+in server side:
+```
+pfs_spawn_thread (pfs.cc) --> handle_one_connection (sql_connect.cc) -->
+do_handle_one_connection (sql_connect.cc) --> do_command (sql_parse.cc) -->
+dispatch_command(command=COM_QUERY, ..., packet="CREATE TABLE simple(id INT, name VARCHAR(255))) (sql_parse.cc) -->
+mysql_parse(thd, rawbuf="CREATE TABLE...") (sql_parse.cc) --> mysql_execute_command (sql_parse.cc) --> Sql_cmd_create_table_like::execute (sql_table.cc) -->
+mysql_create_table (sql_table.cc) --> mysql_create_table_no_lock (sql_table.cc) -->
+create_table_impl (sql_table.cc) --> ha_create_table (handler.cc) -->
+TABLE_SHARE::init_from_binary_frm_image (table.cc)
+
+```
+
+So you can see there are lot of functions that a packet(DDL Query) hops before getting saved in
+an `.frm` file.
+During the introductory call, Nikita had told about the interaction and mentioned the importance of the `handlerton`
+> `handlerton` is a singleton structure - one instance per storage engine
+> to provide access to storage engine functionality that works on the 
+> "global" level (unlike handler class that works on a per-table basis) 
+
+I read more on this in `Understanding MySQL internals` book and learnt that handler is an interface between storage engines and query optimizer. Each storage
+engines implement their own handler by inheriting from the `handler` i.e why 
+all handlers are written as `ha_blackhole`, `ha_archive`, `ha_connect` and many more.
+
+excerpt from the book
+> The interface is implemented through an abstract class named handler, which provides
+> methods for basic operations such as opening and closing a table, sequentially 
+> scanning through the records, retrieving records based on the value of a key,
+> storing a record, and deleting a record
+
+This is all good but I am creating a standalone utility, why should I care for these structures?? Turns out
+to use server functions you need server environment available and to make tool
+work, I had to create initialization for following subsystems of the server:
+```
+character sets
+thread environment
+global system variables
+item initialization
+```
+
+Tool needed character set because we are not just reading the frm files, we are
+also printing them and to do that we are using `open_table_from_share` as the name
+suggests this method, opens a table which is present in a `TABLE_SHARE` object.
+
+Once table is opened, we use the `show_create_table` function to print the DDL query
+`show_create_table` output is equivalent to running the following query in the 
+client of your MariaDB instance:
+```
+SHOW CREATE TABLE testdb;
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Epilogue
@@ -84,6 +168,11 @@ I would like to thank Sergei Golubchik for his insights during the proposal phas
 - Parse FRM files for some plugin functions like JSON (exception: INET and complex geometric functions are not yet supported) 
 - Provides a `--debug` option to stack trace in case of failures
 - uses C++20 features
+
+Features that can be supported in coming version of the tool
+- Parse FRM files with Virtual columns
+- Parse FRM files with Plugin functions of INET6 & JSON and other such plugins
+
 
 PR [Link](https://github.com/MariaDB/server/pull/4094)
 
