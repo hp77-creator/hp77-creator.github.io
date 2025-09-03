@@ -89,7 +89,7 @@
 
   <div class="space-y-5 journey-section">
     <p>
-     I have been a Google Summer of Code contributor at <a class="link hover-effect" href="https://mariadb.org/">MariaDB</a ><a class="link hover-effect" href="https://eunomia.dev/">eunomia-bpf</a>.
+     I have been a Google Summer of Code contributor at <a class="link hover-effect" href="https://mariadb.org/">MariaDB</a > and <a class="link hover-effect" href="https://eunomia.dev/">eunomia-bpf</a>.
     </p>
     <p>
       I graduated with a B.Tech from <a class="link hover-effect" href="https://www.svnit.ac.in/">SVNIT</a>. My journey started with web development at <a class="link hover-effect" href="https://www.freecodecamp.org/">FreeCodeCamp</a>, 
