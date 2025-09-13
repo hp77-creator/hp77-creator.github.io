@@ -552,9 +552,9 @@ tags: GSoC, blog, database
 ## Prologue
 
 MariaDB, is a very popular Relational Database Management System(DBMS). It was forked from MySQL and is currently the 14th Most used database according
-to the [DB-Engines](https://db-engines.com/en/ranking). It also participates in Google Summer of Code and has been doing so since [2016](https://www.gsocorganizations.dev/organization/mariadb/). 
+to the [DB-Engines](https://db-engines.com/en/ranking). It also participates in Google Summer of Code(GSoC) and has been doing so since [2016](https://www.gsocorganizations.dev/organization/mariadb/). 
 
-I have always wanted to contribute to a database and recently I have previously got a PR merged in [ClickHouse](https://github.com/ClickHouse/ClickHouse/pull/80228). I also have one open PR in [MariaDB](https://github.com/MariaDB/server/pull/3839).
+I have always wanted to contribute to a database and I have previously got a PR merged in [ClickHouse](https://github.com/ClickHouse/ClickHouse/pull/80228). I also have one open PR in [MariaDB](https://github.com/MariaDB/server/pull/3839).
 
 Before discovering the organization that I wanted to contribute for GSoC, I looked around many databases and projects for my potential organizations
 where I could invest time. I reached out to folks in MariaDB Zulip chat, I really liked the reception from folks in the organization.
@@ -566,7 +566,10 @@ core contributors to MariaDB on how I can start and it helped me a lot in the jo
 
 I picked up on one of the issues that I discovered on MariaDB's board and raised a PR for the same Then when the projects were announced I focussed on something related to processes and the project of creating a FRM utility parser caught my eye.
 
-I looked on internet on the \`FRM\` file format and what it is. [This documentation](https://dbsake.readthedocs.io/en/latest/appendix/frm_format.html) which I guess was prepared after going through the code in \`MySQL\` or \`MariaDB\`. Anyway, only after I did my own comprehension of logic of \`.frm\` files and how they were
+I looked on internet on the \`FRM\` file format and what it is. [This documentation](https://dbsake.readthedocs.io/en/latest/appendix/frm_format.html) which I guess was prepared after going through the code in \`MySQL\` or \`MariaDB\` gave me idea about the format.
+![format info referenced from dbsake docs](/frm-format.png)
+
+Anyway, only after I did my own comprehension of logic of \`.frm\` files and how they were
 being used in \`MariaDB\` did I discover that \`frm\` is actually pronounced as 'form' and these 'form' files are basically what \`server\` creates whenever you do the following from a client:
 
 \`\`\`sql
@@ -585,6 +588,7 @@ So, It is really important to create a tool which is using similar methods that 
 ## Initial approach
 
 I reached out to the org with an approach that we can create one common library something like \`libfrm\` which will be then used by both \`server\` and the new utility tool.
+![initial approach](/initial-approach.png)
 I had gone through jira comments mentioned on the raised [issue](https://jira.mariadb.org/browse/MDEV-4637). In the comments, Sergei Golubchik describes how we can simply replace the data structures with \`printf\` and we can have a simple parser. I had thought of the similar approach. After my conversation with my mentors, Nikita Malyavin and Oleksandr Byelkin, we made this approach concrete, My first task was to create a separate utility which simply compiles the \`init_from_binary_frm_image\` and works. 
 
 ## Coding phase
@@ -598,7 +602,8 @@ Real challenge was resolving all the different errors that were now coming becau
 MariaDB uses threads for supporting concurrency and to implement that there are various structures, one such element is \`THD\` or Thread descriptor
 \`THD\` (Thread Descriptor) is a class for every thread that is created. 
 It has lot of fields which are helpful and required for every request that comes
-from a client into request. 
+from a client into request. Nikita gave me an overview of all the changes and related file details:
+![intro-kt](/mentor-kt.png)
 
 First challenge that I faced was creating a proper \`THD\` for the tool. Directly declaring it in the tool was leading to \`forward-declaration\` errors. So I had a 
 discussion with my mentors on this and we decided we will use a small version of THD.
@@ -668,9 +673,64 @@ client of your MariaDB instance:
 \`\`\`
 SHOW CREATE TABLE testdb;
 \`\`\`
+We wanted to initialize the tool without initializing the whole server subsystems, so I mocked a lot of functions where were there in our
+functions but were not required or which were required to run but internally they were coupled with some other server functions, so I mocked 
+all of those and created a \`frm_mocks.cc\` file. 
+
+Even after mocks, parsing was not working properly because of some issues with \`handlerton\`, Nikita suggested one approach where he used
+\`ha_blackhole\` and shared the patch for the same. I applied the patch, It fixed some functions but still there were issues in \`ha_default_handlerton\`
+and \`ha_lock_engine\`. \`blackhole\` was a good alternative but it was not fully compatible with our use case. I referenced from the file 
+and created a mock handler for our usecase and called it \`Frm_Mock_Handler\` inheriting from \`handler\` class and overriding all the functions
+which were needed by our tool. 
+
+Post this addition, Tool was working fine but it was crashing with segfault as I was using \`delete thd\` to destruct the thread object. In the
+destructor there were lot of \`dereferencing\` and \`deletion\` of objects which I hadn't initialized when I did \`new THD(0, false)\`. In server
+context, all the other members of \`THD\` are initialized and used properly but for our use-case we just wanted a Thread object to make our
+function work. 
+To fix this dereferencing and removing this destruction of objects, I am not deleting any object atm :) I know this can cause memory leak and stuff.
+But \`mariadb-frm\` is a \`standalone\` utility and it parses one files at a time, so process starts and ends after processing one file, If we are 
+leaking or not deleting any objects, OS will take care of that for us. \`¯\\_(ツ)_/¯\`
 
 
+After adding the utility, I also had to add tests to verify if its working properly for different types of \`DDL\` commands, I created a
+test which could be run by \`mtr\` (mariadb's test runner), I had to change that as well, It's a \`perl\` script, so there I had to 
+mention which util will execute the frm file \`command\` 
+During the review phase, it was decided, tool will be called \`mariadb-frm\` , So the command to run it on any frm file will look like
+following:
+\`\`\`
+$MARIADB_FRM $MYSQL_TEST_DIR/std_data/frm/table_simple.frm
+\`\`\`
+where \`MARIADB_FRM\` is the path to the executable.
 
+Making the CI job pass gave me lot of learning on the different CMake commands and their equivalents. In the \`*nix\` systems, we can use
+following flags:
+\`\`\`
+--allow-multiple-definition, -ffunction-sections, --gc-sections
+\`\`\`
+These flags were suggested to me by Nikita when I was facing a lot of linker issues, Refer this [doc](https://docs.google.com/document/d/1JER0O5jXR6sCzZIPhMILd813tt-AbqRSnbchmumbgnU/edit?tab=t.0) for detailed explanation for each flag. Crux is that they remove those flags which
+are not being used through a \`dead code elimination\` or \`garbage collection of sections\` 
+These flags helped get over the linker issues and made tool work but now I needed something equivalent for \`MacOS\` \`AppleClang\` and \`ld\` linker.
+I came across \`-multiply-defined\` but turns out it is obsolete, I looked around the \`man\` page of \`ld\` and scoured and asked \`ChatGPT\` for
+some flags equivalent to it, but I found none for linking. I tried variants like:
+\`\`\`
+SET_TARGET_PROPERTIES(mariadb-frm PROPERTIES
+    LINK_FLAGS "-Wl,-w, -Wl,-no_pie, -Wl,-dead_strip"
+)
+\`\`\`
+Strangest thing was that the whole tool and every test was passing on my system with same \`compiler\` and \`linker\` config as was used in CI but
+it was failing in cloud for some reason.
+![meme](/works-my-system.png)
+I checked my install script that I was using to run the tool locally, I observed one flag which I was using but it was not part of \`CMakeLists.txt\`
+and that was \`-fno-common\`, I thought let's also try this, so I did and it worked.
+Turns out that when we use \`-fno-common\` the compiler will create each uninitialized global variables as a separate definition and \`-dead_strip\`
+removes any unused code section. 
+
+I also learned a lot things related to C++, for example this initialization method - \`Placement new\`:
+\`\`\`
+new(thd->mem_root) Frm_parse_item
+\`\`\`
+Above syntax basically creates a new object in the provided location where in when you simply use \`new Frm_parse_item\` object will be created in
+heap wherever program gets free memory. [Reference](https://en.cppreference.com/w/cpp/language/new.html)
 
 
 
@@ -684,9 +744,10 @@ SHOW CREATE TABLE testdb;
 ## Epilogue
 
 Like how famously Kobe Bryant said:
+![kobe-motivation](/kobe.png)
 > Job's not finished. Job Finished? I don't think so.
 
-Similarily the work here is not done, it's just the start, there are so many more features that can be incorporated, the initial idea of creating a separate
+Similarily the work here is not done, it's just the start, there are so many more features that can be incorporated in this tool, the initial idea of creating a separate
 library can be flirted with. Adding a \`--sql\` option which outputs the DDL command in a \`.sql\` file. Fixing the error handling and so much more.
 I feel the more people use it, the better it will get. That is why I am tagging it the \`v0.1\`. It needs a lot of iterations to get to \`v1.0\`.
 
@@ -716,7 +777,7 @@ Features that can be supported in coming version of the tool
 
 PR [Link](https://github.com/MariaDB/server/pull/4094)
 
-`,p=`---
+`,f=`---
 title: Fixing a MacOS issue while installing Clickhouse 
 date: 2025-05-13
 description: how a OS library update can break your DB 
@@ -755,7 +816,7 @@ It was interesting to know that how much an OS can change the stability of a sys
 
 Postgres had it declared when they were creating their software and now their changes were breaking. It was a nice reminder that unless you own everything in the stack, you can't be sure when and where your software can break.
 
-`,b=`---
+`,p=`---
 title: KubeCon + CloudNativeCon 2024, New Delhi 
 date: 2024-12-10
 description: Learnings from the first KubeCon in India 
@@ -795,7 +856,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`,f=`---
+`,b=`---
 title: Outing near a lakehouse 
 date: 2025-05-13
 description: what I learned about Datawarehouses, Delta-lakes and Lakehouses 
@@ -933,7 +994,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`;async function v(){var n;const a=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":c,"/src/content/blogs/git-rebase.md":h,"/src/content/blogs/git-worktree-debug.md":m,"/src/content/blogs/gsoc24.md":u,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":p,"/src/content/blogs/kubecon-cloudnativecon.md":b,"/src/content/blogs/outing-near-a-lakehouse.md":f,"/src/content/blogs/support-jetstream-proton.md":w,"/src/content/blogs/welcome.md":y});for(const t in e)try{const o=e[t];if(!o||o.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const i=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(i){const r=I(o,i);r&&a.push(r)}}catch(o){console.error(`Error processing blog post ${t}:`,o);continue}return a.sort((t,o)=>new Date(o.date).getTime()-new Date(t.date).getTime())}async function C(){return(await v()).filter(e=>e.visible!==!1)}async function M(a){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":c,"/src/content/blogs/git-rebase.md":h,"/src/content/blogs/git-worktree-debug.md":m,"/src/content/blogs/gsoc24.md":u,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":p,"/src/content/blogs/kubecon-cloudnativecon.md":b,"/src/content/blogs/outing-near-a-lakehouse.md":f,"/src/content/blogs/support-jetstream-proton.md":w,"/src/content/blogs/welcome.md":y}),n=`/src/content/blogs/${a}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):I(t,a)}return null}catch(e){return console.error(`Error loading blog post ${a}:`,e),null}}function I(a,e){try{const n=a.split(`---
+`;async function v(){var n;const a=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":c,"/src/content/blogs/git-rebase.md":h,"/src/content/blogs/git-worktree-debug.md":m,"/src/content/blogs/gsoc24.md":u,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":f,"/src/content/blogs/kubecon-cloudnativecon.md":p,"/src/content/blogs/outing-near-a-lakehouse.md":b,"/src/content/blogs/support-jetstream-proton.md":w,"/src/content/blogs/welcome.md":y});for(const t in e)try{const o=e[t];if(!o||o.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const i=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(i){const r=I(o,i);r&&a.push(r)}}catch(o){console.error(`Error processing blog post ${t}:`,o);continue}return a.sort((t,o)=>new Date(o.date).getTime()-new Date(t.date).getTime())}async function C(){return(await v()).filter(e=>e.visible!==!1)}async function M(a){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":c,"/src/content/blogs/git-rebase.md":h,"/src/content/blogs/git-worktree-debug.md":m,"/src/content/blogs/gsoc24.md":u,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":f,"/src/content/blogs/kubecon-cloudnativecon.md":p,"/src/content/blogs/outing-near-a-lakehouse.md":b,"/src/content/blogs/support-jetstream-proton.md":w,"/src/content/blogs/welcome.md":y}),n=`/src/content/blogs/${a}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):I(t,a)}return null}catch(e){return console.error(`Error loading blog post ${a}:`,e),null}}function I(a,e){try{const n=a.split(`---
 `);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const o=D(t),i=o.title,r=o.date;if(!i||!r)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const s=o.visible,k=s?s.toLowerCase()==="true":!0,_=o.tags;return{slug:e,title:i,date:r,description:o.description||"",content:n.slice(2).join(`---
 `),visible:k,tags:_}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function D(a){const e={};try{a.split(`
 `).forEach(n=>{const[t,...o]=n.split(":");if(t&&o.length){const i=t.trim(),r=o.join(":").trim();i&&r&&(i==="tags"?e[i]=r.split(",").map(s=>s.trim()):e[i]=r)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{M as a,C as g};
