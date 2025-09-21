@@ -27,7 +27,7 @@ core contributors to MariaDB on how I can start and it helped me a lot in the jo
 I picked up on one of the issues that I discovered on MariaDB's board and raised a PR for the same Then when the projects were announced I focussed on something related to processes and the project of creating a FRM utility parser caught my eye.
 
 I looked on internet on the `FRM` file format and what it is. [This documentation](https://dbsake.readthedocs.io/en/latest/appendix/frm_format.html) which I guess was prepared after going through the code in `MySQL` or `MariaDB` gave me idea about the format.
-![format info referenced from dbsake docs](/frm-format.png)
+![format info referenced from dbsake docs](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413755/frm-format_lsrcoo.png)
 
 Anyway, only after I did my own comprehension of logic of `.frm` files and how they were
 being used in `MariaDB` did I discover that `frm` is actually pronounced as 'form' and these 'form' files are basically what `server` creates whenever you do the following from a client:
@@ -48,7 +48,7 @@ So, It is really important to create a tool which is using similar methods that 
 ## Initial approach
 
 I reached out to the org with an approach that we can create one common library something like `libfrm` which will be then used by both `server` and the new utility tool.
-![initial approach](/initial-approach.png)
+![initial approach](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413754/initial-approach_kzlx8m.png)
 I had gone through jira comments mentioned on the raised [issue](https://jira.mariadb.org/browse/MDEV-4637). In the comments, Sergei Golubchik describes how we can simply replace the data structures with `printf` and we can have a simple parser. I had thought of the similar approach. After my conversation with my mentors, Nikita Malyavin and Oleksandr Byelkin, we made this approach concrete, My first task was to create a separate utility which simply compiles the `init_from_binary_frm_image` and works. 
 
 ## Coding phase
@@ -63,7 +63,7 @@ MariaDB uses threads for supporting concurrency and to implement that there are 
 `THD` (Thread Descriptor) is a class for every thread that is created. 
 It has lot of fields which are helpful and required for every request that comes
 from a client into request. Nikita gave me an overview of all the changes and related file details:
-![intro-kt](/mentor-kt.png)
+![intro-kt](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413755/mentor-kt_itt7xe.png)
 
 First challenge that I faced was creating a proper `THD` for the tool. Directly declaring it in the tool was leading to `forward-declaration` errors. So I had a 
 discussion with my mentors on this and we decided we will use a small version of THD.
@@ -179,7 +179,7 @@ SET_TARGET_PROPERTIES(mariadb-frm PROPERTIES
 ```
 Strangest thing was that the whole tool and every test was passing on my system with same `compiler` and `linker` config as was used in CI but
 it was failing in cloud for some reason.
-![meme](/works-my-system.png)
+![meme](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413756/works-my-system_opqgxo.png)
 I checked my install script that I was using to run the tool locally, I observed one flag which I was using but it was not part of `CMakeLists.txt`
 and that was `-fno-common`, I thought let's also try this, so I did and it worked.
 Turns out that when we use `-fno-common` the compiler will create each uninitialized global variables as a separate definition and `-dead_strip`
@@ -204,7 +204,7 @@ heap wherever program gets free memory. [Reference](https://en.cppreference.com/
 ## Epilogue
 
 Like how famously Kobe Bryant said:
-![kobe-motivation](/kobe.png)
+![kobe-motivation](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413755/kobe_ovyb6r.png)
 > Job's not finished. Job Finished? I don't think so.
 
 Similarily the work here is not done, it's just the start, there are so many more features that can be incorporated in this tool, the initial idea of creating a separate

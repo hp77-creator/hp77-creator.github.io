@@ -13,7 +13,7 @@ been work done by my colleague as well.
 so like my habit, I simply did
 `git rebase origin main` when I was on a `feature` branch and then I saw some conflicts, I expected those since there were some changes that were in common files. I used `IntelliJ` merge editor to resolve the conflicts but then I see that my branch is changed to `main`
 
-![main-branch-pic](/blog-pic/main-branch.png)
+![main-branch-pic](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413819/main-branch_ygzwj3.png)
 
 Before observing this change, I had also done `git add` and was about to `commit`.
 
@@ -33,7 +33,7 @@ You are telling `git` to rebase your __main__ branch with `origin`'s `main` and 
 To see the history of the `HEAD` pointer of `git` to track which branch it switched to or from, you can use `git reflog`.
 
 It will show you history of the branches and places it had originated from and had been, something like below:
-![git-reflog](/blog-pic/git-reflog.png)
+![git-reflog](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413821/git-reflog_vwuqsc.png)
 
 
 

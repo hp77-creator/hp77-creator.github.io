@@ -8,6 +8,28 @@
       link(href: string, title: string | null, text: string) {
         let out = `<a rel="external" href="${encodeURI(href)}" class="link"`;
         if (title) {
+          out += ' title="'+title+'"';
+        }
+        out +=">"+text+"</a>";
+        return out;
+      },
+      image(href: string, title: string | null, text: string) {
+        let out = '<img src="' + href + '" alt="' + text + '"';
+        if (title) {
+          out += ' title="' + title +'"';
+        }
+        out += ' loading="lazy" class="blog-image">';
+        return out;
+      }
+    }
+
+  });
+
+  marked.use({
+    renderer: {
+      link(href: string, title: string | null, text: string) {
+        let out = `<a rel="external" href="${encodeURI(href)}" class="link"`;
+        if (title) {
           out += ' title="' + title + '"';
         }
         out += ">" + text + "</a>";

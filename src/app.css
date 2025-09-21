@@ -22,6 +22,11 @@
   .heading2 {
     @apply text-black text-xl font-semibold mb-4;
   }
+
+  .blog-image {
+    @apply w-full max-w-2xl mx-auto rounded-lg shadow-sm my-6;
+    @apply hover:shadow-md transition-shadow duration-200;
+  }
 }
 
 html {
