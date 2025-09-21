@@ -1,5 +1,26 @@
-node_modules
-build/
-.svelte-kit/
+# Dependencies
+node_modules/
+package-lock.json
 
+# Build artifacts
+build/
+dist/
+.svelte-kit/
+assets/
+
+# Large files
+*.zip
+*.tar.gz
+*.dmg
+*.pkg
+
+# Images 
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+
+# System files
 .DS_Store
