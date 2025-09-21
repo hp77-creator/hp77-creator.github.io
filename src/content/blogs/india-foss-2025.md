@@ -69,3 +69,23 @@ Seeing such wonderful people around me in this space just made me grateful for b
 
 Really wonderful session.
 
+# Day 2
+
+First talk that I attended today was by Hridesh and it was around contributing to Linux Kernel
+He told about his journey how he joined the LFX mentorship for Linux kernel program and worked
+around fixing some bugs that he saw in his laptop. I really liked the attitude that he brought
+that curious mind to figure out what is wrong and then fixing it by sending the Patch to the Linux
+Kernel source system. It was really cool to see someone doing what I wished I should have done as well XD. 
+
+Second talk was on Ente's end to end video streaming platform, I learnt how streaming really works, so
+there are two things, we have streaming data and playlist data(`.m3u8` format). Ente's providing end-to-end encrypted solution, so they encrypt the data before sending it to their server to store it.
+Later on whenever client requests for those videos, they send the videos and that's decrypted at the
+client side. They use AES encryption to encrypt/decrypt their data. 
+
+Third talk was by `wraft` co-founder where he talked about `wraft` which is an open-source documentation
+lifecycle management platform. Learnt that it is written in `elixir`. It was nice talk on how they
+solved a problem that many companies face when they hire new people, there are many documents that
+are generated and circulated for signing and everything but there isn't any one platform which stitches all different apps into one. `wraft` bridges this gap and resolves this problem.
+
+
+

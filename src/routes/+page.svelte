@@ -149,13 +149,6 @@
     @apply relative;
   }
 
-  .arrow-icon {
-    @apply transform transition-transform duration-200;
-  }
-
-  .project-pair:hover .arrow-icon {
-    @apply translate-x-1 -translate-y-1;
-  }
 
   .section-title {
     @apply text-xl font-semibold text-blue-600;
