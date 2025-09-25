@@ -48,11 +48,31 @@
   {#if post}
     <title>{post.title} | hp77's Blog</title>
     <meta name="description" content={post.description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
     <meta property="og:title" content={`${post.title} | hp77's Blog`} />
     <meta property="og:description" content={post.description} />
     <meta property="og:url" content={$page.url.href} />
+    <meta property="og:site_name" content="hp77's Blog" />
+    <meta property="article:published_time" content={post.date} />
+    <meta property="article:author" content="Himanshu Pandey" />
+    {#if post.tags}
+      {#each post.tags as tag}
+        <meta property="article:tag" content={tag} />
+      {/each}
+    {/if}
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@theboycalledhp" />
+    <meta name="twitter:creator" content="@theboycalledhp" />
     <meta name="twitter:title" content={`${post.title} | hp77's Blog`} />
     <meta name="twitter:description" content={post.description} />
+    
+    <!-- Additional Meta Tags -->
+    <link rel="canonical" href={$page.url.href} />
+    
     {#if structuredData}
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
