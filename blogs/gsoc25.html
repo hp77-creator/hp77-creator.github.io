@@ -22,39 +22,16 @@
     <link rel="canonical" href="https://hp77-creator.github.io" />
     
     
-		<link href="../app/immutable/assets/0.74e45d02.css" rel="stylesheet">
+		<link href="../app/immutable/assets/0.25f4ef2c.css" rel="stylesheet">
 		<link href="../app/immutable/assets/4.3f268169.css" rel="stylesheet">
-		<link rel="modulepreload" href="../app/immutable/entry/start.e92ad096.js">
+		<link rel="modulepreload" href="../app/immutable/entry/start.a289dfbc.js">
 		<link rel="modulepreload" href="../app/immutable/chunks/index.cf6e02a0.js">
-		<link rel="modulepreload" href="../app/immutable/chunks/singletons.65338e04.js">
-		<link rel="modulepreload" href="../app/immutable/entry/app.a2479710.js">
-		<link rel="modulepreload" href="../app/immutable/nodes/0.5275d1f0.js">
-		<link rel="modulepreload" href="../app/immutable/chunks/stores.d7f98865.js">
-		<link rel="modulepreload" href="../app/immutable/nodes/4.0d617099.js"><title>My GSoC'25 Journey with MariaDB | hp77&#39;s Blog</title><!-- HEAD_svelte-i9bwvf_START --><meta name="description" content="Software Engineer | Open Source Enthusiast"><meta property="og:title" content="hp77"><meta property="og:description" content="Software Engineer | Open Source Enthusiast"><meta name="twitter:title" content="hp77"><meta name="twitter:description" content="Software Engineer | Open Source Enthusiast"><!-- HEAD_svelte-i9bwvf_END --><!-- HEAD_svelte-15f8k0l_START -->
-    <meta name="description" content="Sharing my experience and learnings from Google Summer of Code 2025 with MariaDB">
-    
-    
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="My GSoC'25 Journey with MariaDB | hp77's Blog">
-    <meta property="og:description" content="Sharing my experience and learnings from Google Summer of Code 2025 with MariaDB">
-    <meta property="og:url" content="http://sveltekit-prerender/blogs/gsoc25">
-    <meta property="og:site_name" content="hp77's Blog">
-    <meta property="article:published_time" content="2025-09-01">
-    <meta property="article:author" content="Himanshu Pandey">
-    <meta property="article:tag" content="GSoC"><meta property="article:tag" content="blog"><meta property="article:tag" content="database">
-    
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@theboycalledhp">
-    <meta name="twitter:creator" content="@theboycalledhp">
-    <meta name="twitter:title" content="My GSoC'25 Journey with MariaDB | hp77's Blog">
-    <meta name="twitter:description" content="Sharing my experience and learnings from Google Summer of Code 2025 with MariaDB">
-    
-    
-    <link rel="canonical" href="http://sveltekit-prerender/blogs/gsoc25">
-    
-    <script type="application/ld+json">{JSON.stringify(structuredData)}
-      </script><!-- HEAD_svelte-15f8k0l_END -->
+		<link rel="modulepreload" href="../app/immutable/chunks/singletons.6fa6d421.js">
+		<link rel="modulepreload" href="../app/immutable/entry/app.7f03a0e7.js">
+		<link rel="modulepreload" href="../app/immutable/nodes/0.286fb130.js">
+		<link rel="modulepreload" href="../app/immutable/chunks/stores.d69d4a4f.js">
+		<link rel="modulepreload" href="../app/immutable/nodes/4.350887f4.js">
+		<link rel="modulepreload" href="../app/immutable/chunks/blog.2908e639.js"><title>hp77</title><!-- HEAD_svelte-i9bwvf_START --><meta name="description" content="Software Engineer | Open Source Enthusiast"><meta property="og:title" content="hp77"><meta property="og:description" content="Software Engineer | Open Source Enthusiast"><meta name="twitter:title" content="hp77"><meta name="twitter:description" content="Software Engineer | Open Source Enthusiast"><!-- HEAD_svelte-i9bwvf_END --><!-- HEAD_svelte-15f8k0l_START --><!-- HEAD_svelte-15f8k0l_END -->
   </head>
   <body>
     <div>
@@ -74,194 +51,7 @@
 
 <main>
 
-<article class="layout-md py-8" itemscope itemtype="https://schema.org/BlogPosting"><header class="mb-8"><h1 class="text-3xl font-bold mb-4" itemprop="headline">My GSoC'25 Journey with MariaDB</h1>
-      <time datetime="2025-09-01" itemprop="datePublished" class="text-neutral-500">September 1, 2025</time>
-      <p class="text-neutral-600 mt-2" itemprop="description">Sharing my experience and learnings from Google Summer of Code 2025 with MariaDB</p></header>
-
-    <div class="prose prose-neutral max-w-none prose-headings:font-semibold prose-a:text-blue-600" itemprop="articleBody"><div class="md-output svelte-19wf98v"><!-- HTML_TAG_START --><h1 id="adding-a-standalone-frm-parser-in-mariadb">Adding a standalone FRM Parser in MariaDB</h1>
-<h2 id="prologue">Prologue</h2>
-<p>MariaDB, is a very popular Relational Database Management System(DBMS). It was forked from MySQL and is currently the 14th Most used database according
-to the <a rel="external" href="https://db-engines.com/en/ranking" class="link">DB-Engines</a>. It also participates in Google Summer of Code(GSoC) and has been doing so since <a rel="external" href="https://www.gsocorganizations.dev/organization/mariadb/" class="link">2016</a>. </p>
-<p>I have always wanted to contribute to a database and I have previously got a PR merged in <a rel="external" href="https://github.com/ClickHouse/ClickHouse/pull/80228" class="link">ClickHouse</a>. I also have one open PR in <a rel="external" href="https://github.com/MariaDB/server/pull/3839" class="link">MariaDB</a>.</p>
-<p>Before discovering the organization that I wanted to contribute for GSoC, I looked around many databases and projects for my potential organizations
-where I could invest time. I reached out to folks in MariaDB Zulip chat, I really liked the reception from folks in the organization.</p>
-<p>First challenge was to run <code>MariaDB</code> locally on my system (Macbook Air M2), I faced some issues and I documented that in a blog <a rel="external" href="https://hp77-creator.github.io/blogs/building-understanding-mariaDB" class="link">post</a>. I shared the same in the Zulip chat and there was some really good discussion on it. <a rel="external" href="https://mariadb.zulipchat.com/#narrow/channel/118760-New-Members/topic/Blog.20on.20how.20to.20compile.20MariaDB.20on.20MacOS/with/497845761" class="link">Link to the thread</a></p>
-<p>I really had a good impression of MariaDB after this incident and I wanted to start working on some issues for this org as soon as possible. I referred to a talk by one of the 
-core contributors to MariaDB on how I can start and it helped me a lot in the journey. <a rel="external" href="https://youtu.be/KJtTSVH_aXA?si=nQuyLsTIVkPc1LEI" class="link">Link to the talk</a></p>
-<p>I picked up on one of the issues that I discovered on MariaDB’s board and raised a PR for the same Then when the projects were announced I focussed on something related to processes and the project of creating a FRM utility parser caught my eye.</p>
-<p>I looked on internet on the <code>FRM</code> file format and what it is. <a rel="external" href="https://dbsake.readthedocs.io/en/latest/appendix/frm_format.html" class="link">This documentation</a> which I guess was prepared after going through the code in <code>MySQL</code> or <code>MariaDB</code> gave me idea about the format.
-<img src="https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413755/frm-format_lsrcoo.png" alt="format info referenced from dbsake docs" loading="lazy" class="blog-image"></p>
-<p>Anyway, only after I did my own comprehension of logic of <code>.frm</code> files and how they were
-being used in <code>MariaDB</code> did I discover that <code>frm</code> is actually pronounced as ‘form’ and these ‘form’ files are basically what <code>server</code> creates whenever you do the following from a client:</p>
-<pre><code class="language-sql">MariaDB[debugdb] &gt; CREATE TABLE(id INT, name VARCHAR(10));
-</code></pre>
-<p><code>server</code> will create a <code>.frm</code> file in the data directory of your server. That’s cool and everything but there are instances that some user may want to
-recover some DDL commands which they were not able to backup properly. Currently, a tool called <code>mysqlfrm</code> exists but it has limitations, those are highlighted in <a rel="external" href="https://jira.mariadb.org/browse/MDEV-18827" class="link">this</a>. I will note down those here as part of problem statement.</p>
-<h2 id="problem-statement">Problem statement</h2>
-<p>Develop a FRM file parser which does not need to connect to a server and is able to print DDL statement for the Database Administrators. Currently existing tools work well but they will be difficult to maintain as many tools like <a rel="external" href="https://github.com/abg/dbsake" class="link">dbsake</a> and <a rel="external" href="https://github.com/zing22845/go-frm-parser" class="link">go-frm-parser</a> parse from the specification that they took out from code, there are some engines which create <code>frm</code> file bit differently(<code>ARCHIVE</code> engine is one such example).
-So, It is really important to create a tool which is using similar methods that are being used by <code>MariaDB</code> server.</p>
-<h2 id="initial-approach">Initial approach</h2>
-<p>I reached out to the org with an approach that we can create one common library something like <code>libfrm</code> which will be then used by both <code>server</code> and the new utility tool.
-<img src="https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413754/initial-approach_kzlx8m.png" alt="initial approach" loading="lazy" class="blog-image">
-I had gone through jira comments mentioned on the raised <a rel="external" href="https://jira.mariadb.org/browse/MDEV-4637" class="link">issue</a>. In the comments, Sergei Golubchik describes how we can simply replace the data structures with <code>printf</code> and we can have a simple parser. I had thought of the similar approach. After my conversation with my mentors, Nikita Malyavin and Oleksandr Byelkin, we made this approach concrete, My first task was to create a separate utility which simply compiles the <code>init_from_binary_frm_image</code> and works. </p>
-<h2 id="coding-phase">Coding phase</h2>
-<p>Adding the <code>init_from_binary_frm_image</code> was a very simple task, I had directly linked it with <code>libsql</code> and other libraries that are used to build the server.
-Trying to make it work was the real challenge, In initial days of my attempts, I used to compile the whole server and then run my tool, I had named it <code>frm-parser</code>. 
-Real challenge was resolving all the different errors that were now coming because linker was now getting duplicates from linked libraries and headers that are used.</p>
-<h3 id="learnings">Learnings</h3>
-<p>MariaDB uses threads for supporting concurrency and to implement that there are various structures, one such element is <code>THD</code> or Thread descriptor
-<code>THD</code> (Thread Descriptor) is a class for every thread that is created. 
-It has lot of fields which are helpful and required for every request that comes
-from a client into request. Nikita gave me an overview of all the changes and related file details:
-<img src="https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413755/mentor-kt_itt7xe.png" alt="intro-kt" loading="lazy" class="blog-image"></p>
-<p>First challenge that I faced was creating a proper <code>THD</code> for the tool. Directly declaring it in the tool was leading to <code>forward-declaration</code> errors. So I had a 
-discussion with my mentors on this and we decided we will use a small version of THD.
-Well it seemed like a good idea at the time but as time progressed, with every iteration and run, it was clear that simply creating a small version of <code>THD</code> class
-with minimal fields will not work, as the memory layout and variables that are 
-expected by <code>init_from_binary_frm_image</code> from <code>THD</code> are too many. Nikita suggested to use the constructor which is available in <code>sql_class.h</code> for <code>THD</code>.
-I went with that and it seemed to have worked. I have mentioned <code>init_from_binary_frm_image</code> too many times but have not really told what it does.</p>
-<p><code>init_from_binary_frm_image</code></p>
-<p>From the code</p>
-<blockquote>
-<p>populates TABLE_SHARE from the table description in the binary frm image.
-if ‘write’ is true, this frm image is also written into a corresponding frm file
-that serves as a persistent metadata cache to avoid discovering the table over
-and over again</p>
-</blockquote>
-<p>As I mentioned in the <code>Prologue</code>, It is called whenever user does something like
-following from client:
-<code>CREATE TABLE simple(id INT, name VARCHAR(255));</code></p>
-<p>in server side:</p>
-<pre><code>pfs_spawn_thread (pfs.cc) --&gt; handle_one_connection (sql_connect.cc) --&gt;
-do_handle_one_connection (sql_connect.cc) --&gt; do_command (sql_parse.cc) --&gt;
-dispatch_command(command=COM_QUERY, ..., packet=&quot;CREATE TABLE simple(id INT, name VARCHAR(255))) (sql_parse.cc) --&gt;
-mysql_parse(thd, rawbuf=&quot;CREATE TABLE...&quot;) (sql_parse.cc) --&gt; mysql_execute_command (sql_parse.cc) --&gt; Sql_cmd_create_table_like::execute (sql_table.cc) --&gt;
-mysql_create_table (sql_table.cc) --&gt; mysql_create_table_no_lock (sql_table.cc) --&gt;
-create_table_impl (sql_table.cc) --&gt; ha_create_table (handler.cc) --&gt;
-TABLE_SHARE::init_from_binary_frm_image (table.cc)
-</code></pre>
-<p>So you can see there are lot of functions that a packet(DDL Query) hops before getting saved in
-an <code>.frm</code> file.
-During the introductory call, Nikita had told about the interaction and mentioned the importance of the <code>handlerton</code></p>
-<blockquote>
-<p><code>handlerton</code> is a singleton structure - one instance per storage engine
-to provide access to storage engine functionality that works on the 
-“global” level (unlike handler class that works on a per-table basis) </p>
-</blockquote>
-<p>I read more on this in <code>Understanding MySQL internals</code> book and learnt that handler is an interface between storage engines and query optimizer. Each storage
-engines implement their own handler by inheriting from the <code>handler</code> i.e why 
-all handlers are written as <code>ha_blackhole</code>, <code>ha_archive</code>, <code>ha_connect</code> and many more.</p>
-<p>excerpt from the book</p>
-<blockquote>
-<p>The interface is implemented through an abstract class named handler, which provides
-methods for basic operations such as opening and closing a table, sequentially 
-scanning through the records, retrieving records based on the value of a key,
-storing a record, and deleting a record</p>
-</blockquote>
-<p>This is all good but I am creating a standalone utility, why should I care for these structures?? Turns out
-to use server functions you need server environment available and to make tool
-work, I had to create initialization for following subsystems of the server:</p>
-<pre><code>character sets
-thread environment
-global system variables
-item initialization
-</code></pre>
-<p>Tool needed character set because we are not just reading the frm files, we are
-also printing them and to do that we are using <code>open_table_from_share</code> as the name
-suggests this method, opens a table which is present in a <code>TABLE_SHARE</code> object.</p>
-<p>Once table is opened, we use the <code>show_create_table</code> function to print the DDL query
-<code>show_create_table</code> output is equivalent to running the following query in the 
-client of your MariaDB instance:</p>
-<pre><code>SHOW CREATE TABLE testdb;
-</code></pre>
-<p>We wanted to initialize the tool without initializing the whole server subsystems, so I mocked a lot of functions where were there in our
-functions but were not required or which were required to run but internally they were coupled with some other server functions, so I mocked 
-all of those and created a <code>frm_mocks.cc</code> file. </p>
-<p>Even after mocks, parsing was not working properly because of some issues with <code>handlerton</code>, Nikita suggested one approach where he used
-<code>ha_blackhole</code> and shared the patch for the same. I applied the patch, It fixed some functions but still there were issues in <code>ha_default_handlerton</code>
-and <code>ha_lock_engine</code>. <code>blackhole</code> was a good alternative but it was not fully compatible with our use case. I referenced from the file 
-and created a mock handler for our usecase and called it <code>Frm_Mock_Handler</code> inheriting from <code>handler</code> class and overriding all the functions
-which were needed by our tool. </p>
-<p>Post this addition, Tool was working fine but it was crashing with segfault as I was using <code>delete thd</code> to destruct the thread object. In the
-destructor there were lot of <code>dereferencing</code> and <code>deletion</code> of objects which I hadn’t initialized when I did <code>new THD(0, false)</code>. In server
-context, all the other members of <code>THD</code> are initialized and used properly but for our use-case we just wanted a Thread object to make our
-function work. 
-To fix this dereferencing and removing this destruction of objects, I am not deleting any object atm :) I know this can cause memory leak and stuff.
-But <code>mariadb-frm</code> is a <code>standalone</code> utility and it parses one files at a time, so process starts and ends after processing one file, If we are 
-leaking or not deleting any objects, OS will take care of that for us. <code>¯\_(ツ)_/¯</code></p>
-<p>After adding the utility, I also had to add tests to verify if its working properly for different types of <code>DDL</code> commands, I created a
-test which could be run by <code>mtr</code> (mariadb’s test runner), I had to change that as well, It’s a <code>perl</code> script, so there I had to 
-mention which util will execute the frm file <code>command</code> 
-During the review phase, it was decided, tool will be called <code>mariadb-frm</code> , So the command to run it on any frm file will look like
-following:</p>
-<pre><code>$MARIADB_FRM $MYSQL_TEST_DIR/std_data/frm/table_simple.frm
-</code></pre>
-<p>where <code>MARIADB_FRM</code> is the path to the executable.</p>
-<p>Making the CI job pass gave me lot of learning on the different CMake commands and their equivalents. In the <code>*nix</code> systems, we can use
-following flags:</p>
-<pre><code>--allow-multiple-definition, -ffunction-sections, --gc-sections
-</code></pre>
-<p>These flags were suggested to me by Nikita when I was facing a lot of linker issues, Refer this <a rel="external" href="https://docs.google.com/document/d/1JER0O5jXR6sCzZIPhMILd813tt-AbqRSnbchmumbgnU/edit?tab=t.0" class="link">doc</a> for detailed explanation for each flag. Crux is that they remove those flags which
-are not being used through a <code>dead code elimination</code> or <code>garbage collection of sections</code> 
-These flags helped get over the linker issues and made tool work but now I needed something equivalent for <code>MacOS</code> <code>AppleClang</code> and <code>ld</code> linker.
-I came across <code>-multiply-defined</code> but turns out it is obsolete, I looked around the <code>man</code> page of <code>ld</code> and scoured and asked <code>ChatGPT</code> for
-some flags equivalent to it, but I found none for linking. I tried variants like:</p>
-<pre><code>SET_TARGET_PROPERTIES(mariadb-frm PROPERTIES
-    LINK_FLAGS &quot;-Wl,-w, -Wl,-no_pie, -Wl,-dead_strip&quot;
-)
-</code></pre>
-<p>Strangest thing was that the whole tool and every test was passing on my system with same <code>compiler</code> and <code>linker</code> config as was used in CI but
-it was failing in cloud for some reason.
-<img src="https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413756/works-my-system_opqgxo.png" alt="meme" loading="lazy" class="blog-image">
-I checked my install script that I was using to run the tool locally, I observed one flag which I was using but it was not part of <code>CMakeLists.txt</code>
-and that was <code>-fno-common</code>, I thought let’s also try this, so I did and it worked.
-Turns out that when we use <code>-fno-common</code> the compiler will create each uninitialized global variables as a separate definition and <code>-dead_strip</code>
-removes any unused code section. </p>
-<p>I also learned a lot things related to C++, for example this initialization method - <code>Placement new</code>:</p>
-<pre><code>new(thd-&gt;mem_root) Frm_parse_item
-</code></pre>
-<p>Above syntax basically creates a new object in the provided location where in when you simply use <code>new Frm_parse_item</code> object will be created in
-heap wherever program gets free memory. <a rel="external" href="https://en.cppreference.com/w/cpp/language/new.html" class="link">Reference</a></p>
-<h2 id="epilogue">Epilogue</h2>
-<p>Like how famously Kobe Bryant said:
-<img src="https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413755/kobe_ovyb6r.png" alt="kobe-motivation" loading="lazy" class="blog-image"></p>
-<blockquote>
-<p>Job’s not finished. Job Finished? I don’t think so.</p>
-</blockquote>
-<p>Similarily the work here is not done, it’s just the start, there are so many more features that can be incorporated in this tool, the initial idea of creating a separate
-library can be flirted with. Adding a <code>--sql</code> option which outputs the DDL command in a <code>.sql</code> file. Fixing the error handling and so much more.
-I feel the more people use it, the better it will get. That is why I am tagging it the <code>v0.1</code>. It needs a lot of iterations to get to <code>v1.0</code>.</p>
-<h2 id="acknowledgements">Acknowledgements</h2>
-<p>I am really grateful to Monty Widenius and Anna Widenius for giving folks like us this wonderful opportunity of contributing to a database like MariaDB.
-I would like to thank Sergei Golubchik for his insights during the proposal phase and giving me the opportunity to work on this. I am really thankful to my mentors Nikita Malyavin and Oleksandr Byelkin for their constant guidance and support, I learnt a lot from our interactions and I hope to continue this. </p>
-<h2 id="tldr">TL;DR</h2>
-<p><code>mariadb-frm</code> is a standalone utility that is created as part of this GSoC, It has following features:</p>
-<ul>
-<li>Parse FRM files</li>
-<li>Parse FRM files created in Engines like ARCHIVE, MEMORY, MyISAM, INNODB, CSV, ARIA</li>
-<li>Parse FRM files with default expressions like <code>default(val)</code></li>
-<li>Parse FRM files that contain mathematical expressions like <code>1 * 2 * 3</code> </li>
-<li>Parse FRM files containing sequences (exception are <code>frm</code> files of DDL expressions like <code>CREATE SEQUENCE ...</code>) </li>
-<li>Parse FRM files for some plugin functions like JSON (exception: INET and complex geometric functions are not yet supported) </li>
-<li>Provides a <code>--debug</code> option to stack trace in case of failures</li>
-<li>uses C++20 features</li>
-</ul>
-<p>Features that can be supported in coming version of the tool</p>
-<ul>
-<li>Parse FRM files with Virtual columns</li>
-<li>Parse FRM files with Plugin functions of INET6 &amp; JSON and other such plugins</li>
-</ul>
-<p>PR <a rel="external" href="https://github.com/MariaDB/server/pull/4094" class="link">Link</a></p>
-<!-- HTML_TAG_END -->
-</div></div>
-
-    <div class="mt-8 pt-8 border-t border-neutral-200"><h2 class="text-xl font-semibold mb-4">Comments &amp; Reactions</h2>
-  
-  <div class="mb-6 p-4 bg-blue-50 rounded-lg text-sm text-blue-800"><p>💡 Comments are powered by GitHub Discussions. When you sign in to comment, no personal data is collected or stored by this website. All interactions are handled directly through GitHub&#39;s secure authentication system.</p></div>
-
-  <div id="giscus-container"></div></div>
-
-    <footer class="mt-12 pt-8 border-t border-neutral-200"><a href="/blogs" class="text-blue-600 hover:underline">← Back to all posts</a></footer></article></main>
+<div class="layout-md py-8"><p class="text-neutral-600">Loading post...</p></div></main>
 
 <footer class="layout-md mt-20 text-lg flex flex-col space-y-4 footer-container svelte-1xjvbnz"><div class="row svelte-1xjvbnz" style="animation-delay: 0ms"><span class="label svelte-1xjvbnz">Twitter</span>
       <hr class="svelte-1xjvbnz">
@@ -279,18 +69,18 @@ I would like to thank Sergei Golubchik for his insights during the proposal phas
 			
 			<script>
 				{
-					__sveltekit_5ip2ie = {
+					__sveltekit_ngijll = {
 						base: new URL("..", location).pathname.slice(0, -1),
 						env: {}
 					};
 
 					const element = document.currentScript.parentElement;
 
-					const data = [null,{"type":"data","data":{post:{slug:"gsoc25",title:"My GSoC'25 Journey with MariaDB",date:"2025-09-01",description:"Sharing my experience and learnings from Google Summer of Code 2025 with MariaDB",content:"\n# Adding a standalone FRM Parser in MariaDB\n\n\n## Prologue\n\nMariaDB, is a very popular Relational Database Management System(DBMS). It was forked from MySQL and is currently the 14th Most used database according\nto the [DB-Engines](https://db-engines.com/en/ranking). It also participates in Google Summer of Code(GSoC) and has been doing so since [2016](https://www.gsocorganizations.dev/organization/mariadb/). \n\nI have always wanted to contribute to a database and I have previously got a PR merged in [ClickHouse](https://github.com/ClickHouse/ClickHouse/pull/80228). I also have one open PR in [MariaDB](https://github.com/MariaDB/server/pull/3839).\n\nBefore discovering the organization that I wanted to contribute for GSoC, I looked around many databases and projects for my potential organizations\nwhere I could invest time. I reached out to folks in MariaDB Zulip chat, I really liked the reception from folks in the organization.\n\nFirst challenge was to run `MariaDB` locally on my system (Macbook Air M2), I faced some issues and I documented that in a blog [post](https://hp77-creator.github.io/blogs/building-understanding-mariaDB). I shared the same in the Zulip chat and there was some really good discussion on it. [Link to the thread](https://mariadb.zulipchat.com/#narrow/channel/118760-New-Members/topic/Blog.20on.20how.20to.20compile.20MariaDB.20on.20MacOS/with/497845761)\n\nI really had a good impression of MariaDB after this incident and I wanted to start working on some issues for this org as soon as possible. I referred to a talk by one of the \ncore contributors to MariaDB on how I can start and it helped me a lot in the journey. [Link to the talk](https://youtu.be/KJtTSVH_aXA?si=nQuyLsTIVkPc1LEI)\n\nI picked up on one of the issues that I discovered on MariaDB's board and raised a PR for the same Then when the projects were announced I focussed on something related to processes and the project of creating a FRM utility parser caught my eye.\n\nI looked on internet on the `FRM` file format and what it is. [This documentation](https://dbsake.readthedocs.io/en/latest/appendix/frm_format.html) which I guess was prepared after going through the code in `MySQL` or `MariaDB` gave me idea about the format.\n![format info referenced from dbsake docs](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413755/frm-format_lsrcoo.png)\n\nAnyway, only after I did my own comprehension of logic of `.frm` files and how they were\nbeing used in `MariaDB` did I discover that `frm` is actually pronounced as 'form' and these 'form' files are basically what `server` creates whenever you do the following from a client:\n\n```sql\nMariaDB[debugdb] > CREATE TABLE(id INT, name VARCHAR(10));\n```\n\n`server` will create a `.frm` file in the data directory of your server. That's cool and everything but there are instances that some user may want to\nrecover some DDL commands which they were not able to backup properly. Currently, a tool called `mysqlfrm` exists but it has limitations, those are highlighted in [this](https://jira.mariadb.org/browse/MDEV-18827). I will note down those here as part of problem statement.\n\n## Problem statement\n\nDevelop a FRM file parser which does not need to connect to a server and is able to print DDL statement for the Database Administrators. Currently existing tools work well but they will be difficult to maintain as many tools like [dbsake](https://github.com/abg/dbsake) and [go-frm-parser](https://github.com/zing22845/go-frm-parser) parse from the specification that they took out from code, there are some engines which create `frm` file bit differently(`ARCHIVE` engine is one such example).\nSo, It is really important to create a tool which is using similar methods that are being used by `MariaDB` server.\n\n\n## Initial approach\n\nI reached out to the org with an approach that we can create one common library something like `libfrm` which will be then used by both `server` and the new utility tool.\n![initial approach](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413754/initial-approach_kzlx8m.png)\nI had gone through jira comments mentioned on the raised [issue](https://jira.mariadb.org/browse/MDEV-4637). In the comments, Sergei Golubchik describes how we can simply replace the data structures with `printf` and we can have a simple parser. I had thought of the similar approach. After my conversation with my mentors, Nikita Malyavin and Oleksandr Byelkin, we made this approach concrete, My first task was to create a separate utility which simply compiles the `init_from_binary_frm_image` and works. \n\n## Coding phase\n\nAdding the `init_from_binary_frm_image` was a very simple task, I had directly linked it with `libsql` and other libraries that are used to build the server.\nTrying to make it work was the real challenge, In initial days of my attempts, I used to compile the whole server and then run my tool, I had named it `frm-parser`. \nReal challenge was resolving all the different errors that were now coming because linker was now getting duplicates from linked libraries and headers that are used.\n\n### Learnings\n\nMariaDB uses threads for supporting concurrency and to implement that there are various structures, one such element is `THD` or Thread descriptor\n`THD` (Thread Descriptor) is a class for every thread that is created. \nIt has lot of fields which are helpful and required for every request that comes\nfrom a client into request. Nikita gave me an overview of all the changes and related file details:\n![intro-kt](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413755/mentor-kt_itt7xe.png)\n\nFirst challenge that I faced was creating a proper `THD` for the tool. Directly declaring it in the tool was leading to `forward-declaration` errors. So I had a \ndiscussion with my mentors on this and we decided we will use a small version of THD.\nWell it seemed like a good idea at the time but as time progressed, with every iteration and run, it was clear that simply creating a small version of `THD` class\nwith minimal fields will not work, as the memory layout and variables that are \nexpected by `init_from_binary_frm_image` from `THD` are too many. Nikita suggested to use the constructor which is available in `sql_class.h` for `THD`.\nI went with that and it seemed to have worked. I have mentioned `init_from_binary_frm_image` too many times but have not really told what it does.\n\n`init_from_binary_frm_image`\n\nFrom the code\n> populates TABLE_SHARE from the table description in the binary frm image.\n> if 'write' is true, this frm image is also written into a corresponding frm file\n> that serves as a persistent metadata cache to avoid discovering the table over\n> and over again\n\nAs I mentioned in the `Prologue`, It is called whenever user does something like\nfollowing from client:\n`CREATE TABLE simple(id INT, name VARCHAR(255));`\n\nin server side:\n```\npfs_spawn_thread (pfs.cc) --> handle_one_connection (sql_connect.cc) -->\ndo_handle_one_connection (sql_connect.cc) --> do_command (sql_parse.cc) -->\ndispatch_command(command=COM_QUERY, ..., packet=\"CREATE TABLE simple(id INT, name VARCHAR(255))) (sql_parse.cc) -->\nmysql_parse(thd, rawbuf=\"CREATE TABLE...\") (sql_parse.cc) --> mysql_execute_command (sql_parse.cc) --> Sql_cmd_create_table_like::execute (sql_table.cc) -->\nmysql_create_table (sql_table.cc) --> mysql_create_table_no_lock (sql_table.cc) -->\ncreate_table_impl (sql_table.cc) --> ha_create_table (handler.cc) -->\nTABLE_SHARE::init_from_binary_frm_image (table.cc)\n\n```\n\nSo you can see there are lot of functions that a packet(DDL Query) hops before getting saved in\nan `.frm` file.\nDuring the introductory call, Nikita had told about the interaction and mentioned the importance of the `handlerton`\n> `handlerton` is a singleton structure - one instance per storage engine\n> to provide access to storage engine functionality that works on the \n> \"global\" level (unlike handler class that works on a per-table basis) \n\nI read more on this in `Understanding MySQL internals` book and learnt that handler is an interface between storage engines and query optimizer. Each storage\nengines implement their own handler by inheriting from the `handler` i.e why \nall handlers are written as `ha_blackhole`, `ha_archive`, `ha_connect` and many more.\n\nexcerpt from the book\n> The interface is implemented through an abstract class named handler, which provides\n> methods for basic operations such as opening and closing a table, sequentially \n> scanning through the records, retrieving records based on the value of a key,\n> storing a record, and deleting a record\n\nThis is all good but I am creating a standalone utility, why should I care for these structures?? Turns out\nto use server functions you need server environment available and to make tool\nwork, I had to create initialization for following subsystems of the server:\n```\ncharacter sets\nthread environment\nglobal system variables\nitem initialization\n```\n\nTool needed character set because we are not just reading the frm files, we are\nalso printing them and to do that we are using `open_table_from_share` as the name\nsuggests this method, opens a table which is present in a `TABLE_SHARE` object.\n\nOnce table is opened, we use the `show_create_table` function to print the DDL query\n`show_create_table` output is equivalent to running the following query in the \nclient of your MariaDB instance:\n```\nSHOW CREATE TABLE testdb;\n```\nWe wanted to initialize the tool without initializing the whole server subsystems, so I mocked a lot of functions where were there in our\nfunctions but were not required or which were required to run but internally they were coupled with some other server functions, so I mocked \nall of those and created a `frm_mocks.cc` file. \n\nEven after mocks, parsing was not working properly because of some issues with `handlerton`, Nikita suggested one approach where he used\n`ha_blackhole` and shared the patch for the same. I applied the patch, It fixed some functions but still there were issues in `ha_default_handlerton`\nand `ha_lock_engine`. `blackhole` was a good alternative but it was not fully compatible with our use case. I referenced from the file \nand created a mock handler for our usecase and called it `Frm_Mock_Handler` inheriting from `handler` class and overriding all the functions\nwhich were needed by our tool. \n\nPost this addition, Tool was working fine but it was crashing with segfault as I was using `delete thd` to destruct the thread object. In the\ndestructor there were lot of `dereferencing` and `deletion` of objects which I hadn't initialized when I did `new THD(0, false)`. In server\ncontext, all the other members of `THD` are initialized and used properly but for our use-case we just wanted a Thread object to make our\nfunction work. \nTo fix this dereferencing and removing this destruction of objects, I am not deleting any object atm :) I know this can cause memory leak and stuff.\nBut `mariadb-frm` is a `standalone` utility and it parses one files at a time, so process starts and ends after processing one file, If we are \nleaking or not deleting any objects, OS will take care of that for us. `¯\\_(ツ)_/¯`\n\n\nAfter adding the utility, I also had to add tests to verify if its working properly for different types of `DDL` commands, I created a\ntest which could be run by `mtr` (mariadb's test runner), I had to change that as well, It's a `perl` script, so there I had to \nmention which util will execute the frm file `command` \nDuring the review phase, it was decided, tool will be called `mariadb-frm` , So the command to run it on any frm file will look like\nfollowing:\n```\n$MARIADB_FRM $MYSQL_TEST_DIR/std_data/frm/table_simple.frm\n```\nwhere `MARIADB_FRM` is the path to the executable.\n\nMaking the CI job pass gave me lot of learning on the different CMake commands and their equivalents. In the `*nix` systems, we can use\nfollowing flags:\n```\n--allow-multiple-definition, -ffunction-sections, --gc-sections\n```\nThese flags were suggested to me by Nikita when I was facing a lot of linker issues, Refer this [doc](https://docs.google.com/document/d/1JER0O5jXR6sCzZIPhMILd813tt-AbqRSnbchmumbgnU/edit?tab=t.0) for detailed explanation for each flag. Crux is that they remove those flags which\nare not being used through a `dead code elimination` or `garbage collection of sections` \nThese flags helped get over the linker issues and made tool work but now I needed something equivalent for `MacOS` `AppleClang` and `ld` linker.\nI came across `-multiply-defined` but turns out it is obsolete, I looked around the `man` page of `ld` and scoured and asked `ChatGPT` for\nsome flags equivalent to it, but I found none for linking. I tried variants like:\n```\nSET_TARGET_PROPERTIES(mariadb-frm PROPERTIES\n    LINK_FLAGS \"-Wl,-w, -Wl,-no_pie, -Wl,-dead_strip\"\n)\n```\nStrangest thing was that the whole tool and every test was passing on my system with same `compiler` and `linker` config as was used in CI but\nit was failing in cloud for some reason.\n![meme](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413756/works-my-system_opqgxo.png)\nI checked my install script that I was using to run the tool locally, I observed one flag which I was using but it was not part of `CMakeLists.txt`\nand that was `-fno-common`, I thought let's also try this, so I did and it worked.\nTurns out that when we use `-fno-common` the compiler will create each uninitialized global variables as a separate definition and `-dead_strip`\nremoves any unused code section. \n\nI also learned a lot things related to C++, for example this initialization method - `Placement new`:\n```\nnew(thd->mem_root) Frm_parse_item\n```\nAbove syntax basically creates a new object in the provided location where in when you simply use `new Frm_parse_item` object will be created in\nheap wherever program gets free memory. [Reference](https://en.cppreference.com/w/cpp/language/new.html)\n\n\n\n\n\n\n\n\n\n\n## Epilogue\n\nLike how famously Kobe Bryant said:\n![kobe-motivation](https://res.cloudinary.com/ddq6sqvno/image/upload/v1758413755/kobe_ovyb6r.png)\n> Job's not finished. Job Finished? I don't think so.\n\nSimilarily the work here is not done, it's just the start, there are so many more features that can be incorporated in this tool, the initial idea of creating a separate\nlibrary can be flirted with. Adding a `--sql` option which outputs the DDL command in a `.sql` file. Fixing the error handling and so much more.\nI feel the more people use it, the better it will get. That is why I am tagging it the `v0.1`. It needs a lot of iterations to get to `v1.0`.\n\n\n## Acknowledgements\nI am really grateful to Monty Widenius and Anna Widenius for giving folks like us this wonderful opportunity of contributing to a database like MariaDB.\nI would like to thank Sergei Golubchik for his insights during the proposal phase and giving me the opportunity to work on this. I am really thankful to my mentors Nikita Malyavin and Oleksandr Byelkin for their constant guidance and support, I learnt a lot from our interactions and I hope to continue this. \n\n\n\n## TL;DR\n\n`mariadb-frm` is a standalone utility that is created as part of this GSoC, It has following features:\n- Parse FRM files\n- Parse FRM files created in Engines like ARCHIVE, MEMORY, MyISAM, INNODB, CSV, ARIA\n- Parse FRM files with default expressions like `default(val)`\n- Parse FRM files that contain mathematical expressions like `1 * 2 * 3` \n- Parse FRM files containing sequences (exception are `frm` files of DDL expressions like `CREATE SEQUENCE ...`) \n- Parse FRM files for some plugin functions like JSON (exception: INET and complex geometric functions are not yet supported) \n- Provides a `--debug` option to stack trace in case of failures\n- uses C++20 features\n\nFeatures that can be supported in coming version of the tool\n- Parse FRM files with Virtual columns\n- Parse FRM files with Plugin functions of INET6 & JSON and other such plugins\n\n\nPR [Link](https://github.com/MariaDB/server/pull/4094)\n\n",visible:true,tags:["GSoC","blog","database"]}},"uses":{"params":["slug"]}}];
+					const data = [null,{"type":"data","data":{slug:"gsoc25"},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../app/immutable/entry/start.e92ad096.js"),
-						import("../app/immutable/entry/app.a2479710.js")
+						import("../app/immutable/entry/start.a289dfbc.js"),
+						import("../app/immutable/entry/app.7f03a0e7.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],

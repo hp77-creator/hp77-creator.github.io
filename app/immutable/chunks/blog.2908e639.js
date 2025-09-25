@@ -1,4 +1,4 @@
-import{S as z,i as J,s as Y,k as w,q as S,a as C,l as b,m as y,r as M,h as c,c as D,n as g,b as v,E as u,G as x,o as V,J as B,$ as Q,u as E}from"../chunks/index.cf6e02a0.js";const $=`---
+const l=`---
 title: Mudlet through an open source contributor's eyes 
 date: 2025-01-23
 description: lessons on navigating a large C++ project and understanding it 
@@ -58,7 +58,7 @@ When you build some C++ program, you have to first check the kind of build syste
 ## References
 
 - [Git remote branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
-`,Z=`---
+`,d=`---
 title: Adding a FRM parser to MariaDB 
 date: 2025-06-23
 description: A GSoC project 
@@ -97,7 +97,7 @@ Currently when MariaDB starts we have
 - [CFI directives](https://sourceware.org/binutils/docs/as/CFI-directives.html)
 - [Configuration option](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/)
 - [Understanding MySQL internals](https://www.amazon.in/Understanding-MySQL-Internals-Sasha-Pachev/dp/0596009577)
-`,ee=`---
+`,h=`---
 title: Building and Running MariaDB on Macbook
 date: 2025-02-02
 description: letting out the Seal in M-series (sea-ries XD)
@@ -360,7 +360,7 @@ SELECT * FROM test;
 - [CFI directives](https://sourceware.org/binutils/docs/as/CFI-directives.html)
 - [Configuration option](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/)
 - [Understanding MySQL internals](https://www.amazon.in/Understanding-MySQL-Internals-Sasha-Pachev/dp/0596009577)
-`,ne=`---
+`,c=`---
 title: mishap with git rebase, reflog to rescue
 date: 2024-12-10
 description: lesson on Git and what not to do 
@@ -407,7 +407,7 @@ It will show you history of the branches and places it had originated from and h
 ## References
 
 - [Git remote branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
-`,te=`---
+`,u=`---
 title: TIL - Git worktree & WCGW even after Server processes request sucessfully
 date: 2025-03-28
 description: Learning more on internals of Git & Web Server 
@@ -485,7 +485,7 @@ Also, Would like to mention that when you change your directory, you might have 
 
 - [Mastering Git](https://www.amazon.in/Mastering-Git-Jakub-Narebski/dp/1783553758)
 - [Git Worktree documentation](https://git-scm.com/docs/git-worktree)
-`,ae=`---
+`,m=`---
 title: My GSoC'24 Journey with eunomia-bpf
 date: 2024-07-21
 description: Sharing my experience and learnings from Google Summer of Code 2024 with eunomia-bpf
@@ -538,7 +538,7 @@ Moving forward, I plan to:
 GSoC has been an incredible learning experience. I'm grateful for the opportunity to work with the eunomia-bpf team and contribute to such an innovative project.
 
 Feel free to check out my contributions on [GitHub](https://github.com/eunomia-bpf/bpftime) and reach out if you have any questions about my GSoC experience!
-`,oe=`---
+`,g=`---
 title: My GSoC'25 Journey with MariaDB 
 date: 2025-09-01
 description: Sharing my experience and learnings from Google Summer of Code 2025 with MariaDB
@@ -777,7 +777,7 @@ Features that can be supported in coming version of the tool
 
 PR [Link](https://github.com/MariaDB/server/pull/4094)
 
-`,ie=`---
+`,f=`---
 title: India FOSS'25 - A weekend into learning
 date: 2025-09-21
 description: India FOSS is an annual conference where hackers from around India come and share their learnings 
@@ -916,7 +916,7 @@ filling up my to-do list for stuff that I should check out/contribute to.
 
 Really grateful to IndiaFOSS for organizing such a wonderful event. 
 
-`,re=`---
+`,p=`---
 title: Fixing a MacOS issue while installing Clickhouse 
 date: 2025-05-13
 description: how a OS library update can break your DB 
@@ -955,7 +955,7 @@ It was interesting to know that how much an OS can change the stability of a sys
 
 Postgres had it declared when they were creating their software and now their changes were breaking. It was a nice reminder that unless you own everything in the stack, you can't be sure when and where your software can break.
 
-`,se="---\ntitle: IntelliJ IDEA shortcuts\ndate: 2025-09-23\ndescription: Some cool shortcuts that I have learnt and am learning\nvisible: true\ntags: blog, technical-writing\n---\n\nIntelliJ is one of my favorite IDE's for Java. I work in a company where most of our codebase is in Java for Backend. We use\nIntelliJ as our IDE. It is really powerful and has some awesome shortcuts that I think one can add in their arsenal, below I am \nsharing couple of which I like a lot\n\n- `Shift + Shift` for Search Anywhere feature. This allows you to search anything in your project, be it in text, code or anywhere\n- `Cmd + Shift + A` for `Find Action`. If you want to do some Action like `Run Test`, `Open Terminal` or any other refactoring task, this command is handy\n- `Cmd + E` for checking out the `Recent Files` and accessing them without going over the project window\n- `Cmd + Shift + E` for switching between different locations of your `Recent Files`\n- `Ctrl + Tab` for directly switching between different files\n\nI like `Vim` keybindings so I have enabled that for my IDE and I navigate java files using that, I really like the comfort of home row key navigation.\n\nYou can also use `Zen Mode` by pressing 'Ctrl + \\`' and then Selecting `5. View Mode` and selecting `Zen Mode` out of it.\n\nWhen you are in Zen Mode, you can use all the above shortcut to search for things without distraction and have things at your fingertip.\n",le=`---
+`,w="---\ntitle: IntelliJ IDEA shortcuts\ndate: 2025-09-23\ndescription: Some cool shortcuts that I have learnt and am learning\nvisible: true\ntags: blog, technical-writing\n---\n\nIntelliJ is one of my favorite IDE's for Java. I work in a company where most of our codebase is in Java for Backend. We use\nIntelliJ as our IDE. It is really powerful and has some awesome shortcuts that I think one can add in their arsenal, below I am \nsharing couple of which I like a lot\n\n- `Shift + Shift` for Search Anywhere feature. This allows you to search anything in your project, be it in text, code or anywhere\n- `Cmd + Shift + A` for `Find Action`. If you want to do some Action like `Run Test`, `Open Terminal` or any other refactoring task, this command is handy\n- `Cmd + E` for checking out the `Recent Files` and accessing them without going over the project window\n- `Cmd + Shift + E` for switching between different locations of your `Recent Files`\n- `Ctrl + Tab` for directly switching between different files\n\nI like `Vim` keybindings so I have enabled that for my IDE and I navigate java files using that, I really like the comfort of home row key navigation.\n\nYou can also use `Zen Mode` by pressing 'Ctrl + \\`' and then Selecting `5. View Mode` and selecting `Zen Mode` out of it.\n\nWhen you are in Zen Mode, you can use all the above shortcut to search for things without distraction and have things at your fingertip.\n",b=`---
 title: KubeCon + CloudNativeCon 2024, New Delhi 
 date: 2024-12-10
 description: Learnings from the first KubeCon in India 
@@ -995,7 +995,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`,he=`---
+`,y=`---
 title: Outing near a lakehouse 
 date: 2025-05-13
 description: what I learned about Datawarehouses, Delta-lakes and Lakehouses 
@@ -1045,7 +1045,7 @@ switch your DB, Another issue with DWH is that they are not good in storing unst
 always an ETL(Extract-Transform-Load) step before data is added into these DBs.
 
 Delta Lakes provide one step better clarity and support unstructured or semi-structured data but they also lack the modularity 
-`,de=`---
+`,k=`---
 title: mishap with git rebase, reflog to rescue
 date: 2024-12-10
 description: lesson on Git and what not to do 
@@ -1092,7 +1092,7 @@ It will show you history of the branches and places it had originated from and h
 ## References
 
 - [Git remote branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
-`,ce=`---
+`,I=`---
 title: Welcome to my blog
 date: 2024-01-20
 description: Introduction to my technical blog and what to expect
@@ -1133,7 +1133,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`;async function ue(){var o;const r=[],a=Object.assign({"/src/content/blogs/about-mudlet.md":$,"/src/content/blogs/adding-frm-parser-part-1.md":Z,"/src/content/blogs/building-understanding-mariaDB.md":ee,"/src/content/blogs/git-rebase.md":ne,"/src/content/blogs/git-worktree-debug.md":te,"/src/content/blogs/gsoc24.md":ae,"/src/content/blogs/gsoc25.md":oe,"/src/content/blogs/india-foss-2025.md":ie,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":re,"/src/content/blogs/intellij-shortcuts.md":se,"/src/content/blogs/kubecon-cloudnativecon.md":le,"/src/content/blogs/outing-near-a-lakehouse.md":he,"/src/content/blogs/support-jetstream-proton.md":de,"/src/content/blogs/welcome.md":ce});for(const t in a)try{const n=a[t];if(!n||n.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const i=(o=t.split("/").pop())==null?void 0:o.replace(".md","");if(i){const e=ge(n,i);e&&r.push(e)}}catch(n){console.error(`Error processing blog post ${t}:`,n);continue}return r.sort((t,n)=>new Date(n.date).getTime()-new Date(t.date).getTime())}async function me(){return(await ue()).filter(a=>a.visible!==!1)}function ge(r,a){try{const o=r.split(`---
-`);if(o.length<3)return console.warn(`Invalid frontmatter format in post: ${a}`),null;const t=o[1];if(!t)return console.warn(`Missing frontmatter in post: ${a}`),null;const n=fe(t),i=n.title,e=n.date;if(!i||!e)return console.warn(`Missing required frontmatter fields in post: ${a}`),null;const l=n.visible,m=l?l.toLowerCase()==="true":!0,h=n.tags;return{slug:a,title:i,date:e,description:n.description||"",content:o.slice(2).join(`---
-`),visible:m,tags:h}}catch(o){return console.error(`Error parsing blog post ${a}:`,o),null}}function fe(r){const a={};try{r.split(`
-`).forEach(o=>{const[t,...n]=o.split(":");if(t&&n.length){const i=t.trim(),e=n.join(":").trim();i&&e&&(i==="tags"?a[i]=e.split(",").map(l=>l.trim()):a[i]=e)}})}catch(o){console.error("Error parsing frontmatter:",o)}return a}function G(r,a,o){const t=r.slice();return t[8]=a[o],t}function N(r,a,o){const t=r.slice();return t[11]=a[o],t}function j(r,a,o){const t=r.slice();return t[11]=a[o],t}function U(r){let a,o=Array.from(r[2]),t=[];for(let n=0;n<o.length;n+=1)t[n]=K(j(r,o,n));return{c(){a=w("div");for(let n=0;n<t.length;n+=1)t[n].c();this.h()},l(n){a=b(n,"DIV",{class:!0});var i=y(a);for(let e=0;e<t.length;e+=1)t[e].l(i);i.forEach(c),this.h()},h(){g(a,"class","mb-8 flex flex-wrap gap-2")},m(n,i){v(n,a,i);for(let e=0;e<t.length;e+=1)t[e]&&t[e].m(a,null)},p(n,i){if(i&21){o=Array.from(n[2]);let e;for(e=0;e<o.length;e+=1){const l=j(n,o,e);t[e]?t[e].p(l,i):(t[e]=K(l),t[e].c(),t[e].m(a,null))}for(;e<t.length;e+=1)t[e].d(1);t.length=o.length}},d(n){n&&c(a),B(t,n)}}}function K(r){let a,o=r[11]+"",t,n,i,e,l;function m(){return r[6](r[11])}return{c(){a=w("button"),t=S(o),n=C(),this.h()},l(h){a=b(h,"BUTTON",{class:!0});var s=y(a);t=M(s,o),n=D(s),s.forEach(c),this.h()},h(){g(a,"class",i="px-3 py-1 rounded-full text-sm transition-colors "+(r[0]===r[11]?"bg-blue-600 text-white":"bg-neutral-100 text-neutral-700 hover:bg-neutral-200"))},m(h,s){v(h,a,s),u(a,t),u(a,n),e||(l=Q(a,"click",m),e=!0)},p(h,s){r=h,s&4&&o!==(o=r[11]+"")&&E(t,o),s&5&&i!==(i="px-3 py-1 rounded-full text-sm transition-colors "+(r[0]===r[11]?"bg-blue-600 text-white":"bg-neutral-100 text-neutral-700 hover:bg-neutral-200"))&&g(a,"class",i)},d(h){h&&c(a),e=!1,l()}}}function pe(r){let a,o=r[3],t=[];for(let n=0;n<o.length;n+=1)t[n]=X(G(r,o,n));return{c(){a=w("div");for(let n=0;n<t.length;n+=1)t[n].c();this.h()},l(n){a=b(n,"DIV",{class:!0});var i=y(a);for(let e=0;e<t.length;e+=1)t[e].l(i);i.forEach(c),this.h()},h(){g(a,"class","space-y-12")},m(n,i){v(n,a,i);for(let e=0;e<t.length;e+=1)t[e]&&t[e].m(a,null)},p(n,i){if(i&8){o=n[3];let e;for(e=0;e<o.length;e+=1){const l=G(n,o,e);t[e]?t[e].p(l,i):(t[e]=X(l),t[e].c(),t[e].m(a,null))}for(;e<t.length;e+=1)t[e].d(1);t.length=o.length}},d(n){n&&c(a),B(t,n)}}}function we(r){let a,o=r[0]?`No posts found with tag "${r[0]}"`:"No blog posts found.",t;return{c(){a=w("p"),t=S(o),this.h()},l(n){a=b(n,"P",{class:!0});var i=y(a);t=M(i,o),i.forEach(c),this.h()},h(){g(a,"class","text-neutral-600")},m(n,i){v(n,a,i),u(a,t)},p(n,i){i&1&&o!==(o=n[0]?`No posts found with tag "${n[0]}"`:"No blog posts found.")&&E(t,o)},d(n){n&&c(a)}}}function be(r){let a,o;return{c(){a=w("p"),o=S("Loading posts..."),this.h()},l(t){a=b(t,"P",{class:!0});var n=y(a);o=M(n,"Loading posts..."),n.forEach(c),this.h()},h(){g(a,"class","text-neutral-600")},m(t,n){v(t,a,n),u(a,o)},p:x,d(t){t&&c(a)}}}function q(r){let a,o=r[8].tags,t=[];for(let n=0;n<o.length;n+=1)t[n]=W(N(r,o,n));return{c(){a=w("div");for(let n=0;n<t.length;n+=1)t[n].c();this.h()},l(n){a=b(n,"DIV",{class:!0});var i=y(a);for(let e=0;e<t.length;e+=1)t[e].l(i);i.forEach(c),this.h()},h(){g(a,"class","flex flex-wrap gap-2 mb-2")},m(n,i){v(n,a,i);for(let e=0;e<t.length;e+=1)t[e]&&t[e].m(a,null)},p(n,i){if(i&8){o=n[8].tags;let e;for(e=0;e<o.length;e+=1){const l=N(n,o,e);t[e]?t[e].p(l,i):(t[e]=W(l),t[e].c(),t[e].m(a,null))}for(;e<t.length;e+=1)t[e].d(1);t.length=o.length}},d(n){n&&c(a),B(t,n)}}}function W(r){let a,o=r[11]+"",t,n;return{c(){a=w("span"),t=S(o),n=C(),this.h()},l(i){a=b(i,"SPAN",{class:!0});var e=y(a);t=M(e,o),n=D(e),e.forEach(c),this.h()},h(){g(a,"class","text-sm px-2 py-0.5 bg-neutral-100 text-neutral-600 rounded")},m(i,e){v(i,a,e),u(a,t),u(a,n)},p(i,e){e&8&&o!==(o=i[11]+"")&&E(t,o)},d(i){i&&c(a)}}}function X(r){var R;let a,o,t,n=r[8].title+"",i,e,l,m=r[8].description+"",h,s,d,p,T=new Date(r[8].date).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})+"",A,L,O,f=((R=r[8].tags)==null?void 0:R.length)&&q(r);return{c(){a=w("article"),o=w("a"),t=w("h2"),i=S(n),e=C(),l=w("p"),h=S(m),s=C(),f&&f.c(),d=C(),p=w("time"),A=S(T),O=C(),this.h()},l(k){a=b(k,"ARTICLE",{class:!0});var I=y(a);o=b(I,"A",{href:!0,class:!0});var _=y(o);t=b(_,"H2",{class:!0});var F=y(t);i=M(F,n),F.forEach(c),e=D(_),l=b(_,"P",{class:!0});var P=y(l);h=M(P,m),P.forEach(c),s=D(_),f&&f.l(_),d=D(_),p=b(_,"TIME",{class:!0});var H=y(p);A=M(H,T),H.forEach(c),_.forEach(c),O=D(I),I.forEach(c),this.h()},h(){g(t,"class","text-2xl font-semibold text-neutral-900 group-hover:text-blue-600 transition-colors"),g(l,"class","text-neutral-600 leading-relaxed"),g(p,"class","text-sm text-neutral-500 block"),g(o,"href",L=`/blogs/${r[8].slug}`),g(o,"class","block space-y-3"),g(a,"class","group svelte-1h5iphg")},m(k,I){v(k,a,I),u(a,o),u(o,t),u(t,i),u(o,e),u(o,l),u(l,h),u(o,s),f&&f.m(o,null),u(o,d),u(o,p),u(p,A),u(a,O)},p(k,I){var _;I&8&&n!==(n=k[8].title+"")&&E(i,n),I&8&&m!==(m=k[8].description+"")&&E(h,m),(_=k[8].tags)!=null&&_.length?f?f.p(k,I):(f=q(k),f.c(),f.m(o,d)):f&&(f.d(1),f=null),I&8&&T!==(T=new Date(k[8].date).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})+"")&&E(A,T),I&8&&L!==(L=`/blogs/${k[8].slug}`)&&g(o,"href",L)},d(k){k&&c(a),f&&f.d()}}}function ye(r){let a,o,t,n,i,e=!r[1]&&r[2].size>0&&U(r);function l(s,d){return s[1]?be:s[3].length===0?we:pe}let m=l(r),h=m(r);return{c(){a=w("div"),o=w("h1"),t=S("Blog Posts"),n=C(),e&&e.c(),i=C(),h.c(),this.h()},l(s){a=b(s,"DIV",{class:!0});var d=y(a);o=b(d,"H1",{class:!0});var p=y(o);t=M(p,"Blog Posts"),p.forEach(c),n=D(d),e&&e.l(d),i=D(d),h.l(d),d.forEach(c),this.h()},h(){g(o,"class","text-3xl font-bold mb-8"),g(a,"class","layout-md py-8")},m(s,d){v(s,a,d),u(a,o),u(o,t),u(a,n),e&&e.m(a,null),u(a,i),h.m(a,null)},p(s,[d]){!s[1]&&s[2].size>0?e?e.p(s,d):(e=U(s),e.c(),e.m(a,i)):e&&(e.d(1),e=null),m===(m=l(s))&&h?h.p(s,d):(h.d(1),h=m(s),h&&(h.c(),h.m(a,null)))},i:x,o:x,d(s){s&&c(a),e&&e.d(),h.d()}}}function ke(r,a,o){let t,n=[],i=!0,e=null,l=new Set;function m(){const d=window.location.hash.slice(1);o(0,e=d?decodeURIComponent(d):null)}V(async()=>(o(5,n=await me()),n.forEach(d=>{var p;(p=d.tags)==null||p.forEach(T=>l.add(T))}),o(2,l),m(),window.addEventListener("hashchange",m),o(1,i=!1),()=>{window.removeEventListener("hashchange",m)}));function h(d){e===d?window.location.hash="":window.location.hash=encodeURIComponent(d)}const s=d=>h(d);return r.$$.update=()=>{r.$$.dirty&33&&o(3,t=e?n.filter(d=>{var p;return(p=d.tags)==null?void 0:p.includes(e)}):n)},[e,i,l,t,h,n,s]}class _e extends z{constructor(a){super(),J(this,a,ke,ye,Y,{})}}export{_e as component};
+`;async function D(){var n;const o=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/india-foss-2025.md":f,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":p,"/src/content/blogs/intellij-shortcuts.md":w,"/src/content/blogs/kubecon-cloudnativecon.md":b,"/src/content/blogs/outing-near-a-lakehouse.md":y,"/src/content/blogs/support-jetstream-proton.md":k,"/src/content/blogs/welcome.md":I});for(const t in e)try{const a=e[t];if(!a||a.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const i=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(i){const r=v(a,i);r&&o.push(r)}}catch(a){console.error(`Error processing blog post ${t}:`,a);continue}return o.sort((t,a)=>new Date(a.date).getTime()-new Date(t.date).getTime())}async function M(){return(await D()).filter(e=>e.visible!==!1)}async function T(o){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/india-foss-2025.md":f,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":p,"/src/content/blogs/intellij-shortcuts.md":w,"/src/content/blogs/kubecon-cloudnativecon.md":b,"/src/content/blogs/outing-near-a-lakehouse.md":y,"/src/content/blogs/support-jetstream-proton.md":k,"/src/content/blogs/welcome.md":I}),n=`/src/content/blogs/${o}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):v(t,o)}return null}catch(e){return console.error(`Error loading blog post ${o}:`,e),null}}function v(o,e){try{const n=o.split(`---
+`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const a=S(t),i=a.title,r=a.date;if(!i||!r)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const s=a.visible,_=s?s.toLowerCase()==="true":!0,C=a.tags;return{slug:e,title:i,date:r,description:a.description||"",content:n.slice(2).join(`---
+`),visible:_,tags:C}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function S(o){const e={};try{o.split(`
+`).forEach(n=>{const[t,...a]=n.split(":");if(t&&a.length){const i=t.trim(),r=a.join(":").trim();i&&r&&(i==="tags"?e[i]=r.split(",").map(s=>s.trim()):e[i]=r)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{T as a,M as g};
