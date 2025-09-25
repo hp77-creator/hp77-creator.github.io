@@ -22,16 +22,39 @@
     <link rel="canonical" href="https://hp77-creator.github.io" />
     
     
-		<link href="../app/immutable/assets/0.25f4ef2c.css" rel="stylesheet">
+		<link href="../app/immutable/assets/0.74e45d02.css" rel="stylesheet">
 		<link href="../app/immutable/assets/4.3f268169.css" rel="stylesheet">
-		<link rel="modulepreload" href="../app/immutable/entry/start.8036f14c.js">
+		<link rel="modulepreload" href="../app/immutable/entry/start.e92ad096.js">
 		<link rel="modulepreload" href="../app/immutable/chunks/index.cf6e02a0.js">
-		<link rel="modulepreload" href="../app/immutable/chunks/singletons.48ca013b.js">
-		<link rel="modulepreload" href="../app/immutable/entry/app.ae757894.js">
-		<link rel="modulepreload" href="../app/immutable/nodes/0.7d6a5acd.js">
-		<link rel="modulepreload" href="../app/immutable/chunks/stores.687ffa3b.js">
-		<link rel="modulepreload" href="../app/immutable/nodes/4.c3922a65.js">
-		<link rel="modulepreload" href="../app/immutable/chunks/blog.2908e639.js"><title>hp77</title><!-- HEAD_svelte-i9bwvf_START --><meta name="description" content="Software Engineer | Open Source Enthusiast"><meta property="og:title" content="hp77"><meta property="og:description" content="Software Engineer | Open Source Enthusiast"><meta name="twitter:title" content="hp77"><meta name="twitter:description" content="Software Engineer | Open Source Enthusiast"><!-- HEAD_svelte-i9bwvf_END --><!-- HEAD_svelte-15f8k0l_START --><!-- HEAD_svelte-15f8k0l_END -->
+		<link rel="modulepreload" href="../app/immutable/chunks/singletons.65338e04.js">
+		<link rel="modulepreload" href="../app/immutable/entry/app.a2479710.js">
+		<link rel="modulepreload" href="../app/immutable/nodes/0.5275d1f0.js">
+		<link rel="modulepreload" href="../app/immutable/chunks/stores.d7f98865.js">
+		<link rel="modulepreload" href="../app/immutable/nodes/4.0d617099.js"><title>Building and Running MariaDB on Macbook | hp77&#39;s Blog</title><!-- HEAD_svelte-i9bwvf_START --><meta name="description" content="Software Engineer | Open Source Enthusiast"><meta property="og:title" content="hp77"><meta property="og:description" content="Software Engineer | Open Source Enthusiast"><meta name="twitter:title" content="hp77"><meta name="twitter:description" content="Software Engineer | Open Source Enthusiast"><!-- HEAD_svelte-i9bwvf_END --><!-- HEAD_svelte-15f8k0l_START -->
+    <meta name="description" content="letting out the Seal in M-series (sea-ries XD)">
+    
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Building and Running MariaDB on Macbook | hp77's Blog">
+    <meta property="og:description" content="letting out the Seal in M-series (sea-ries XD)">
+    <meta property="og:url" content="http://sveltekit-prerender/blogs/building-understanding-mariaDB">
+    <meta property="og:site_name" content="hp77's Blog">
+    <meta property="article:published_time" content="2025-02-02">
+    <meta property="article:author" content="Himanshu Pandey">
+    <meta property="article:tag" content="database"><meta property="article:tag" content="mariaDB"><meta property="article:tag" content="C++"><meta property="article:tag" content="Macbook">
+    
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@theboycalledhp">
+    <meta name="twitter:creator" content="@theboycalledhp">
+    <meta name="twitter:title" content="Building and Running MariaDB on Macbook | hp77's Blog">
+    <meta name="twitter:description" content="letting out the Seal in M-series (sea-ries XD)">
+    
+    
+    <link rel="canonical" href="http://sveltekit-prerender/blogs/building-understanding-mariaDB">
+    
+    <script type="application/ld+json">{JSON.stringify(structuredData)}
+      </script><!-- HEAD_svelte-15f8k0l_END -->
   </head>
   <body>
     <div>
@@ -51,7 +74,246 @@
 
 <main>
 
-<div class="layout-md py-8"><p class="text-neutral-600">Loading post...</p></div></main>
+<article class="layout-md py-8" itemscope itemtype="https://schema.org/BlogPosting"><header class="mb-8"><h1 class="text-3xl font-bold mb-4" itemprop="headline">Building and Running MariaDB on Macbook</h1>
+      <time datetime="2025-02-02" itemprop="datePublished" class="text-neutral-500">February 2, 2025</time>
+      <p class="text-neutral-600 mt-2" itemprop="description">letting out the Seal in M-series (sea-ries XD)</p></header>
+
+    <div class="prose prose-neutral max-w-none prose-headings:font-semibold prose-a:text-blue-600" itemprop="articleBody"><div class="md-output svelte-19wf98v"><!-- HTML_TAG_START --><h2 id="building-mariadb">Building MariaDB</h2>
+<p>MariaDB is a fork of MySQL which has been in effect to provide users the flexibility to go with an open source version for a DB like MySQL which is owned by Oracle. 
+It is written in C++. To build it on my system(macbook air M2) I followed these steps:
+We are going to build the <code>server</code> which is where most of things happen for the DBMS</p>
+<ul>
+<li>Fork the official repo: <a rel="external" href="https://github.com/MariaDB/server" class="link">Github</a></li>
+<li>Clone your forked repo: <code>git clone https://github.com/YOUR-USERNAME/server</code>
+ First time the clone failed because of the following reason:</li>
+</ul>
+<pre><code class="language-shell">git clone https://github.com/hp77-creator/my-maria-server.git
+Cloning into &#39;my-maria-server&#39;...
+remote: Enumerating objects: 1391033, done.
+remote: Counting objects: 100% (100/100), done.
+remote: Compressing objects: 100% (69/69), done.
+error: RPC failed; curl 92 HTTP/2 stream 5 was not closed cleanly: CANCEL (err 8)
+error: 2491 bytes of body are still expected
+fetch-pack: unexpected disconnect while reading sideband packet
+fatal: early EOF
+fatal: fetch-pack: invalid index-pack output
+</code></pre>
+<p> Trying by increasing the buffer size:
+ <code>git config --global http.postBuffer 524288000</code>
+  The error persists, so I switched to <code>ssh</code>
+  It got cloned.</p>
+<ul>
+<li>Enter into your cloned directory: <code>cd my-maria-server</code></li>
+<li>Create a new build directory and change directory to that: <code>mkdir -p build &amp;&amp; cd build</code></li>
+<li>We will create a <code>Debug</code> build. To do that, run: <code>cmake .. -DCMAKE_BUILD_TYPE=Debug</code>
+  During installation, I found out that <code>bison</code> was not installed properly, so I installed it with
+  <code>brew install bison</code> and updated my <code>$PATH</code> to use or you can use<pre><code>-DBISON_EXECUTABLE=/opt/homebrew/opt/bison/bin/bison
+</code></pre>
+  option when using cmake</li>
+<li>You can follow along this link: <a rel="external" href="https://mariadb.org/get-involved/getting-started-for-developers/get-code-build-test/" class="link">MariaDB docs</a></li>
+</ul>
+<p>I had read in the book <code>Understanding MySQL Internals</code> that <code>MySQL</code> works best with <code>GCC</code>, so I thought I will try with
+that but before that I ran it with default compiler provided by Apple(Clang) there were lot of errors and I was trying to run following commands:</p>
+<pre><code>cmake .. -DCMAKE_BUILD_TYPE=Debug
+cmake --build . --parallel 5
+</code></pre>
+<p>During <code>--build</code> it was giving a lot of errors. I looked up the meaning of different errors, those errors were because of strict nullability check by the compiler. To get over those, I added following options:</p>
+<blockquote>
+<p>Note before running the following command, ensure that you have cleared your existing build directory.</p>
+</blockquote>
+<pre><code>cmake .. -DCMAKE_BUILD_TYPE=Debug \
+-DCMAKE_C_FLAGS=&quot;-Wno-nullability-completeness&quot; \
+-DCMAKE_CXX_FLAGS=&quot;-Wno-nullability-completeness&quot;
+</code></pre>
+<p>Also if you like to log the errors, you can do the following during build:</p>
+<pre><code>cmake --build . --parallel 5 2&gt;&amp;1 | tee build.log
+</code></pre>
+<p>It failed again, this time it was unable to find the standard <code>&lt;stdint.h&gt;</code> header. I checked up online, If I can find options to provide these headers specifically and  I did the following:</p>
+<pre><code>cmake .. -DCMAKE_BUILD_TYPE=Debug \
+-DCMAKE_C_COMPILER=/usr/bin/clang \
+-DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+-DCMAKE_CXX_FLAGS=&quot;-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -isystem /Library/Developer/CommandLineTools/usr/include/c++/v1&quot; \
+-DCMAKE_C_FLAGS=&quot;-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include&quot;
+</code></pre>
+<blockquote>
+<p><code>isystem</code> adds system include paths, although ideally it should be added in your <code>CMakeLists.txt</code> file: <a rel="external" href="https://stackoverflow.com/a/3371528/7116645" class="link">StackOverflow answer</a></p>
+</blockquote>
+<p>Using the system compiler didn’t work again, I thought, maybe I should use <code>Homebrew</code>‘s version of <code>clang</code> as from experience I had found it better for cross-platform support.</p>
+<p>So, I did the following:</p>
+<pre><code>cmake .. -DCMAKE_BUILD_TYPE=Debug \
+-DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm/bin/clang \
+-DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm/bin/clang++ \
+-DCMAKE_CXX_FLAGS=&quot;-Wno-nullability-completeness&quot; \
+-DCMAKE_C_FLAGS=&quot;-Wno-nullability-completeness&quot;
+</code></pre>
+<blockquote>
+<p>You need to have <code>brew</code> version of clang installed: <code>brew install llvm</code></p>
+</blockquote>
+<p>I felt maybe clang’s libraries does not have <code>stdint</code> or maybe I am missing something but I thought, let’s try with <code>GCC</code> as I had read it works fine elsewhere. so I installed gcc: <code>brew install gcc</code></p>
+<pre><code>cmake .. -DCMAKE_BUILD_TYPE=Debug \
+-DCMAKE_C_COMPILER=/opt/homebrew/opt/gcc/bin/gcc-14 \
+-DCMAKE_CXX_COMPILER=/opt/homebrew/opt/gcc/bin/g++-14
+</code></pre>
+<p>There were some errors on about <code>deined</code> usage and its portability concerns, so I added some more options:</p>
+<pre><code>cmake .. -DCMAKE_BUILD_TYPE=Debug \
+-DCMAKE_C_COMPILER=/opt/homebrew/opt/gcc/bin/gcc-13 \
+-DCMAKE_CXX_COMPILER=/opt/homebrew/opt/gcc/bin/g++-13 \
+-DCMAKE_CXX_FLAGS=&quot;-Wno-error=expansion-to-defined -Wno-error&quot; \
+-DCMAKE_C_FLAGS=&quot;-Wno-error=expansion-to-defined -Wno-error&quot; \
+-DWITH_DEBUG=1
+</code></pre>
+<p>I started facing new errors now, something like:</p>
+<pre><code> 3%] No configure step for &#39;libfmt&#39;
+In file included from /Users/himanshu.pandey/codes/gh-repos/my-maria-server/libmariadb/include/ma_global.h:152,
+from /Users/himanshu.pandey/codes/gh-repos/my-maria-server/libmariadb/libmariadb/get_password.c:19:
+/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/usr/include/math.h:54:5: error: #error &quot;Unsupported value of __FLT_EVAL_METHOD__.&quot;
+54 | # error &quot;Unsupported value of __FLT_EVAL_METHOD__.&quot;
+| ^~~~~
+</code></pre>
+<p>I guess, <code>MariaDB</code> is using some value of <code>__FLT_EVAL_METHOD__</code> which is not supported by MacOS, I was bit surprised that MacOS libraries were being used, when I had explicitly mentioned to use 
+<code>Homebrew</code>‘s <code>gcc</code> compiler. I tried some approach to use the libraries of <code>gcc</code> but that was also of no use.
+I also set the values of these functions explicitly so that it is overriden during build stage. 
+There was some progress but then there were some errors on <code>CFI</code> directives like following:</p>
+<pre><code>/var/folders/95/n9tm7h4s46sdk134wgfzj8s40000gp/T//ccn7M7ep.s:36:2: error: this directive must appear between .cfi_startproc and .cfi_endproc directives
+.cfi_escape 0x07, 30
+^
+make[2]: *** [libmariadb/libmariadb/CMakeFiles/mariadb_obj.dir/ma_context.c.o] Error 1
+make[1]: *** [libmariadb/libmariadb/CMakeFiles/mariadb_obj.dir/all] Error 2
+</code></pre>
+<p>I asked <code>Chatgpt</code> and it told this happens when we do relocation on <code>ARM</code> systems, I figured it could be the mismatch between the machine configuration,</p>
+<blockquote>
+<p>CFI directives are used by debuggers and unwinders to walk the call stack
+I presented my script to it to suggest modifications, it gave the following with Default clang version:</p>
+</blockquote>
+<pre><code>cmake .. -DCMAKE_BUILD_TYPE=Debug \
+-DCMAKE_C_COMPILER=/usr/bin/clang \
+-DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+-DCMAKE_CXX_FLAGS=&quot;-Wno-error -D__FLT_EVAL_METHOD__=0&quot; \
+-DCMAKE_C_FLAGS=&quot;-Wno-error -D__FLT_EVAL_METHOD__=0&quot; \
+-DWITH_DEBUG=1 \
+-DWITHOUT_TOKUDB=1 \
+-DWITH_UNIT_TESTS=OFF \
+-DWITH_SSL=system \
+-DWITH_ZLIB=system \
+-DCONC_WITH_EXTERNAL_ZLIB=ON \
+-DWITHOUT_MROONGA=1 \
+-DWITHOUT_ROCKSDB=1
+</code></pre>
+<p>This script gave a lot of errors on <code>OPENSSL</code> casting. I added the flags to disable these warnings and disabled a lot of plugins that are by default enabled while building the server.</p>
+<blockquote>
+<p>Update: 3rd June, 2025 – Add a new flag CMakeList version flag because of wsrep-lib CMake Version</p>
+</blockquote>
+<p>At the end, I created a script with the commands that I had to type again and again and it came out to look like following:</p>
+<pre><code>#!/bin/sh
+
+# Set paths
+MACOS_SDK=/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk
+
+# Common flags for both C and C++ (all in one line)
+COMMON_FLAGS=&quot;-w \
+-g \
+-fno-asynchronous-unwind-tables \
+-ffunction-sections \
+-fdata-sections \
+-fno-common \
+-mmacosx-version-min=14.0 \
+-arch arm64&quot;
+
+# Clean and create build directory
+rm -rf cmake-build-debug
+mkdir -p cmake-build-debug &amp;&amp; cd cmake-build-debug
+
+# Run cmake with Clang
+cmake .. -DCMAKE_BUILD_TYPE=Debug \
+-DCMAKE_C_COMPILER=clang \
+-DCMAKE_CXX_COMPILER=clang++ \
+-DCMAKE_C_FLAGS=&quot;${COMMON_FLAGS}&quot; \
+-DCMAKE_CXX_FLAGS=&quot;${COMMON_FLAGS}&quot; \
+-DCMAKE_OSX_SYSROOT=&quot;${MACOS_SDK}&quot; \
+-DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \
+-DWITH_DEBUG=1 \
+-DWITHOUT_TOKUDB=1 \
+-DWITH_UNIT_TESTS=OFF \
+-DWITH_SSL=system \
+-DWITH_ZLIB=system \
+-DCONC_WITH_EXTERNAL_ZLIB=ON \
+-DWITHOUT_MROONGA=1 \
+-DWITHOUT_ROCKSDB=1 \
+-DPLUGIN_TOKUDB=NO \
+-DPLUGIN_ROCKSDB=NO \
+-DPLUGIN_MROONGA=NO \
+-DCONNECT_WITH_MONGO=OFF \
+-DCONNECT_WITH_BSON=OFF \
+-DMYSQL_MAINTAINER_MODE=OFF \  
+-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+-G Ninja
+
+# Build using ninja with parallel jobs and logging
+cmake --build . --parallel 5 2&gt;&amp;1 | tee build.log
+</code></pre>
+<h2 id="running-mariadb-locally">Running MariaDB locally</h2>
+<p>You can directly follow official <a rel="external" href="https://mariadb.org/get-involved/getting-started-for-developers/get-code-build-test/" class="link">docs</a>;</p>
+<p>I will just summarize what I did:</p>
+<ul>
+<li>Create a directory to store your data, I named it <code>mariaddb_data</code> and stored it in my
+home directory</li>
+<li>Create a configuration file like following</li>
+</ul>
+<pre><code>[client-server]
+socket = path/to/mariadb.sock
+
+[mariadb]
+datadir = path/to/mariadb_data
+</code></pre>
+<ul>
+<li>Change directory to your build directory and run the following script</li>
+</ul>
+<pre><code>/scripts/mariadb-install-db \
+--user=$(whoami) \
+--datadir=path/to/mariadb_data \
+--srcdir=path/to/server \
+--defaults-file=path/to/mariadb.conf
+</code></pre>
+<ul>
+<li>Open a new terminal session, <code>cd</code> to your build directory and start the server</li>
+</ul>
+<pre><code>./sql/mariadbd --defaults-file=path/to/mariadb.conf
+</code></pre>
+<ul>
+<li>Start the client in new session</li>
+</ul>
+<pre><code>./client/mariadb --defaults-file=path/to/mariadb.conf
+</code></pre>
+<p>You can then run the following commands and verify your build:</p>
+<pre><code>SHOW DATABASES;
+CREATE DATABASE testdb;
+USE testdb;
+CREATE TABLE test (id INT, name VARCHAR(50));
+INSERT INTO test VALUES (1, &#39;Test User&#39;);
+SELECT * FROM test;
+</code></pre>
+<blockquote>
+<p>Building and running it took most of my day, will write about internals in another blog post</p>
+</blockquote>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li><a rel="external" href="https://mariadb.org/get-involved/getting-started-for-developers/get-code-build-test/" class="link">MariaDB official Docs</a></li>
+<li><a rel="external" href="https://chatgpt.com/" class="link">ChatGPT</a></li>
+<li><a rel="external" href="https://sourceware.org/binutils/docs/as/CFI-directives.html" class="link">CFI directives</a></li>
+<li><a rel="external" href="https://mariadb.com/kb/en/configuring-mariadb-with-option-files/" class="link">Configuration option</a></li>
+<li><a rel="external" href="https://www.amazon.in/Understanding-MySQL-Internals-Sasha-Pachev/dp/0596009577" class="link">Understanding MySQL internals</a></li>
+</ul>
+<!-- HTML_TAG_END -->
+</div></div>
+
+    <div class="mt-8 pt-8 border-t border-neutral-200"><h2 class="text-xl font-semibold mb-4">Comments &amp; Reactions</h2>
+  
+  <div class="mb-6 p-4 bg-blue-50 rounded-lg text-sm text-blue-800"><p>💡 Comments are powered by GitHub Discussions. When you sign in to comment, no personal data is collected or stored by this website. All interactions are handled directly through GitHub&#39;s secure authentication system.</p></div>
+
+  <div id="giscus-container"></div></div>
+
+    <footer class="mt-12 pt-8 border-t border-neutral-200"><a href="/blogs" class="text-blue-600 hover:underline">← Back to all posts</a></footer></article></main>
 
 <footer class="layout-md mt-20 text-lg flex flex-col space-y-4 footer-container svelte-1xjvbnz"><div class="row svelte-1xjvbnz" style="animation-delay: 0ms"><span class="label svelte-1xjvbnz">Twitter</span>
       <hr class="svelte-1xjvbnz">
@@ -69,18 +331,18 @@
 			
 			<script>
 				{
-					__sveltekit_kiivcq = {
+					__sveltekit_5ip2ie = {
 						base: new URL("..", location).pathname.slice(0, -1),
 						env: {}
 					};
 
 					const element = document.currentScript.parentElement;
 
-					const data = [null,{"type":"data","data":{slug:"building-understanding-mariaDB"},"uses":{"params":["slug"]}}];
+					const data = [null,{"type":"data","data":{post:{slug:"building-understanding-mariaDB",title:"Building and Running MariaDB on Macbook",date:"2025-02-02",description:"letting out the Seal in M-series (sea-ries XD)",content:"\n## Building MariaDB\n\nMariaDB is a fork of MySQL which has been in effect to provide users the flexibility to go with an open source version for a DB like MySQL which is owned by Oracle. \nIt is written in C++. To build it on my system(macbook air M2) I followed these steps:\nWe are going to build the `server` which is where most of things happen for the DBMS\n\n- Fork the official repo: [Github](https://github.com/MariaDB/server)\n- Clone your forked repo: `git clone https://github.com/YOUR-USERNAME/server`\n First time the clone failed because of the following reason:\n ```shell\n git clone https://github.com/hp77-creator/my-maria-server.git\nCloning into 'my-maria-server'...\nremote: Enumerating objects: 1391033, done.\nremote: Counting objects: 100% (100/100), done.\nremote: Compressing objects: 100% (69/69), done.\nerror: RPC failed; curl 92 HTTP/2 stream 5 was not closed cleanly: CANCEL (err 8)\nerror: 2491 bytes of body are still expected\nfetch-pack: unexpected disconnect while reading sideband packet\nfatal: early EOF\nfatal: fetch-pack: invalid index-pack output\n ```\n Trying by increasing the buffer size:\n `git config --global http.postBuffer 524288000`\n  The error persists, so I switched to `ssh`\n  It got cloned.\n\n- Enter into your cloned directory: `cd my-maria-server`\n- Create a new build directory and change directory to that: `mkdir -p build && cd build`\n- We will create a `Debug` build. To do that, run: `cmake .. -DCMAKE_BUILD_TYPE=Debug`\n    During installation, I found out that `bison` was not installed properly, so I installed it with\n    `brew install bison` and updated my `$PATH` to use or you can use\n    ```\n    -DBISON_EXECUTABLE=/opt/homebrew/opt/bison/bin/bison\n    ```\n    option when using cmake\n- You can follow along this link: [MariaDB docs](https://mariadb.org/get-involved/getting-started-for-developers/get-code-build-test/)\n\nI had read in the book `Understanding MySQL Internals` that `MySQL` works best with `GCC`, so I thought I will try with\nthat but before that I ran it with default compiler provided by Apple(Clang) there were lot of errors and I was trying to run following commands:\n```\ncmake .. -DCMAKE_BUILD_TYPE=Debug\ncmake --build . --parallel 5\n```\nDuring `--build` it was giving a lot of errors. I looked up the meaning of different errors, those errors were because of strict nullability check by the compiler. To get over those, I added following options:\n\n> Note before running the following command, ensure that you have cleared your existing build directory.\n\n```\ncmake .. -DCMAKE_BUILD_TYPE=Debug \\\n-DCMAKE_C_FLAGS=\"-Wno-nullability-completeness\" \\\n-DCMAKE_CXX_FLAGS=\"-Wno-nullability-completeness\"\n```\nAlso if you like to log the errors, you can do the following during build:\n```\ncmake --build . --parallel 5 2>&1 | tee build.log\n```\nIt failed again, this time it was unable to find the standard `\u003Cstdint.h>` header. I checked up online, If I can find options to provide these headers specifically and  I did the following:\n```\ncmake .. -DCMAKE_BUILD_TYPE=Debug \\\n-DCMAKE_C_COMPILER=/usr/bin/clang \\\n-DCMAKE_CXX_COMPILER=/usr/bin/clang++ \\\n-DCMAKE_CXX_FLAGS=\"-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -isystem /Library/Developer/CommandLineTools/usr/include/c++/v1\" \\\n-DCMAKE_C_FLAGS=\"-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include\"\n```\n\n> `isystem` adds system include paths, although ideally it should be added in your `CMakeLists.txt` file: [StackOverflow answer](https://stackoverflow.com/a/3371528/7116645)\n\nUsing the system compiler didn't work again, I thought, maybe I should use `Homebrew`'s version of `clang` as from experience I had found it better for cross-platform support.\n\nSo, I did the following:\n```\ncmake .. -DCMAKE_BUILD_TYPE=Debug \\\n-DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm/bin/clang \\\n-DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm/bin/clang++ \\\n-DCMAKE_CXX_FLAGS=\"-Wno-nullability-completeness\" \\\n-DCMAKE_C_FLAGS=\"-Wno-nullability-completeness\"\n```\n\n> You need to have `brew` version of clang installed: `brew install llvm`\n\nI felt maybe clang's libraries does not have `stdint` or maybe I am missing something but I thought, let's try with `GCC` as I had read it works fine elsewhere. so I installed gcc: `brew install gcc`\n```\ncmake .. -DCMAKE_BUILD_TYPE=Debug \\\n-DCMAKE_C_COMPILER=/opt/homebrew/opt/gcc/bin/gcc-14 \\\n-DCMAKE_CXX_COMPILER=/opt/homebrew/opt/gcc/bin/g++-14\n```\n\nThere were some errors on about `deined` usage and its portability concerns, so I added some more options:\n```\ncmake .. -DCMAKE_BUILD_TYPE=Debug \\\n-DCMAKE_C_COMPILER=/opt/homebrew/opt/gcc/bin/gcc-13 \\\n-DCMAKE_CXX_COMPILER=/opt/homebrew/opt/gcc/bin/g++-13 \\\n-DCMAKE_CXX_FLAGS=\"-Wno-error=expansion-to-defined -Wno-error\" \\\n-DCMAKE_C_FLAGS=\"-Wno-error=expansion-to-defined -Wno-error\" \\\n-DWITH_DEBUG=1\n```\n\nI started facing new errors now, something like:\n```\n 3%] No configure step for 'libfmt'\nIn file included from /Users/himanshu.pandey/codes/gh-repos/my-maria-server/libmariadb/include/ma_global.h:152,\nfrom /Users/himanshu.pandey/codes/gh-repos/my-maria-server/libmariadb/libmariadb/get_password.c:19:\n/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/usr/include/math.h:54:5: error: #error \"Unsupported value of __FLT_EVAL_METHOD__.\"\n54 | # error \"Unsupported value of __FLT_EVAL_METHOD__.\"\n| ^~~~~\n```\n\nI guess, `MariaDB` is using some value of `__FLT_EVAL_METHOD__` which is not supported by MacOS, I was bit surprised that MacOS libraries were being used, when I had explicitly mentioned to use \n`Homebrew`'s `gcc` compiler. I tried some approach to use the libraries of `gcc` but that was also of no use.\nI also set the values of these functions explicitly so that it is overriden during build stage. \nThere was some progress but then there were some errors on `CFI` directives like following:\n```\n/var/folders/95/n9tm7h4s46sdk134wgfzj8s40000gp/T//ccn7M7ep.s:36:2: error: this directive must appear between .cfi_startproc and .cfi_endproc directives\n.cfi_escape 0x07, 30\n^\nmake[2]: *** [libmariadb/libmariadb/CMakeFiles/mariadb_obj.dir/ma_context.c.o] Error 1\nmake[1]: *** [libmariadb/libmariadb/CMakeFiles/mariadb_obj.dir/all] Error 2\n```\n\nI asked `Chatgpt` and it told this happens when we do relocation on `ARM` systems, I figured it could be the mismatch between the machine configuration,\n> CFI directives are used by debuggers and unwinders to walk the call stack\nI presented my script to it to suggest modifications, it gave the following with Default clang version:\n```\ncmake .. -DCMAKE_BUILD_TYPE=Debug \\\n-DCMAKE_C_COMPILER=/usr/bin/clang \\\n-DCMAKE_CXX_COMPILER=/usr/bin/clang++ \\\n-DCMAKE_CXX_FLAGS=\"-Wno-error -D__FLT_EVAL_METHOD__=0\" \\\n-DCMAKE_C_FLAGS=\"-Wno-error -D__FLT_EVAL_METHOD__=0\" \\\n-DWITH_DEBUG=1 \\\n-DWITHOUT_TOKUDB=1 \\\n-DWITH_UNIT_TESTS=OFF \\\n-DWITH_SSL=system \\\n-DWITH_ZLIB=system \\\n-DCONC_WITH_EXTERNAL_ZLIB=ON \\\n-DWITHOUT_MROONGA=1 \\\n-DWITHOUT_ROCKSDB=1\n```\n\nThis script gave a lot of errors on `OPENSSL` casting. I added the flags to disable these warnings and disabled a lot of plugins that are by default enabled while building the server.\n\n> Update: 3rd June, 2025 -- Add a new flag CMakeList version flag because of wsrep-lib CMake Version\n\nAt the end, I created a script with the commands that I had to type again and again and it came out to look like following:\n\n\n```\n#!/bin/sh\n\n# Set paths\nMACOS_SDK=/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk\n\n# Common flags for both C and C++ (all in one line)\nCOMMON_FLAGS=\"-w \\\n-g \\\n-fno-asynchronous-unwind-tables \\\n-ffunction-sections \\\n-fdata-sections \\\n-fno-common \\\n-mmacosx-version-min=14.0 \\\n-arch arm64\"\n\n# Clean and create build directory\nrm -rf cmake-build-debug\nmkdir -p cmake-build-debug && cd cmake-build-debug\n\n# Run cmake with Clang\ncmake .. -DCMAKE_BUILD_TYPE=Debug \\\n-DCMAKE_C_COMPILER=clang \\\n-DCMAKE_CXX_COMPILER=clang++ \\\n-DCMAKE_C_FLAGS=\"${COMMON_FLAGS}\" \\\n-DCMAKE_CXX_FLAGS=\"${COMMON_FLAGS}\" \\\n-DCMAKE_OSX_SYSROOT=\"${MACOS_SDK}\" \\\n-DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \\\n-DWITH_DEBUG=1 \\\n-DWITHOUT_TOKUDB=1 \\\n-DWITH_UNIT_TESTS=OFF \\\n-DWITH_SSL=system \\\n-DWITH_ZLIB=system \\\n-DCONC_WITH_EXTERNAL_ZLIB=ON \\\n-DWITHOUT_MROONGA=1 \\\n-DWITHOUT_ROCKSDB=1 \\\n-DPLUGIN_TOKUDB=NO \\\n-DPLUGIN_ROCKSDB=NO \\\n-DPLUGIN_MROONGA=NO \\\n-DCONNECT_WITH_MONGO=OFF \\\n-DCONNECT_WITH_BSON=OFF \\\n-DMYSQL_MAINTAINER_MODE=OFF \\  \n-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \\\n-G Ninja\n\n# Build using ninja with parallel jobs and logging\ncmake --build . --parallel 5 2>&1 | tee build.log\n```\n\n\n## Running MariaDB locally\n\nYou can directly follow official [docs](https://mariadb.org/get-involved/getting-started-for-developers/get-code-build-test/);\n\nI will just summarize what I did:\n\n- Create a directory to store your data, I named it `mariaddb_data` and stored it in my\nhome directory\n- Create a configuration file like following\n\n```\n[client-server]\nsocket = path/to/mariadb.sock\n\n[mariadb]\ndatadir = path/to/mariadb_data\n```\n\n- Change directory to your build directory and run the following script\n```\n/scripts/mariadb-install-db \\\n--user=$(whoami) \\\n--datadir=path/to/mariadb_data \\\n--srcdir=path/to/server \\\n--defaults-file=path/to/mariadb.conf\n```\n\n- Open a new terminal session, `cd` to your build directory and start the server\n\n```\n./sql/mariadbd --defaults-file=path/to/mariadb.conf\n```\n\n- Start the client in new session\n```\n./client/mariadb --defaults-file=path/to/mariadb.conf\n```\n\nYou can then run the following commands and verify your build:\n```\nSHOW DATABASES;\nCREATE DATABASE testdb;\nUSE testdb;\nCREATE TABLE test (id INT, name VARCHAR(50));\nINSERT INTO test VALUES (1, 'Test User');\nSELECT * FROM test;\n```\n\n> Building and running it took most of my day, will write about internals in another blog post\n\n\n---- \n\n## References\n\n- [MariaDB official Docs](https://mariadb.org/get-involved/getting-started-for-developers/get-code-build-test/)\n- [ChatGPT](https://chatgpt.com/)\n- [CFI directives](https://sourceware.org/binutils/docs/as/CFI-directives.html)\n- [Configuration option](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/)\n- [Understanding MySQL internals](https://www.amazon.in/Understanding-MySQL-Internals-Sasha-Pachev/dp/0596009577)\n",visible:true,tags:["database","mariaDB","C++","Macbook"]}},"uses":{"params":["slug"]}}];
 
 					Promise.all([
-						import("../app/immutable/entry/start.8036f14c.js"),
-						import("../app/immutable/entry/app.ae757894.js")
+						import("../app/immutable/entry/start.e92ad096.js"),
+						import("../app/immutable/entry/app.a2479710.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
