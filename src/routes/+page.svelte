@@ -101,6 +101,10 @@
       An inspiring <a class="link hover-effect" href="https://speakerdeck.com/madhavjivrajani/can-we-use-ebpf-to-debug-performance-of-the-go-scheduler">eBPF talk</a> and this fascinating <a class="link hover-effect" href="https://youtu.be/Wb_vD3XZYOA?si=taGvQCXNvSsoVGk0">documentary</a> 
       led me to contribute to <a class="link hover-effect" href="https://eunomia.dev/">eunomia-bpf</a> for GSoC'24, where I work on their innovative userspace eBPF runtime.
     </p>
+    <p>
+     Post my stint in eunomia-bpf, I started contributing to Databases and also got to work with MariaDB as part of GSoC'25. 
+     I have contributed <i>conv</i> function to ClickHouse and have also fixed macOS build issue in ClickHouse. 
+    </p>
 
     <p>
       Currently, I'm deepening my knowledge of distributed systems, working on system design challenges at codecrafters.io, and seeking opportunities in systems engineering roles.
