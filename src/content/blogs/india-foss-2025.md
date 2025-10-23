@@ -3,7 +3,7 @@ title: India FOSS'25 - A weekend into learning
 date: 2025-09-21
 description: India FOSS is an annual conference where hackers from around India come and share their learnings 
 visible: true
-tags: blog, technical-writing
+tags: technical-writing
 ---
 
 

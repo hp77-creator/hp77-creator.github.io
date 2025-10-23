@@ -3,7 +3,7 @@ title: Adding a FRM parser to MariaDB
 date: 2025-06-23
 description: A GSoC project 
 visible: false
-tags: database, mariaDB, C++
+tags: database, mariaDB, cpp 
 ---
 
 In one of my previous posts, I had described my journey of how I compiled `MariaDB` on MacOS. It was a struggle and a lot of back and forth but in the process, I learnt about some dependencies that aren't really necessary to compile and run `MariaDB`. In this 

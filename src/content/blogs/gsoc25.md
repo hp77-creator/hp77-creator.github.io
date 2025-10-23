@@ -3,7 +3,7 @@ title: My GSoC'25 Journey with MariaDB
 date: 2025-09-01
 description: Sharing my experience and learnings from Google Summer of Code 2025 with MariaDB
 visible: true
-tags: GSoC, blog, database
+tags: gsoc, database
 ---
 
 # Adding a standalone FRM Parser in MariaDB

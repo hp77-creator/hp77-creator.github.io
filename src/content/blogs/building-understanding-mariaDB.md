@@ -3,7 +3,7 @@ title: Building and Running MariaDB on Macbook
 date: 2025-02-02
 description: letting out the Seal in M-series (sea-ries XD)
 visible: true
-tags: database, mariaDB, C++, Macbook
+tags: database, mariaDB, cpp, macOS 
 ---
 
 ## Building MariaDB

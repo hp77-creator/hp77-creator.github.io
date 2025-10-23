@@ -3,7 +3,7 @@ title: IntelliJ IDEA shortcuts
 date: 2025-09-23
 description: Some cool shortcuts that I have learnt and am learning
 visible: true
-tags: blog, technical-writing
+tags: tips, technical-writing
 ---
 
 IntelliJ is one of my favorite IDE's for Java. I work in a company where most of our codebase is in Java for Backend. We use

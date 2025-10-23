@@ -3,7 +3,7 @@ title: Outing near a lakehouse
 date: 2025-05-13
 description: what I learned about Datawarehouses, Delta-lakes and Lakehouses 
 visible: false
-tags: Database, blog
+tags: database, blog
 ---
 This sunday there was an interesting meetup organized by `e6data(https://www.e6data.com/)`, called Lakehouse days(https://lu.ma/m593968s?tk=5dBS7S).
 Theme for this week was around `Apache Iceberg` before coming to this meetup, I had only heard of `Datawarehouses`, `Delta lakes` and `Lakehouses` courtesy reading some parts of `Apache Iceberg: The definitive Guide`(https://www.amazon.in/Apache-Iceberg-Functionality-Performance-Scalability/dp/1098148622).

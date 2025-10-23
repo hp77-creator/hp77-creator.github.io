@@ -3,7 +3,7 @@ title: Mudlet through an open source contributor's eyes
 date: 2025-01-23
 description: lessons on navigating a large C++ project and understanding it 
 visible: false
-tags: C++
+tags: cpp 
 ----
 
 Mudlet, it is an open source application which can be used to play multiplayer text games. It is written in C++ and uses Qt framework for its UI content. It uses raw pointers and is devoid of RAII(I am trying to fix some with this PR: https://github.com/Mudlet/Mudlet/pull/7642)

@@ -1,9 +1,9 @@
 ---
-title: Fixing a MacOS issue while installing Clickhouse 
+title: Fixing a MacOS script issue in ClickHouse while installing it 
 date: 2025-05-13
 description: how a OS library update can break your DB 
-visible: false
-tags: Database, blog
+visible: true
+tags: database, clickhouse
 ---
 
 So, Yesterday I was installing clickhouse from source on my system(macbook air M2), I am glad that `Clickhouse` has a very good
@@ -36,4 +36,18 @@ I submitted my PR: https://github.com/ClickHouse/ClickHouse/pull/80228/files
 It was interesting to know that how much an OS can change the stability of a system. MacOSX didn't come with their own `strchrnul` but in latest versions they are defining a constant for that.
 
 Postgres had it declared when they were creating their software and now their changes were breaking. It was a nice reminder that unless you own everything in the stack, you can't be sure when and where your software can break.
+
+Post this merge, it was easy to set up my system for Clickhouse, To run the database locally, we
+just need to run the following commands, if you have recently taken a pull then you also need to 
+update the submodules and then run these commands. These are taken from official [docs](https://clickhouse.com/docs/development/build-osx)
+
+```shell
+export PATH=$(brew --prefix llvm)/bin:$PATH
+cmake -S . -B build && cmake --build build
+```
+
+if you have recently updated the git submodules, then you also need to do this:
+```
+git submodule update --init --recursive
+```
 
