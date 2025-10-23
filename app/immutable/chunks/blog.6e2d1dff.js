@@ -3,7 +3,7 @@ title: Mudlet through an open source contributor's eyes
 date: 2025-01-23
 description: lessons on navigating a large C++ project and understanding it 
 visible: false
-tags: C++
+tags: cpp 
 ----
 
 Mudlet, it is an open source application which can be used to play multiplayer text games. It is written in C++ and uses Qt framework for its UI content. It uses raw pointers and is devoid of RAII(I am trying to fix some with this PR: https://github.com/Mudlet/Mudlet/pull/7642)
@@ -63,7 +63,7 @@ title: Adding a FRM parser to MariaDB
 date: 2025-06-23
 description: A GSoC project 
 visible: false
-tags: database, mariaDB, C++
+tags: database, mariaDB, cpp 
 ---
 
 In one of my previous posts, I had described my journey of how I compiled \`MariaDB\` on MacOS. It was a struggle and a lot of back and forth but in the process, I learnt about some dependencies that aren't really necessary to compile and run \`MariaDB\`. In this 
@@ -102,7 +102,7 @@ title: Building and Running MariaDB on Macbook
 date: 2025-02-02
 description: letting out the Seal in M-series (sea-ries XD)
 visible: true
-tags: database, mariaDB, C++, Macbook
+tags: database, mariaDB, cpp, macOS 
 ---
 
 ## Building MariaDB
@@ -490,7 +490,7 @@ title: My GSoC'24 Journey with eunomia-bpf
 date: 2024-07-21
 description: Sharing my experience and learnings from Google Summer of Code 2024 with eunomia-bpf
 visible: true
-tags: GSoC, blog
+tags: gsoc
 ---
 
 # My GSoC'24 Journey with eunomia-bpf
@@ -543,7 +543,7 @@ title: My GSoC'25 Journey with MariaDB
 date: 2025-09-01
 description: Sharing my experience and learnings from Google Summer of Code 2025 with MariaDB
 visible: true
-tags: GSoC, blog, database
+tags: gsoc, database
 ---
 
 # Adding a standalone FRM Parser in MariaDB
@@ -782,7 +782,7 @@ title: India FOSS'25 - A weekend into learning
 date: 2025-09-21
 description: India FOSS is an annual conference where hackers from around India come and share their learnings 
 visible: true
-tags: blog, technical-writing
+tags: technical-writing
 ---
 
 
@@ -917,11 +917,11 @@ filling up my to-do list for stuff that I should check out/contribute to.
 Really grateful to IndiaFOSS for organizing such a wonderful event. 
 
 `,p=`---
-title: Fixing a MacOS issue while installing Clickhouse 
+title: Fixing a MacOS script issue in ClickHouse while installing it 
 date: 2025-05-13
 description: how a OS library update can break your DB 
-visible: false
-tags: Database, blog
+visible: true
+tags: database, clickhouse
 ---
 
 So, Yesterday I was installing clickhouse from source on my system(macbook air M2), I am glad that \`Clickhouse\` has a very good
@@ -955,7 +955,21 @@ It was interesting to know that how much an OS can change the stability of a sys
 
 Postgres had it declared when they were creating their software and now their changes were breaking. It was a nice reminder that unless you own everything in the stack, you can't be sure when and where your software can break.
 
-`,w="---\ntitle: IntelliJ IDEA shortcuts\ndate: 2025-09-23\ndescription: Some cool shortcuts that I have learnt and am learning\nvisible: true\ntags: blog, technical-writing\n---\n\nIntelliJ is one of my favorite IDE's for Java. I work in a company where most of our codebase is in Java for Backend. We use\nIntelliJ as our IDE. It is really powerful and has some awesome shortcuts that I think one can add in their arsenal, below I am \nsharing couple of which I like a lot\n\n- `Shift + Shift` for Search Anywhere feature. This allows you to search anything in your project, be it in text, code or anywhere\n- `Cmd + Shift + A` for `Find Action`. If you want to do some Action like `Run Test`, `Open Terminal` or any other refactoring task, this command is handy\n- `Cmd + E` for checking out the `Recent Files` and accessing them without going over the project window\n- `Cmd + Shift + E` for switching between different locations of your `Recent Files`\n- `Ctrl + Tab` for directly switching between different files\n\nI like `Vim` keybindings so I have enabled that for my IDE and I navigate java files using that, I really like the comfort of home row key navigation.\n\nYou can also use `Zen Mode` by pressing 'Ctrl + \\`' and then Selecting `5. View Mode` and selecting `Zen Mode` out of it.\n\nWhen you are in Zen Mode, you can use all the above shortcut to search for things without distraction and have things at your fingertip.\n",b=`---
+Post this merge, it was easy to set up my system for Clickhouse, To run the database locally, we
+just need to run the following commands, if you have recently taken a pull then you also need to 
+update the submodules and then run these commands. These are taken from official [docs](https://clickhouse.com/docs/development/build-osx)
+
+\`\`\`shell
+export PATH=$(brew --prefix llvm)/bin:$PATH
+cmake -S . -B build && cmake --build build
+\`\`\`
+
+if you have recently updated the git submodules, then you also need to do this:
+\`\`\`
+git submodule update --init --recursive
+\`\`\`
+
+`,w="---\ntitle: IntelliJ IDEA shortcuts\ndate: 2025-09-23\ndescription: Some cool shortcuts that I have learnt and am learning\nvisible: true\ntags: tips, technical-writing\n---\n\nIntelliJ is one of my favorite IDE's for Java. I work in a company where most of our codebase is in Java for Backend. We use\nIntelliJ as our IDE. It is really powerful and has some awesome shortcuts that I think one can add in their arsenal, below I am \nsharing couple of which I like a lot\n\n- `Shift + Shift` for Search Anywhere feature. This allows you to search anything in your project, be it in text, code or anywhere\n- `Cmd + Shift + A` for `Find Action`. If you want to do some Action like `Run Test`, `Open Terminal` or any other refactoring task, this command is handy\n- `Cmd + E` for checking out the `Recent Files` and accessing them without going over the project window\n- `Cmd + Shift + E` for switching between different locations of your `Recent Files`\n- `Ctrl + Tab` for directly switching between different files\n\nI like `Vim` keybindings so I have enabled that for my IDE and I navigate java files using that, I really like the comfort of home row key navigation.\n\nYou can also use `Zen Mode` by pressing 'Ctrl + \\`' and then Selecting `5. View Mode` and selecting `Zen Mode` out of it.\n\nWhen you are in Zen Mode, you can use all the above shortcut to search for things without distraction and have things at your fingertip.\n",b=`---
 title: KubeCon + CloudNativeCon 2024, New Delhi 
 date: 2024-12-10
 description: Learnings from the first KubeCon in India 
@@ -1000,7 +1014,7 @@ title: Outing near a lakehouse
 date: 2025-05-13
 description: what I learned about Datawarehouses, Delta-lakes and Lakehouses 
 visible: false
-tags: Database, blog
+tags: database, blog
 ---
 This sunday there was an interesting meetup organized by \`e6data(https://www.e6data.com/)\`, called Lakehouse days(https://lu.ma/m593968s?tk=5dBS7S).
 Theme for this week was around \`Apache Iceberg\` before coming to this meetup, I had only heard of \`Datawarehouses\`, \`Delta lakes\` and \`Lakehouses\` courtesy reading some parts of \`Apache Iceberg: The definitive Guide\`(https://www.amazon.in/Apache-Iceberg-Functionality-Performance-Scalability/dp/1098148622).
@@ -1097,7 +1111,7 @@ title: Welcome to my blog
 date: 2024-01-20
 description: Introduction to my technical blog and what to expect
 visible: true
-tags: blog, technical-writing
+tags: technical-writing
 ---
 
 # Welcome to my blog
