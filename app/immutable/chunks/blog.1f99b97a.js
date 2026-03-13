@@ -778,6 +778,19 @@ Features that can be supported in coming version of the tool
 PR [Link](https://github.com/MariaDB/server/pull/4094)
 
 `,f=`---
+title: Index of interesting java bits
+date: 2026-03-13
+description: One liners or links to posts on some interesting facts of Java 
+visible: true
+tags: technical-writing
+---
+
+1. Java Optional
+We misuse it a lot and I have noted some rules which were shared by Stuart Marks from his yt video. [Stuart Marks yt video](https://youtu.be/Ej0sss6cq14?si=_ow_LeA3aznQyCnE)
+
+2. Can't use null in collections
+If you do \`.contains(null)\` on some \`Collection\` It will throw a NPE. This is totally opposite to how
+those work in \`guava\` libraries. [Collections which allow null](https://stackoverflow.com/a/62820956/7116645), [Guava author's answer](https://stackoverflow.com/a/67956082/7116645)`,p=`---
 title: India FOSS'25 - A weekend into learning
 date: 2025-09-21
 description: India FOSS is an annual conference where hackers from around India come and share their learnings 
@@ -916,7 +929,7 @@ filling up my to-do list for stuff that I should check out/contribute to.
 
 Really grateful to IndiaFOSS for organizing such a wonderful event. 
 
-`,p=`---
+`,w=`---
 title: Fixing a MacOS script issue in ClickHouse while installing it 
 date: 2025-05-13
 description: how a OS library update can break your DB 
@@ -969,7 +982,7 @@ if you have recently updated the git submodules, then you also need to do this:
 git submodule update --init --recursive
 \`\`\`
 
-`,w="---\ntitle: IntelliJ IDEA shortcuts\ndate: 2025-09-23\ndescription: Some cool shortcuts that I have learnt and am learning\nvisible: true\ntags: tips, technical-writing\n---\n\nIntelliJ is one of my favorite IDE's for Java. I work in a company where most of our codebase is in Java for Backend. We use\nIntelliJ as our IDE. It is really powerful and has some awesome shortcuts that I think one can add in their arsenal, below I am \nsharing couple of which I like a lot\n\n- `Shift + Shift` for Search Anywhere feature. This allows you to search anything in your project, be it in text, code or anywhere\n- `Cmd + Shift + A` for `Find Action`. If you want to do some Action like `Run Test`, `Open Terminal` or any other refactoring task, this command is handy\n- `Cmd + E` for checking out the `Recent Files` and accessing them without going over the project window\n- `Cmd + Shift + E` for switching between different locations of your `Recent Files`\n- `Ctrl + Tab` for directly switching between different files\n\nI like `Vim` keybindings so I have enabled that for my IDE and I navigate java files using that, I really like the comfort of home row key navigation.\n\nYou can also use `Zen Mode` by pressing 'Ctrl + \\`' and then Selecting `5. View Mode` and selecting `Zen Mode` out of it.\n\nWhen you are in Zen Mode, you can use all the above shortcut to search for things without distraction and have things at your fingertip.\n",b=`---
+`,b="---\ntitle: IntelliJ IDEA shortcuts\ndate: 2025-09-23\ndescription: Some cool shortcuts that I have learnt and am learning\nvisible: true\ntags: tips, technical-writing\n---\n\nIntelliJ is one of my favorite IDE's for Java. I work in a company where most of our codebase is in Java for Backend. We use\nIntelliJ as our IDE. It is really powerful and has some awesome shortcuts that I think one can add in their arsenal, below I am \nsharing couple of which I like a lot\n\n- `Shift + Shift` for Search Anywhere feature. This allows you to search anything in your project, be it in text, code or anywhere\n- `Cmd + Shift + A` for `Find Action`. If you want to do some Action like `Run Test`, `Open Terminal` or any other refactoring task, this command is handy\n- `Cmd + E` for checking out the `Recent Files` and accessing them without going over the project window\n- `Cmd + Shift + E` for switching between different locations of your `Recent Files`\n- `Ctrl + Tab` for directly switching between different files\n\nI like `Vim` keybindings so I have enabled that for my IDE and I navigate java files using that, I really like the comfort of home row key navigation.\n\nYou can also use `Zen Mode` by pressing 'Ctrl + \\`' and then Selecting `5. View Mode` and selecting `Zen Mode` out of it.\n\nWhen you are in Zen Mode, you can use all the above shortcut to search for things without distraction and have things at your fingertip.\n",y=`---
 title: KubeCon + CloudNativeCon 2024, New Delhi 
 date: 2024-12-10
 description: Learnings from the first KubeCon in India 
@@ -1009,7 +1022,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`,y=`---
+`,k=`---
 title: Outing near a lakehouse 
 date: 2025-05-13
 description: what I learned about Datawarehouses, Delta-lakes and Lakehouses 
@@ -1059,7 +1072,7 @@ switch your DB, Another issue with DWH is that they are not good in storing unst
 always an ETL(Extract-Transform-Load) step before data is added into these DBs.
 
 Delta Lakes provide one step better clarity and support unstructured or semi-structured data but they also lack the modularity 
-`,k=`---
+`,I=`---
 title: mishap with git rebase, reflog to rescue
 date: 2024-12-10
 description: lesson on Git and what not to do 
@@ -1106,7 +1119,7 @@ It will show you history of the branches and places it had originated from and h
 ## References
 
 - [Git remote branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
-`,I=`---
+`,v=`---
 title: Welcome to my blog
 date: 2024-01-20
 description: Introduction to my technical blog and what to expect
@@ -1147,7 +1160,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`;async function D(){var n;const o=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/india-foss-2025.md":f,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":p,"/src/content/blogs/intellij-shortcuts.md":w,"/src/content/blogs/kubecon-cloudnativecon.md":b,"/src/content/blogs/outing-near-a-lakehouse.md":y,"/src/content/blogs/support-jetstream-proton.md":k,"/src/content/blogs/welcome.md":I});for(const t in e)try{const a=e[t];if(!a||a.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const i=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(i){const r=v(a,i);r&&o.push(r)}}catch(a){console.error(`Error processing blog post ${t}:`,a);continue}return o.sort((t,a)=>new Date(a.date).getTime()-new Date(t.date).getTime())}async function M(){return(await D()).filter(e=>e.visible!==!1)}async function T(o){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/india-foss-2025.md":f,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":p,"/src/content/blogs/intellij-shortcuts.md":w,"/src/content/blogs/kubecon-cloudnativecon.md":b,"/src/content/blogs/outing-near-a-lakehouse.md":y,"/src/content/blogs/support-jetstream-proton.md":k,"/src/content/blogs/welcome.md":I}),n=`/src/content/blogs/${o}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):v(t,o)}return null}catch(e){return console.error(`Error loading blog post ${o}:`,e),null}}function v(o,e){try{const n=o.split(`---
-`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const a=S(t),i=a.title,r=a.date;if(!i||!r)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const s=a.visible,_=s?s.toLowerCase()==="true":!0,C=a.tags;return{slug:e,title:i,date:r,description:a.description||"",content:n.slice(2).join(`---
-`),visible:_,tags:C}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function S(o){const e={};try{o.split(`
-`).forEach(n=>{const[t,...a]=n.split(":");if(t&&a.length){const i=t.trim(),r=a.join(":").trim();i&&r&&(i==="tags"?e[i]=r.split(",").map(s=>s.trim()):e[i]=r)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{T as a,M as g};
+`;async function S(){var n;const o=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/index-java-learning.md":f,"/src/content/blogs/india-foss-2025.md":p,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":w,"/src/content/blogs/intellij-shortcuts.md":b,"/src/content/blogs/kubecon-cloudnativecon.md":y,"/src/content/blogs/outing-near-a-lakehouse.md":k,"/src/content/blogs/support-jetstream-proton.md":I,"/src/content/blogs/welcome.md":v});for(const t in e)try{const a=e[t];if(!a||a.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const i=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(i){const r=_(a,i);r&&o.push(r)}}catch(a){console.error(`Error processing blog post ${t}:`,a);continue}return o.sort((t,a)=>new Date(a.date).getTime()-new Date(t.date).getTime())}async function T(){return(await S()).filter(e=>e.visible!==!1)}async function E(o){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/index-java-learning.md":f,"/src/content/blogs/india-foss-2025.md":p,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":w,"/src/content/blogs/intellij-shortcuts.md":b,"/src/content/blogs/kubecon-cloudnativecon.md":y,"/src/content/blogs/outing-near-a-lakehouse.md":k,"/src/content/blogs/support-jetstream-proton.md":I,"/src/content/blogs/welcome.md":v}),n=`/src/content/blogs/${o}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):_(t,o)}return null}catch(e){return console.error(`Error loading blog post ${o}:`,e),null}}function _(o,e){try{const n=o.split(`---
+`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const a=M(t),i=a.title,r=a.date;if(!i||!r)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const s=a.visible,C=s?s.toLowerCase()==="true":!0,D=a.tags;return{slug:e,title:i,date:r,description:a.description||"",content:n.slice(2).join(`---
+`),visible:C,tags:D}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function M(o){const e={};try{o.split(`
+`).forEach(n=>{const[t,...a]=n.split(":");if(t&&a.length){const i=t.trim(),r=a.join(":").trim();i&&r&&(i==="tags"?e[i]=r.split(",").map(s=>s.trim()):e[i]=r)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{E as a,T as g};
