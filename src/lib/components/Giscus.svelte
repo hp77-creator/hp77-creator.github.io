@@ -9,7 +9,7 @@
     script.src = 'https://giscus.app/client.js';
     script.setAttribute('data-repo', 'hp77-creator/hp77-creator.github.io');
     script.setAttribute('data-repo-id', 'MDEwOlJlcG9zaXRvcnkzNDExMDA1NjA='); // Will be provided by giscus.app
-    script.setAttribute('data-category', 'Blog Comments');
+    script.setAttribute('data-category', 'Announcements');
     script.setAttribute('data-category-id', 'DIC_kwDOFFTIEM4ClJ0_'); // Will be provided by giscus.app
     script.setAttribute('data-mapping', mapping);
     script.setAttribute('data-strict', strict ? '1' : '0');
