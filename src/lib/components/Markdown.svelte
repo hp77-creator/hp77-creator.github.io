@@ -11,7 +11,11 @@
     renderer: {
       code(code: string, lang: string | undefined) {
         if (lang === "mermaid") {
-          return `<div class="mermaid">${code}</div>`;
+          const cleanCode = code.replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&amp;/g, "&")
+            .replace(/\u00A0/g, " ");
+          return `<div class="mermaid">${cleanCode}</div>`;
         }
         return `<pre><code class="language-${lang ?? ""}">${code}</code></pre>`;
       },
@@ -40,7 +44,12 @@
   });
 
   async function renderMermaid() {
-    await mermaid.run({ querySelector: ".mermaid" });
+    try {
+      // Adding a try-catch so a bad diagram doesn't break the whole component tree
+      await mermaid.run({ querySelector: ".mermaid" });
+    } catch (error) {
+      console.error("Mermaid failed to render:", error);
+    }
   }
 
   onMount(renderMermaid);
