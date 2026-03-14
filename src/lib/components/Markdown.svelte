@@ -1,20 +1,25 @@
 <script lang="ts">
   import { marked } from "marked";
-  import mermaid from "mermaid";
   import { onMount, afterUpdate } from "svelte";
 
   export let source: string;
 
-  mermaid.initialize({ startOnLoad: false, theme: "default" });
+  // Local variable to hold the dynamically loaded Mermaid instance
+  let mermaidInstance: any;
+
+  // Create an isolated instance of marked
 
   marked.use({
     renderer: {
       code(code: string, lang: string | undefined) {
         if (lang === "mermaid") {
-          const cleanCode = code.replace(/&lt;/g, "<")
+          // Clean up HTML entities and non-breaking spaces
+          const cleanCode = code
+            .replace(/&lt;/g, "<")
             .replace(/&gt;/g, ">")
             .replace(/&amp;/g, "&")
             .replace(/\u00A0/g, " ");
+
           return `<div class="mermaid">${cleanCode}</div>`;
         }
         return `<pre><code class="language-${lang ?? ""}">${code}</code></pre>`;
@@ -38,21 +43,35 @@
     },
   });
 
+  // Parse the markdown reactively
   $: html = marked.parse(source, {
     smartLists: true,
     smartypants: true,
-  });
+  }) as string;
 
   async function renderMermaid() {
+    if (!mermaidInstance) return;
+
     try {
-      // Adding a try-catch so a bad diagram doesn't break the whole component tree
-      await mermaid.run({ querySelector: ".mermaid" });
+      // Tell Mermaid to parse and render the divs we just created
+      await mermaidInstance.run({ querySelector: ".mermaid" });
     } catch (error) {
       console.error("Mermaid failed to render:", error);
     }
   }
 
-  onMount(renderMermaid);
+  onMount(async () => {
+    // Dynamically import mermaid only in the browser to prevent SSR build errors
+    const mermaidModule = await import("mermaid");
+    mermaidInstance = mermaidModule.default;
+
+    mermaidInstance.initialize({ startOnLoad: false, theme: "default" });
+
+    // Trigger the initial render once the module is loaded
+    await renderMermaid();
+  });
+
+  // Re-run whenever the component updates
   afterUpdate(renderMermaid);
 </script>
 

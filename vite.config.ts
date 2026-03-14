@@ -32,6 +32,20 @@ function markdown() {
 
 const config: UserConfig = {
   plugins: [sveltekit(), pluginYaml() as any, markdown()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // Bundle mermaid and all its internal dependencies (dagre, etc.)
+          // into a single chunk to prevent 404s from lazy sub-chunk loading
+          // on static hosts like GitHub Pages.
+          if (id.includes('node_modules/mermaid') || id.includes('node_modules/dagre') || id.includes('node_modules/@braintree') || id.includes('node_modules/khroma') || id.includes('node_modules/non-layered-tidy-tree-layout')) {
+            return 'mermaid';
+          }
+        }
+      }
+    }
+  }
 };
 
 export default config;
