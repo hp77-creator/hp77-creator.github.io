@@ -40,11 +40,17 @@ chmod +x /data/data/com.termux/files/usr/bin/rish
 
 10. Then I used `Button Mapper` from [play store](https://play.google.com/store/apps/details?id=flar2.homebutton&hl=en_IN&pli=1) to register the essential space button and remap it to `search`
 
+11. (Optional) If you feel that you want to re-enable the setting, run the following command:
+```sh
+rish -c "pm enable-user --user 0 com.nothing.ntessentialrecorder"
+```
+
 In this process, I was again shown how open android system is, you can literally change a propreitary behaviour to what you want for your device.
 I don't think we can do this in `iphone` without jailbreaking it and that is not easy.
 Customizations like these are boon for tinkerers who go the distance and present such beautiful ways to make our life more convenient.
 Thanks to Nothing, I came across `Shizuku` and `pm`. I am excited to learn more about them.
 I have starred it on `github` and I request you to do the same. [To star](https://github.com/RikkaApps/Shizuku)
+
 
 Recently, Android has proposed some [plans](https://android-developers.googleblog.com/2025/08/elevating-android-security.html) to avoid user from installing any 3rd party apps if their account is not registered, as much as this move is focussed for safety, it also kills this
 kind of creativity which enabled above changes. I hope that Android stays open and lets us use
