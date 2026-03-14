@@ -1023,6 +1023,22 @@ This blog is built with:
 
 Feel free to check out the source code on my GitHub!
 `,k=`---
+title: Notes on Competitive Programming
+date: 2026-03-14
+description: Things I found interesting while solving questions on codeforces 
+visible: true
+tags: technical-writing
+---
+
+1. If you want to know if a number is a power of \`2\`, just do \`(number) & (number-1) == 0\`, if 
+this is true then that number is power of 2.
+
+2. Sometimes, you might feel very overwhelmed with different number of ifs for a problem, try to
+think more in those cases, think if you can leverage the constraints and generate all possible
+formations and compare. An example of this advice is following [problem](https://codeforces.com/contest/479/problem/A) and [solution](https://codeforces.com/contest/479/submission/366622779).
+
+
+`,I=`---
 title: Outing near a lakehouse 
 date: 2025-05-13
 description: what I learned about Datawarehouses, Delta-lakes and Lakehouses 
@@ -1072,7 +1088,7 @@ switch your DB, Another issue with DWH is that they are not good in storing unst
 always an ETL(Extract-Transform-Load) step before data is added into these DBs.
 
 Delta Lakes provide one step better clarity and support unstructured or semi-structured data but they also lack the modularity 
-`,I=`---
+`,v=`---
 title: mishap with git rebase, reflog to rescue
 date: 2024-12-10
 description: lesson on Git and what not to do 
@@ -1119,7 +1135,7 @@ It will show you history of the branches and places it had originated from and h
 ## References
 
 - [Git remote branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches)
-`,v=`---
+`,_=`---
 title: Welcome to my blog
 date: 2024-01-20
 description: Introduction to my technical blog and what to expect
@@ -1160,7 +1176,7 @@ This blog is built with:
 - Hosted on GitHub Pages
 
 Feel free to check out the source code on my GitHub!
-`;async function S(){var n;const o=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/index-java-learning.md":f,"/src/content/blogs/india-foss-2025.md":p,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":w,"/src/content/blogs/intellij-shortcuts.md":b,"/src/content/blogs/kubecon-cloudnativecon.md":y,"/src/content/blogs/outing-near-a-lakehouse.md":k,"/src/content/blogs/support-jetstream-proton.md":I,"/src/content/blogs/welcome.md":v});for(const t in e)try{const a=e[t];if(!a||a.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const i=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(i){const r=_(a,i);r&&o.push(r)}}catch(a){console.error(`Error processing blog post ${t}:`,a);continue}return o.sort((t,a)=>new Date(a.date).getTime()-new Date(t.date).getTime())}async function T(){return(await S()).filter(e=>e.visible!==!1)}async function E(o){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/index-java-learning.md":f,"/src/content/blogs/india-foss-2025.md":p,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":w,"/src/content/blogs/intellij-shortcuts.md":b,"/src/content/blogs/kubecon-cloudnativecon.md":y,"/src/content/blogs/outing-near-a-lakehouse.md":k,"/src/content/blogs/support-jetstream-proton.md":I,"/src/content/blogs/welcome.md":v}),n=`/src/content/blogs/${o}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):_(t,o)}return null}catch(e){return console.error(`Error loading blog post ${o}:`,e),null}}function _(o,e){try{const n=o.split(`---
-`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const a=M(t),i=a.title,r=a.date;if(!i||!r)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const s=a.visible,C=s?s.toLowerCase()==="true":!0,D=a.tags;return{slug:e,title:i,date:r,description:a.description||"",content:n.slice(2).join(`---
-`),visible:C,tags:D}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function M(o){const e={};try{o.split(`
-`).forEach(n=>{const[t,...a]=n.split(":");if(t&&a.length){const i=t.trim(),r=a.join(":").trim();i&&r&&(i==="tags"?e[i]=r.split(",").map(s=>s.trim()):e[i]=r)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{E as a,T as g};
+`;async function M(){var n;const a=[],e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/index-java-learning.md":f,"/src/content/blogs/india-foss-2025.md":p,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":w,"/src/content/blogs/intellij-shortcuts.md":b,"/src/content/blogs/kubecon-cloudnativecon.md":y,"/src/content/blogs/notes-competitive-programming.md":k,"/src/content/blogs/outing-near-a-lakehouse.md":I,"/src/content/blogs/support-jetstream-proton.md":v,"/src/content/blogs/welcome.md":_});for(const t in e)try{const o=e[t];if(!o||o.trim()===""){console.warn(`Empty blog post file found: ${t}`);continue}const i=(n=t.split("/").pop())==null?void 0:n.replace(".md","");if(i){const r=C(o,i);r&&a.push(r)}}catch(o){console.error(`Error processing blog post ${t}:`,o);continue}return a.sort((t,o)=>new Date(o.date).getTime()-new Date(t.date).getTime())}async function E(){return(await M()).filter(e=>e.visible!==!1)}async function A(a){try{const e=Object.assign({"/src/content/blogs/about-mudlet.md":l,"/src/content/blogs/adding-frm-parser-part-1.md":d,"/src/content/blogs/building-understanding-mariaDB.md":h,"/src/content/blogs/git-rebase.md":c,"/src/content/blogs/git-worktree-debug.md":u,"/src/content/blogs/gsoc24.md":m,"/src/content/blogs/gsoc25.md":g,"/src/content/blogs/index-java-learning.md":f,"/src/content/blogs/india-foss-2025.md":p,"/src/content/blogs/installing-clickhouse-fixing-a-macos-issue.md":w,"/src/content/blogs/intellij-shortcuts.md":b,"/src/content/blogs/kubecon-cloudnativecon.md":y,"/src/content/blogs/notes-competitive-programming.md":k,"/src/content/blogs/outing-near-a-lakehouse.md":I,"/src/content/blogs/support-jetstream-proton.md":v,"/src/content/blogs/welcome.md":_}),n=`/src/content/blogs/${a}.md`;if(n in e){const t=e[n];return!t||t.trim()===""?(console.warn(`Empty blog post file found: ${n}`),null):C(t,a)}return null}catch(e){return console.error(`Error loading blog post ${a}:`,e),null}}function C(a,e){try{const n=a.split(`---
+`);if(n.length<3)return console.warn(`Invalid frontmatter format in post: ${e}`),null;const t=n[1];if(!t)return console.warn(`Missing frontmatter in post: ${e}`),null;const o=T(t),i=o.title,r=o.date;if(!i||!r)return console.warn(`Missing required frontmatter fields in post: ${e}`),null;const s=o.visible,D=s?s.toLowerCase()==="true":!0,S=o.tags;return{slug:e,title:i,date:r,description:o.description||"",content:n.slice(2).join(`---
+`),visible:D,tags:S}}catch(n){return console.error(`Error parsing blog post ${e}:`,n),null}}function T(a){const e={};try{a.split(`
+`).forEach(n=>{const[t,...o]=n.split(":");if(t&&o.length){const i=t.trim(),r=o.join(":").trim();i&&r&&(i==="tags"?e[i]=r.split(",").map(s=>s.trim()):e[i]=r)}})}catch(n){console.error("Error parsing frontmatter:",n)}return e}export{A as a,E as g};
