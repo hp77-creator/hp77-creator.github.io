@@ -22,7 +22,7 @@ I saw Greg KH moving from keynote hall to outside and it fel so surreal, I becam
 
 ### Keynote: From Consumption to Global Leadership by Arpit
 
-In this keynote, he mentioned the growth of Linux Foundation in India and how India is embracing open source with both arms. Some interesting bits from this talk that I noted was that LFX is now also creating section for AI, they have set up Agentic AI foundation. Arpit mentioned
+In this keynote, Speaker mentioned the growth of Linux Foundation in India and how India is embracing open source with open arms. Some interesting bits from this talk that I noted was that LFX is now also creating section for AI, they have set up Agentic AI foundation. Arpit mentioned
 about Goose and Tokenomics.
 He mentioned the five layers of AI
 
@@ -113,8 +113,14 @@ slides later on noted pointers on exploring more of some techs which the speaker
 
 ### Keynote on Valkey
 
+I already knew about Valkey since Redis had changed its license to a business friendly license over open source one, Open source community had forked it and created something
+called as Valkey. It was a joint effort by major coporations like Amazon, Google and others. I learnt from this talk some best practices of where one should be using
+Valkey. I learnt that Valkey has introduced something called as semantic search.
+Speaker also told about some of the best practices of where one can use Valkey.
+
 
 ### Keynote Open by design
+
 
 
 ### Rust and Linux, Keynote by Greg KH
