@@ -24,10 +24,20 @@ I saw Greg KH moving from keynote hall to outside and it fel so surreal, I becam
 
 In this keynote, Speaker mentioned the growth of Linux Foundation in India and how India is embracing open source with open arms. Some interesting bits from this talk that I noted was that LFX is now also creating section for AI, they have set up Agentic AI foundation. Arpit mentioned
 about Goose and Tokenomics.
-He mentioned the five layers of AI
+He mentioned the five layers of AI -- Hardware Infrastructure --> Software Infrastructure --> Intelligence --> Agentic AI --> End user Application & Verticals.
+He then went in deep on the Layer-4 Agentic AI, here he mentioned, projects like [agentgateway](https://github.com/agentgateway/agentgateway) which is a Governance and control layer then we have AGENTS.md which is responsible for agentic runtime, I already mentioned [Goose](https://goose-docs.ai/) before which is like a AI agent for development.
+He also mentioned something about OCUDU, I couldn't understand much about it and so probably can check it out later but it was something in telecom industry. Then there was a mention of India's growth in LF Decentralized Trust projects.
+
+
+[Slides](https://hosted-files.sched.co/ossindia2026/0d/Arpit%20OSS%20Keynote%20-%20LF%20India%20June%202026%20FINAL.pdf)
+
 
 ### Keynote: Open source Runway
 
+
+![Policies for agentic AI](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678589/WhatsApp_Image_2026-06-29_at_01.57.46_2_hewmwm.jpg)
+
+This talk took us through the journey of AI from conversational bots to autonomous agents. Talk was centered around how we can reach this destination.
 I learnt about Microsoft's current status on Agentic AI. Todd Mladenov also mentioned about the requirements of an agentic AI workflow which are
 - Scale
 - Security
@@ -40,6 +50,9 @@ Agent runtime requires dynamic resource allocation.
 Microsoft has also created something called as Agent governance toolkit ([link]( https://github.com/microsoft/agent-governance-toolkit)).
 They have also created something called as Agent reference stack for k8s (KARS)
 
+
+[Slides](https://hosted-files.sched.co/ossindia2026/9f/2.%20Toddy%20Mladenov.pdf)
+
 ### Keynote: Conversation between Linus Torvalds and Dirk Hohndel
 
 Crowd gave a standing ovation to Linus and some even whistled in awe of seeing a living legend in front of their eyes. I was so happy seeing him on stage. I just wanted to save this moment and I hoped to reach atleast a 1 % of his level, such is his greatness.
@@ -50,14 +63,14 @@ not shown to Linus before so whatever he says is said on the spot.
 
 I learnt that Linux 7.x version is launched. Interesting thing was learning that it has NTFS support and there has been many removals as well mostly of things which are not maintained or used rapidly.
 x486 is one of those things.
-There was discussion about
 
 Arpit also mentioned that Linus had just flew in to do the session and then he left back.
 
 ### Keynote Panel: Open source innovation powering India's Digital Public Infrastructure
 
 This was a really interesting panel, CEO of DigiYatra, Network for Humanity were present, I learnt in this panel questions that DigiYatra uses
-blockchain for their operations. Also got to learn how they are going to enable DigiYatra globally, they have done some PoC and everyone's excited
+blockchain for their operations. So, in Arpit's keynote there was a mention of growing use of LF's Decentralized project in India, DigiYatra is one of those users
+Also got to learn how they are going to enable DigiYatra globally, they have done some PoC and everyone's excited
 to see it. It will use Passport to create a profile unlike Aadhaar which is just for Indian citizens. I found it interesting like a technology
 which will be global and India is driving this innovation. I really liked how their overcame the risk of data security by simply putting the
 onus on clients and leveraging blockchain technology. It was really interesting.
@@ -72,14 +85,37 @@ even though the project was started as a college student project.
 ### Hey yocto, build me a custom embedded Linux
 
 This was so interesting session, I had seen Kaiwan Billimoria's name on books of Linux Kernel development but seeing him in person and
-explaining about how we can use Yocto to do Linux development for embedded systems was really interesting. There were too many things
-that flew over my head because I am not aware of lot of kernel terms but I learnt some terms which I will google for example, how to develop
-an image and how to customize your linux kernel image.
+him explaining about how we can use Yocto to do Linux development for embedded systems was really interesting.
+
+Yocto is SI unit which means 10^-24 which is a very clever way to say it is built for small embedded systems.
+Kaiwan mentioned to always use LTS versions whenever using any versions.
+
+Every linux image should have following things:
+- a bootloader image
+- a kernel image
+- device tree blob (DTB) image -- these are super common in embedded
+- root filesystem(rootfs) image
+
+yocto builds packages which are then extracted to make bootable images.
+
+
+[Slides](https://hosted-files.sched.co/ossindia2026/c5/Hey%20Yocto%2C%20build%20me%20a%20custom%20embedded%20Linux%21%20Er%2C%20no%20-%20OSS%20Mumbai%20June2026.pdf)
+
 
 ### DTS 101: From roots to Trees
 
 This was a really interesting session, like I had heard of DTS but never quite understood them, I remember there was one session in Kubecon'24 in Delhi where I just noted things but didn't quite understand
 much. I was glad to participate in this session was able to understand the terminologies around DTS, what is their need and when they should be really added. It was really informative for me.
+
+It is a data format to deescribe the non-discoverable hardware.
+It is used by software like linux kernel or u-boot to understand the hardware it is running on.
+ACPI based systems use ACPI tables for that
+Devicetree bindings(DTB) - rules how DTS should be constructed and documenting the ABI
+
+DT Binding define the ABI - it is a contract between the software ( Linux Kernel) & DTS(Device Tree Source)
+
+you should only put hardware info in DTS
+properties represent observable hardware characteristics or board wiring
 
 
 ### Open Source is not the same Anymore
@@ -88,6 +124,8 @@ Session about recent changes in open source world where AI has contributd so muc
 are done by some danger actors.
 
 ### Ask the expert with Greg Kroah-Hartman
+
+![Greg-KH in discussion](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678589/WhatsApp_Image_2026-06-29_at_01.57.46_kmqgke.jpg)
 
 This was a roundtable discussion, where attendees had just surrounded Greg KH and asking questions to him. Question ranged from asking him about the increased use of AI for finding bugs in kernel.
 Some people were raising questions of memory subsystems but Greg politely told them he is not aware of the intricacies of that ecosystem. There were also questions around his day to day, what tools
@@ -113,6 +151,8 @@ slides later on noted pointers on exploring more of some techs which the speaker
 
 ### Keynote on Valkey
 
+![Valkey](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678588/WhatsApp_Image_2026-06-29_at_01.57.45_1_fmncbw.jpg)
+
 I already knew about Valkey since Redis had changed its license to a business friendly license over open source one, Open source community had forked it and created something
 called as Valkey. It was a joint effort by major coporations like Amazon, Google and others. I learnt from this talk some best practices of where one should be using
 Valkey. I learnt that Valkey has introduced something called as semantic search.
@@ -129,7 +169,11 @@ It was an awesome session
 
 ### Breaking Valkey on Purpose
 
+![key-takeaway](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678588/WhatsApp_Image_2026-06-29_at_01.57.44_muniyb.jpg)
+
 ### Don't Trash it, Hack it: Reverse Engineering Secrets & Re-purposing ISP Routers
+
+![intro](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678898/WhatsApp_Image_2026-06-29_at_01.57.44_1_artn1d.jpg)
 
 ### The Next Evolution of Java: Achieving Hyper Performance and Efficiency in Cloud Native Workloads
 
@@ -137,7 +181,11 @@ It was an awesome session
 
 ### Confidently Wrong: When AI Cannot catch its own bugs
 
+![session-img](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678588/WhatsApp_Image_2026-06-29_at_01.57.43_a6wazi.jpg)
+
 ### Writing for Machines: How to Capture your Project's "Vibe" and Survive AI Slop
+
+![end-slide](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678898/WhatsApp_Image_2026-06-29_at_01.57.43_1_dbmuo1.jpg)
 
 
 
