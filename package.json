@@ -16,6 +16,8 @@
     },
     "dependencies": {
         "@fontsource/newsreader": "^4.5.10",
+        "baseline-browser-mapping": "^2.10.40",
+        "caniuse-lite": "^1.0.30001800",
         "lucide-svelte": "^0.130.1",
         "marked": "^4.3.0",
         "mermaid": "^11.13.0",
