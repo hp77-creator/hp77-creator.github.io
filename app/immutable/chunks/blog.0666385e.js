@@ -1042,6 +1042,7 @@ formations and compare. An example of this advice is following [problem](https:/
 title: Open Source Summit'26 at Mumbai
 date: 2026-06-21
 description: Report of talks and interactions I had in Mumbai Open Source Summit by LFX
+tags: technical-writing, conference
 visible: true
 ---
 
