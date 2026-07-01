@@ -2,7 +2,7 @@
 title: Open Source Summit'26 at Mumbai
 date: 2026-06-21
 description: Report of talks and interactions I had in Mumbai Open Source Summit by LFX
-visible: false
+visible: true
 ---
 
 ## Introduction
@@ -118,6 +118,9 @@ you should only put hardware info in DTS
 properties represent observable hardware characteristics or board wiring
 
 
+[Slides](https://hosted-files.sched.co/ossindia2026/c6/DTS%20101%20From%20Roots%20to%20Trees%2C%20aka%20Devicetree%20for%20Beginners%20-%20Krzysztof%20Kozlowski%2C%20Qualcomm%20-%20OSS%20India%202026.pdf)
+
+
 ### Open Source is not the same Anymore
 
 Session about recent changes in open source world where AI has contributd so much slop to codebases that many OS projects have disabled them for good. Also they talked about supply chain attacks that
@@ -140,10 +143,16 @@ This session was again taken by Krystoff, He talked about how one should aim for
 patch which come on the mailing list, you need to get trust from the maintainer which you can only build by doing contributions. You need to then nominate yourself and it is a job where in
 you have to constantly keep reviewing changes that are sent to you and maintain your system. Becoming a maintainer is the easy part but staying a maintainer and maintaining is the real challenge.
 
+
+[Slides](https://hosted-files.sched.co/ossindia2026/96/Guide%20to%20Becoming%20a%20Linux%20Kernel%20Maintainer%20-%20Krzysztof%20Kozlowski%2C%20Qualcomm%20-%20OSS%20India%202026.pdf)
+
 ### Recipes and Runtimes: Making sense of containers
 
 This was a really good session on how to optimize container images and what are the latest technologies that are being used in the world at the moment. I learnt a lot from this. I even checked out
 slides later on noted pointers on exploring more of some techs which the speaker mentioned.
+
+
+[Slides](https://hosted-files.sched.co/ossindia2026/d0/Making%20Sense%20Of%20Containers%20in%202026.pdf)
 
 
 
@@ -161,31 +170,107 @@ Speaker also told about some of the best practices of where one can use Valkey.
 
 ### Keynote Open by design
 
+This was a talk given by IBM field CTO. Speaker mentioned how IBM loves Open source and what innovation they are doing in space of AI.
+This talk was an intro to AI Risk Atlas which is being developed by IBM. I read about it, seems like they are creating an ontology for
+trust in AI space.
+"Open source is powering AI acceleration but trust gap is widening"
+Trusted AI = Responsible + Reliant + Transparent
+Goal of AI Risk Atlas is to embed trust in each lifecycle of, be it from Data --> Models --> Training --> Deployment --> Monitoring --> Governance
+
+
+[Slides](https://hosted-files.sched.co/ossindia2026/60/5.%20Geeta%20Gurnani.pdf)
+
 
 
 ### Rust and Linux, Keynote by Greg KH
 
-It was an awesome session
+Greg KH was also given a standing ovation for his contribution to Linux Kernel. He spoke about Rust and how it can help in making kernel more secure.
+He gave examples of some bugs where resources were not freed in some error conditions, some of those type of bugs stayed in kernel for more than 20 years.
+He told that Rust will make identifying these bugs easy. It will also force them to document their APIs in a manner which is safe and secure.
+And continuing on his yesterday's statement he did say that learning Rust is fun and we all should do it.
+
+
+
+[Slides](https://hosted-files.sched.co/ossindia2026/c2/6.%20Greg%20Kroah-Hartman.pdf)
 
 ### Breaking Valkey on Purpose
+
+This was a fun session. I saw speaker break valkey's consensus behaviour and interesting part was seeing how she was able to replicate the exact behaviour
+So, if you patch up some fix you can again execute the scenarios which led to previous failure and observe if your patch really fixed the issue or not.
+I liked how she had leveraged AI in planning what test should be done. Setting up the whole environment and then executing those queries and verifying
+the guarantees which are presented by Valkey was a good demo. It looked like a Deterministic Simulation Testing (DST), I really liked this. And it is also
+open source, so you can also test your version of Valkey [here](github.com/valkey-io/valkey-fuzzer).
+
+
+[Slides](https://hosted-files.sched.co/ossindia2026/fa/OSSummit-ValkeyFuzzer.pdf)
+
 
 ![key-takeaway](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678588/WhatsApp_Image_2026-06-29_at_01.57.44_muniyb.jpg)
 
 ### Don't Trash it, Hack it: Reverse Engineering Secrets & Re-purposing ISP Routers
 
+This was one of the best sessions of the whole event. I was so mind blown after this session, like cool people like Dheeraj exist around us. Speaker showed
+us demonstration on how he was able to hack a router, he was able to figure out username and password by decompiling the binary and looking for keyword like
+"password", he used Ghidra to map the exact lines. He showed how he analyzed the binary which is loaded in the router. How he remapped the CLI which was given
+by default in router to his own shell script. It was so good. He mentioned if one wants to start in this space, they should be familiar with Kernel and some
+instruction set, he was familiar with the instruction set of the microcontroller which was being used in the router and he learned more from MIPS related book.
+
+He also mentions how one can avoid this thing, first is to never pack a UART port in your microcontroller when shipping to production, other thing is to add a passphrase
+to avoid figuring out the password from decompiled binary. It was an awesome session. Highly recommended to check it out on youtube when it is up.
+
+
 ![intro](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678898/WhatsApp_Image_2026-06-29_at_01.57.44_1_artn1d.jpg)
+
+[Slides](https://hosted-files.sched.co/ossindia2026/d4/OSS_India_2026_Dont_Trash_it_Hack%20it_Dheeraj_Jonnalagadda.pdf)
 
 ### The Next Evolution of Java: Achieving Hyper Performance and Efficiency in Cloud Native Workloads
 
+Daniel Oh spoke to us about Quarkus in this session. He told us about evolution of cloud and how Java framework's fared in this changing ecosystem.
+He told us about one use case of an ecommerce company which faced issue when their java system was unable to scale when traffic increased. Reason for that being
+Java images take a lot of time to load up in containers because they have to load initial OS then JVM then application code and run that code. All of this takes
+significant time and in case of high traffic it can take even more time, k8s healthcheck failed for the company and their system crashed because of this delay
+in start up of the service. He mentioned how GraalVM can help in solving this issue, GraalVM creates a native image for the java applications so loading of JVM and
+other things are not required. It is Ahead of Time (AOT) compilation compared to Just-in-Time(JIT) compilation of JVM. This has its benefit that start up time is
+reduced but it also has a con on cases where there is too many computations in the code, those will not be optimized in subsequent usages while in JIT, computations will be optimized.
+It is a trade-off and it totally depends on what you want to use it for. If you think that your services require faster boot up times then you can go ahead with GraalVM based solution, but if you want better optimization over the duration of your codebase execution then JVM is the way to go. With GraalVM you also loose the ability to
+debug your application while developing because it generates a binary and that is to be run, so there are some trade-offs like these. Pick your poison ;)
+
+[Slides](https://hosted-files.sched.co/ossindia2026/eb/oss_in26_The%20Next%20Evolution%20of%20Java_%20%E2%98%95%EF%B8%8F%20Achieving%20Hyper%20Performance%20and%20Efficiency%20in%20Cloud%20Native%20Workloads.pdf)
+
+
 ### Operators live in the Past: Designing Reliable Kubernetes Controllers
 
+This was a really good session. I finally understood what operators are in k8s, now I can understand some of the sessions that I attended in Kubecon in 2024 (XD).
+Someshwaran is from ElasticSearch, so he showed how one can run operators and what is their use. Operators are like custom workflow that you create for your stateful
+services, example of Stateful service is ElasticSearch. How k8s can maintain the pod on the basis of operator and what stuff does an operator need to do all of that was discussed. This also reminded me of PlanetScale's blog on how they have created operator for their deployments and I read that blog again and I could make more sense of it.
+Highly recommended to check out this [blog](https://planetscale.com/blog/the-feedback-loops-behind-kubernetes).
+
+[Slides](https://hosted-files.sched.co/ossindia2026/3b/Operators-Designing-Reliable-Kubernetes-Controllers.pdf)
+
+
 ### Confidently Wrong: When AI Cannot catch its own bugs
+
+Speaker talks about how using same model for verifying its own generated output can lead to failures. She gave examples of some failures that AI did on logical questions.
+She mentioned we can leverage code based guarantees over model judgement for guaging model output. She talked about Mellea.ai which is something IBM has created to do the same.
+
 
 ![session-img](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678588/WhatsApp_Image_2026-06-29_at_01.57.43_a6wazi.jpg)
 
 ### Writing for Machines: How to Capture your Project's "Vibe" and Survive AI Slop
 
+This was a good session on how to maintain an Open source project in this changing ecosystem where every other day you are receiving too many PRs. Speakers shared thier
+experience which they gained from maintaining fossology. They also shared how we can use AI in a better way to generate less slop and more code which can be merged.
+They shared their experience where they once received a 100% coverage but when tests were checked it was just assert true. so horror stories like those were shared.
+
+
 ![end-slide](https://res.cloudinary.com/ddq6sqvno/image/upload/v1782678898/WhatsApp_Image_2026-06-29_at_01.57.43_1_dbmuo1.jpg)
+
+
+## Epilogue
+
+This was such a learning experience. I learnt so many things, got to see some of my favorite programmers. I felt ecstatic by the time session ended. Seeing so many people
+doing such exciting things in the space of Open source and coming in this Summit and talking about them also motivated me to do something similar and it is an inspiration
+to keep giving out to the community which is teaching us so much. I am grateful to Linux Foundation for hosting this and organizing such a wonderful event. To many more...
 
 
 
