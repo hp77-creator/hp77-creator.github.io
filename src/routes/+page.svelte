@@ -22,23 +22,23 @@
 
   function typeText() {
     const currentPhrase = phrases[currentPhraseIndex];
-    
+
     if (!isDeleting && typedText === currentPhrase) {
       isDeleting = true;
       setTimeout(typeText, pauseDelay);
       return;
     }
-    
+
     if (isDeleting && typedText === "") {
       isDeleting = false;
       currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
       setTimeout(typeText, typingSpeed);
       return;
     }
-    
+
     const delta = isDeleting ? -1 : 1;
     typedText = currentPhrase.substring(0, typedText.length + delta);
-    
+
     setTimeout(typeText, isDeleting ? deletingSpeed : typingSpeed);
   }
 
@@ -56,7 +56,8 @@
 <div class="layout-md text-lg space-y-14">
   <div class="space-y-5 animate-slide-up">
     <p>
-      I currently work at <a class="link hover-effect" href="https://www.piramalfinance.com/">Piramal Finance</a>, a retail digital loan provider.
+      I currently work at <a class="link hover-effect" href="https://www.chargebee.com/">Chargebee</a>, a revenue growth management company.
+      Previously I worked at Piramal Finance, a retail digital loan provider. I left Piramal Finance in July 2026 and have joined Chargebee ever since.
     </p>
 
     <p>
@@ -92,18 +93,18 @@
      I have been a Google Summer of Code contributor at <a class="link hover-effect" href="https://mariadb.org/">MariaDB</a > and <a class="link hover-effect" href="https://eunomia.dev/">eunomia-bpf</a>.
     </p>
     <p>
-      I graduated with a B.Tech from <a class="link hover-effect" href="https://www.svnit.ac.in/">SVNIT</a>. My journey started with web development at <a class="link hover-effect" href="https://www.freecodecamp.org/">FreeCodeCamp</a>, 
-      leading to machine learning projects in college. A pivotal moment was discovering Operating Systems: Three Easy Pieces (<a class="link hover-effect" href="https://pages.cs.wisc.edu/~remzi/OSTEP/">OSTEP</a>), 
+      I graduated with a B.Tech from <a class="link hover-effect" href="https://www.svnit.ac.in/">SVNIT</a>. My journey started with web development at <a class="link hover-effect" href="https://www.freecodecamp.org/">FreeCodeCamp</a>,
+      leading to machine learning projects in college. A pivotal moment was discovering Operating Systems: Three Easy Pieces (<a class="link hover-effect" href="https://pages.cs.wisc.edu/~remzi/OSTEP/">OSTEP</a>),
       which sparked my deep interest in systems programming.
     </p>
 
     <p>
-      An inspiring <a class="link hover-effect" href="https://speakerdeck.com/madhavjivrajani/can-we-use-ebpf-to-debug-performance-of-the-go-scheduler">eBPF talk</a> and this fascinating <a class="link hover-effect" href="https://youtu.be/Wb_vD3XZYOA?si=taGvQCXNvSsoVGk0">documentary</a> 
+      An inspiring <a class="link hover-effect" href="https://speakerdeck.com/madhavjivrajani/can-we-use-ebpf-to-debug-performance-of-the-go-scheduler">eBPF talk</a> and this fascinating <a class="link hover-effect" href="https://youtu.be/Wb_vD3XZYOA?si=taGvQCXNvSsoVGk0">documentary</a>
       led me to contribute to <a class="link hover-effect" href="https://eunomia.dev/">eunomia-bpf</a> for GSoC'24, where I work on their innovative userspace eBPF runtime.
     </p>
     <p>
-     Post my stint in eunomia-bpf, I started contributing to Databases and also got to work with MariaDB as part of GSoC'25. 
-     I have contributed <i>conv</i> function to ClickHouse and have also fixed macOS build issue in ClickHouse. 
+     Post my stint in eunomia-bpf, I started contributing to Databases and also got to work with MariaDB as part of GSoC'25.
+     I have contributed <i>conv</i> function to ClickHouse and have also fixed macOS build issue in ClickHouse.
     </p>
 
     <p>
@@ -136,7 +137,7 @@
   }
 
   .hover-effect {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-500 
+    @apply relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-500
            after:transform after:scale-x-0 after:transition-transform hover:after:scale-x-100;
   }
 
